@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo 3D Interativo</title>
+    <style>
+        body {
+            margin: 0;
+            cursor: none; /* Remove o cursor padrão */
+        }
+        canvas { 
+            display: block; 
+        }
+        /* Estilo do cursor de partícula */
+        .cursor {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: white;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s; /* Adiciona transição suave */
+            opacity: 60%;
+        }
+        /* Estilo do cursor quando o botão do mouse está pressionado */
+        .cursor.active {
+            background-color: red;
+            width: 12px; /* Aumenta o tamanho do cursor quando ativo */
+            height: 12px; /* Aumenta o tamanho do cursor quando ativo */
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor" id="cursor"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Configura a cena
+        const scene = new THREE.Scene();
+
+        // Configura a câmera
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 5;
+
+        // Configura o renderizador
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Cria o logo 3D
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const logo = new THREE.Mesh(geometry, material);
+        scene.add(logo);
+
+        // Estado para controlar se o mouse está pressionado
+        let isMousePressed = false;
+        let isMouseOverLogo = false; // Novo estado para verificar se o cursor está sobre o logo
+
+        // Armazena a rotação inicial do mouse
+        let initialMouseX = 0;
+        let initialMouseY = 0;
+
+        // Função de animação
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            if (!isMousePressed) {
+                // Continua girando verticalmente quando não estiver clicado
+                logo.rotation.y += 0.01;
+            }
+            
+            renderer.render(scene, camera);
+        }
+
+        // Adiciona eventos de mouse
+        document.addEventListener('mousedown', (event) => {
+            // Verifica se o clique é sobre o logo
+            const mouse = new THREE.Vector2();
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+            const raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(mouse, camera);
+
+            const intersects = raycaster.intersectObject(logo);
+            if (intersects.length > 0) {
+                isMousePressed = true;
+                isMouseOverLogo = true; // O logo está sob o cursor e o mouse está pressionado
+                // Armazena a posição inicial do mouse quando pressionado
+                initialMouseX = event.clientX;
+                initialMouseY = event.clientY;
+                
+                // Adiciona a classe 'active' ao cursor
+                document.getElementById('cursor').classList.add('active');
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isMousePressed = false;
+            if (!isMouseOverLogo) {
+                // Remove a classe 'active' se o cursor não estiver mais sobre o logo
+                document.getElementById('cursor').classList.remove('active');
+            }
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            const cursor = document.getElementById('cursor');
+            cursor.style.left = `${event.clientX}px`;
+            cursor.style.top = `${event.clientY}px`;
+
+            if (isMousePressed) {
+                // Calcula a rotação com base na diferença do movimento do mouse
+                logo.rotation.x += (event.clientY - initialMouseY) * 0.01;
+                logo.rotation.y += (event.clientX - initialMouseX) * 0.01;
+                
+                // Atualiza a posição inicial do mouse
+                initialMouseX = event.clientX;
+                initialMouseY = event.clientY;
+            }
+        });
+
+        // Verifica se o cursor está sobre o logo
+        function checkCursorOverLogo(event) {
+            const mouse = new THREE.Vector2();
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+            const raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(mouse, camera);
+
+            const intersects = raycaster.intersectObject(logo);
+            const cursor = document.getElementById('cursor');
+            if (intersects.length > 0) {
+                cursor.style.backgroundColor = 'red'; // Fica vermelho ao passar sobre o logo
+                isMouseOverLogo = true;
+            } else {
+                cursor.style.backgroundColor = isMousePressed ? 'red' : 'white';
+                isMouseOverLogo = false;
+            }
+        }
+
+        document.addEventListener('mousemove', checkCursorOverLogo);
+
+        // Inicia a animação
+        animate();
+
+        // Ajusta o tamanho do renderizador quando a janela é redimensionada
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+    </script>
+</body>
+</html>
