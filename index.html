@@ -1,339 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Skander Capital, uma empresa global de investimentos especializada em gestão patrimonial, venture capital e oferecendo um portfólio diversificado de produtos de investimento multiestratégia. Este site visa atender diferentes perfis de usuários: investidores, visitantes e empreendedores." />
-  <title>Skander Capital</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Montserrat', 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #eeece8;
-      color: #000000;
-      overflow: hidden;
-    }
-    canvas {
-      display: block;
-      background-color: #eeece8;
-    }
-    .cursor {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #cccccc;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: width 0.2s, height 0.2s, background-color 0.2s;
-      opacity: 60%;
-      z-index: 1000;
-    }
-    .cursor.active {
-      background-color: red;
-      width: 12px;
-      height: 12px;
-    }
-    .cursor.link-hover {
-      background-color: red;
-      width: 12px;
-      height: 12px;
-    }
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-    }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Skander Capital, uma empresa global de investimentos especializada em gestão patrimonial, venture capital e oferecendo um portfólio diversificado de produtos de investimento multiestratégia. Este site visa atender diferentes perfis de usuários: investidores, visitantes e empreendedores."
+    />
+    <title>Skander Capital</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Helvetica", "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #eeece8;
+        color: #000000;
+        overflow: hidden;
       }
-    }
-    .cursor-link-hover {
-      background-color: red !important;
-      width: 12px;
-      height: 12px;
-    }
-    .logo-text {
-      position: absolute;
-      bottom: 50px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 1rem;
-      font-family: 'Poppins', Courier, monospace;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Efeito 3D */
-    }
-    @media (max-width: 768px) {
+      canvas {
+        display: block;
+        background-color: #eeece8;
+      }
       .cursor {
-        display: none;
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #cccccc;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s, background-color 0.2s;
+        opacity: 60%;
+        z-index: 1000;
       }
-      .header-text, .logo-text {
+      .cursor.active {
+        background-color: red;
+        width: 12px;
+        height: 12px;
+      }
+      .cursor.link-hover {
+        background-color: red;
+        width: 12px;
+        height: 12px;
+      }
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+      .cursor-link-hover {
+        background-color: red !important;
+        width: 12px;
+        height: 12px;
+      }
+      .header-text {
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
         font-size: 1rem;
+        font-weight: 700;
+        font-family: "Courier New", Courier, monospace;
       }
-      .static-logo {
-        display: none;
+      .logo-text {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.4rem;
+        font-weight: 1000;
+        font-family: "Courier New", Courier, monospace;
       }
+      @media (max-width: 768px) {
+        .cursor {
+          display: none;
+        }
+        .header-text,
+        .logo-text {
+          font-size: 1rem;
+        }
+      }
+      .cursor-grab {
+        cursor: grab;
+      }
+
+      .cursor-grabbing {
+        cursor: grabbing;
+      }
+    </style>
+  </head>
+  <body class="fade-in">
+    <div class="cursor" id="cursor"></div>
+    <div class="header-text" id="current-time"></div>
+    <div class="logo-text">Skander Capital</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/MTLLoader.js"></script>
+
+    <script>
+     const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 5;
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor("#eeece8");
+document.body.appendChild(renderer.domElement);
+
+const ambientLight = new THREE.AmbientLight(0x404040);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
+directionalLight.position.set(-10, 10, 10).normalize();
+scene.add(directionalLight);
+
+const fillLight = new THREE.DirectionalLight(0x404040, 0.1);
+fillLight.position.set(-10, -5, -5).normalize();
+scene.add(fillLight);
+
+const pointLight = new THREE.PointLight(0xffffff, 1.0, 50);
+pointLight.position.set(10, 10, 10);
+scene.add(pointLight);
+
+let logoObject1;
+let logoObject2;
+let isDay = false;
+let lastCheckedTime = 0;
+let isMousePressed = false;
+let isMouseOverLogo = false;
+let initialMouseX = 0;
+let initialMouseY = 0;
+
+function loadLogos() {
+    const objLoader = new THREE.OBJLoader();
+    
+    const objFile1 = isDay ? 'src/logopreto.obj' : 'src/logo.obj';
+    const objFile2 = isDay ? 'src/logosemnomepreta.obj' : 'src/logosemnomebranca.obj';
+  
+    console.log(`Carregando logo central: ${objFile1}`);
+    console.log(`Carregando logo canto superior direito: ${objFile2}`);
+  
+    if (logoObject1) {
+        scene.remove(logoObject1);
+        logoObject1 = null;
     }
-  </style>
-</head>
-<body class="fade-in">
-  <div class="cursor" id="cursor"></div>
-  <div class="header-text" id="current-time"></div>
-  <div class="logo-text">Skander Capital</div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/OBJLoader.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/MTLLoader.js"></script>
-
-  <script>
-    const scene = new THREE.Scene();
-    const staticScene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 5;
-
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor("#eeece8");
-    document.body.appendChild(renderer.domElement);
-
-    const ambientLight = new THREE.AmbientLight(0x404040);
-    scene.add(ambientLight);
-    staticScene.add(ambientLight.clone());
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
-    directionalLight.position.set(-10, 10, 10).normalize();
-    scene.add(directionalLight);
-    staticScene.add(directionalLight.clone());
-
-    const fillLight = new THREE.DirectionalLight(0x404040, 0.1);
-    fillLight.position.set(-10, -5, -5).normalize();
-    scene.add(fillLight);
-    staticScene.add(fillLight.clone());
-
-    const pointLight = new THREE.PointLight(0xffffff, 1.0, 50);
-    pointLight.position.set(10, 10, 10);
-    scene.add(pointLight);
-    staticScene.add(pointLight.clone());
-
-    const ambientLight2 = new THREE.AmbientLight(0x404040);
-    scene.add(ambientLight2);
-    staticScene.add(ambientLight2.clone());
-
-    let logoObject;
-    let staticLogoObject;
-
-    const mtlLoader = new THREE.MTLLoader();
-    mtlLoader.load('src/logo.mtl', function (materials) {
-      materials.preload();
-
-      const objLoader = new THREE.OBJLoader();
-      objLoader.setMaterials(materials);
-      objLoader.load('src/logo.obj', function (object) {
-        logoObject = object;
-        updateObjectScale(logoObject);
+    if (logoObject2) {
+        scene.remove(logoObject2);
+        logoObject2 = null;
+    }
+  
+    objLoader.load(objFile1, function (object) {
+        logoObject1 = object;
+        updateObjectScale(logoObject1);
         object.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
-            child.material.envMap = renderer.getContext().getExtension('WEBGL_cube_map');
-            child.material.combine = THREE.MixOperation;
-            child.material.reflectivity = 0.8;
-            child.material.shininess = 100;
-          }
+            if (child instanceof THREE.Mesh) {
+                child.material.color.set(isDay ? 0x000000 : 0xffffff);
+            }
         });
-
-        scene.add(object);
-      }, undefined, function (error) {
-        console.error('Erro ao carregar o modelo OBJ:', error);
-      });
+        console.log('Logo 1 carregada');
+        scene.add(logoObject1);
     }, undefined, function (error) {
-      console.error('Erro ao carregar o material MTL:', error);
+        console.error('Erro ao carregar o modelo OBJ:', error);
     });
-
-    const staticMtlLoader = new THREE.MTLLoader();
-    staticMtlLoader.load('src/logosemnomebranca.mtl', function (materials) {
-      materials.preload();
-
-      const staticObjLoader = new THREE.OBJLoader();
-      staticObjLoader.setMaterials(materials);
-      staticObjLoader.load('src/logosemnomebranca.obj', function (object) {
-        staticLogoObject = object;
-        staticLogoObject.position.set(5.5, 2.2, 0.7); // Ajustar a posição conforme necessário
-        staticLogoObject.rotation.set(0, -0.1, 0); // Ajustar a rotação conforme necessário
-        updateStaticObjectScale(staticLogoObject); // Ajustar a escala da logo estática
-
+  
+    objLoader.load(objFile2, function (object) {
+        logoObject2 = object;
+        logoObject2.position.set(13, 5, -5);
+        logoObject2.rotation.set(0, 0, 0);
+        updateObjectScale(logoObject2);
         object.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
-            child.material.envMap = renderer.getContext().getExtension('WEBGL_cube_map');
-            child.material.combine = THREE.MixOperation;
-            child.material.reflectivity = 0.9;
-            child.material.shininess = 100;
-          }
+            if (child instanceof THREE.Mesh) {
+                child.material.color.set(isDay ? 0x000000 : 0xffffff);
+            }
         });
-
-        staticScene.add(object);
-        object.name = "staticLogo";
-      }, undefined, function (error) {
-        console.error('Erro ao carregar o modelo OBJ:', error);
-      });
+        console.log('Logo 2 carregada');
+        scene.add(logoObject2);
     }, undefined, function (error) {
-      console.error('Erro ao carregar o material MTL:', error);
+        console.error('Erro ao carregar o modelo OBJ:', error);
     });
+}
 
-    function adjustObjectScale(object) {
-      const width = window.innerWidth;
-      const newScale = width <= 768 ? 0.015 : 0.020;
-      object.scale.set(newScale, newScale, newScale);
+function adjustObjectScale() {
+    const width = window.innerWidth;
+    return width <= 768 ? 0.015 : 0.020;
+}
+
+function updateObjectScale(object) {
+    if (object) {
+        const newScale = adjustObjectScale();
+        object.scale.set(newScale, newScale, newScale);
     }
+}
 
-    function updateObjectScale(object) {
-      adjustObjectScale(object);
+function animate() {
+    requestAnimationFrame(animate);
+
+    if (logoObject1) logoObject1.rotation.y += 0.003;
+    if (logoObject2) logoObject2.rotation.y += 0.003;
+
+    renderer.render(scene, camera);
+}
+
+document.addEventListener("mousedown", (event) => {
+    handleInteractionStart(event.clientX, event.clientY);
+});
+
+document.addEventListener("mouseup", () => {
+    isMousePressed = false;
+    if (!isMouseOverLogo) {
+        document.body.style.cursor = 'auto';
     }
+});
 
-    function updateStaticObjectScale(object) {
-      object.scale.set(0.010, 0.010, 0.010); // Ajuste a escala conforme necessário para a logo estática
+document.addEventListener("mousemove", (event) => {
+    handleInteractionMove(event.clientX, event.clientY);
+    checkCursorOverLogo(event);
+});
+
+document.addEventListener("touchstart", (event) => {
+    const touch = event.touches[0];
+    handleInteractionStart(touch.clientX, touch.clientY);
+});
+
+document.addEventListener("touchend", () => {
+    isMousePressed = false;
+    if (!isMouseOverLogo) {
+        document.body.style.cursor = 'auto';
     }
+});
 
-    function animate() {
-      requestAnimationFrame(animate);
+document.addEventListener("touchmove", (event) => {
+    const touch = event.touches[0];
+    handleInteractionMove(touch.clientX, touch.clientY);
+    checkCursorOverLogo(touch);
+});
 
-      if (!isMousePressed) {
-        scene.rotation.y += 0.01;
-      }
+function handleInteractionStart(clientX, clientY) {
+    const mouse = new THREE.Vector2();
+    mouse.x = (clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
 
-      renderer.autoClear = false;
-      renderer.clear();
-      renderer.render(staticScene, camera);
-      renderer.render(scene, camera);
-    }
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, camera);
 
-    let isMousePressed = false;
-    let isMouseOverLogo = false;
-
-    let initialMouseX = 0;
-    let initialMouseY = 0;
-
-    document.addEventListener("mousedown", (event) => {
-      handleInteractionStart(event.clientX, event.clientY);
-    });
-
-    document.addEventListener("mouseup", () => {
-      isMousePressed = false;
-      if (!isMouseOverLogo) {
-        document.getElementById("cursor").classList.remove("active");
-      }
-    });
-
-    document.addEventListener("mousemove", (event) => {
-      handleInteractionMove(event.clientX, event.clientY);
-    });
-
-    document.addEventListener("touchstart", (event) => {
-      const touch = event.touches[0];
-      handleInteractionStart(touch.clientX, touch.clientY);
-    });
-
-    document.addEventListener("touchend", () => {
-      isMousePressed = false;
-      if (!isMouseOverLogo) {
-        document.getElementById("cursor").classList.remove("active");
-      }
-    });
-
-    document.addEventListener("touchmove", (event) => {
-      const touch = event.touches[0];
-      handleInteractionMove(touch.clientX, touch.clientY);
-    });
-
-    function handleInteractionStart(clientX, clientY) {
-      const mouse = new THREE.Vector2();
-      mouse.x = (clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(clientY / window.innerHeight) * 2 + 1;
-
-      const raycaster = new THREE.Raycaster();
-      raycaster.setFromCamera(mouse, camera);
-
-      const intersects = raycaster.intersectObject(scene, true);
-      if (intersects.length > 0) {
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    if (intersects.length > 0 && intersects[0].object === logoObject1) {
         isMousePressed = true;
         isMouseOverLogo = true;
         initialMouseX = clientX;
         initialMouseY = clientY;
-        document.getElementById("cursor").classList.add("active");
-      } else {
+        document.body.style.cursor = 'grabbing';
+    } else {
         window.location.href = 'info.html';
-      }
     }
+}
 
-    function handleInteractionMove(clientX, clientY) {
-      const cursor = document.getElementById("cursor");
-      cursor.style.left = `${clientX}px`;
-      cursor.style.top = `${clientY}px`;
+function handleInteractionMove(clientX, clientY) {
+    if (isMousePressed && logoObject1) {
+        const deltaX = clientX - initialMouseX;
+        const deltaY = clientY - initialMouseY;
 
-      if (isMousePressed) {
-        scene.rotation.x += (clientY - initialMouseY) * 0.01;
-        scene.rotation.y += (clientX - initialMouseX) * 0.01;
+        // Rotate the central logo
+        logoObject1.rotation.x += deltaY * 0.01;
+        logoObject1.rotation.y += deltaX * 0.01;
+
         initialMouseX = clientX;
         initialMouseY = clientY;
-      }
     }
+}
 
-    function checkCursorOverLogo(event) {
-      const mouse = new THREE.Vector2();
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+function checkCursorOverLogo(event) {
+    const mouse = new THREE.Vector2();
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-      const raycaster = new THREE.Raycaster();
-      raycaster.setFromCamera(mouse, camera);
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, camera);
 
-      const intersects = raycaster.intersectObject(scene, true);
-      const cursor = document.getElementById("cursor");
-      if (intersects.length > 0) {
-        cursor.style.backgroundColor = "red";
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    const cursor = document.body.style;
+    if (intersects.length > 0 && intersects[0].object === logoObject1) {
+        cursor.cursor = 'grab';
         isMouseOverLogo = true;
-      } else {
-        cursor.style.backgroundColor = isMousePressed ? "red" : "#cccccc";
+    } else {
+        cursor.cursor = 'auto';
         isMouseOverLogo = false;
-      }
     }
+}
 
-    document.addEventListener("mousemove", checkCursorOverLogo);
-    document.addEventListener("touchmove", (event) => {
-      const touch = event.touches[0];
-      checkCursorOverLogo(touch);
-    });
+animate();
 
-    animate();
+window.addEventListener("resize", () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    updateObjectScale(logoObject1);
+    updateObjectScale(logoObject2);
+});
 
-    window.addEventListener("resize", () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      if (logoObject) updateObjectScale(logoObject);
-      if (staticLogoObject) updateStaticObjectScale(staticLogoObject);
-    });
+function updateTime() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
 
-    function updateTime() {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const year = now.getFullYear();
+    document.getElementById('current-time').textContent = `${hours}:${minutes} · ${day}/${month}/${year}`;
 
-      if (hours >= 6 && hours < 18) {
-        document.body.style.backgroundColor = "#eeece8";
-        document.body.style.color = "#000000";
-        renderer.setClearColor("#eeece8");
-      } else {
-        document.body.style.backgroundColor = "#000000";
-        document.body.style.color = "#ffffff";
-        renderer.setClearColor("#000000");
-      }
+    const currentTime = now.getTime();
+    if (currentTime - lastCheckedTime >= 6 * 60 * 60 * 1000) {
+        lastCheckedTime = currentTime;
+
+        isDay = now.getHours() >= 6 && now.getHours() < 18;
+        console.log(isDay ? 'Dia' : 'Noite');
+        loadLogos();
     }
+}
 
-    setInterval(updateTime, 1000);
-    updateTime();
-  </script>
-</body>
+setInterval(updateTime, 1000);
+updateTime();
+
+    </script>
+  </body>
 </html>
