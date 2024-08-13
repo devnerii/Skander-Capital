@@ -1,380 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Skander Capital, uma empresa global de investimentos especializada em gestão patrimonial, venture capital e oferecendo um portfólio diversificado de produtos de investimento multiestratégia. Este site visa atender diferentes perfis de usuários: investidores, visitantes e empreendedores."
-    />
-    <title>Skander Capital</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Helvetica", "Arial", sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #eeece8;
-        color: #000000;
-        overflow: hidden;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Skander Capital, uma empresa global de investimentos especializada em gestão patrimonial, venture capital e oferecendo um portfólio diversificado de produtos de investimento multiestratégia. Este site visa atender diferentes perfis de usuários: investidores, visitantes e empreendedores."
+  />
+  <title>Skander Capital</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: "Helvetica", "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #eeece8;
+      color: #000000;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+      background-color: #eeece8;
+    }
+    .cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #cccccc;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, background-color 0.2s;
+      opacity: 60%;
+      z-index: 1000;
+    }
+    .cursor.active {
+      background-color: red;
+      width: 12px;
+      height: 12px;
+    }
+    .cursor.link-hover {
+      background-color: red;
+      width: 12px;
+      height: 12px;
+    }
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
       }
-      canvas {
-        display: block;
-        background-color: #eeece8;
-      }
+    }
+    .cursor-link-hover {
+      background-color: red !important;
+      width: 12px;
+      height: 12px;
+    }
+    .header-text {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.0rem;
+      font-weight: 700;
+      font-family: "Courier New", Courier, monospace;
+    }
+    .logo-text {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.4rem;
+      font-weight: 1000;
+      font-family: "Courier New", Courier, monospace;
+    }
+    @media (max-width: 768px) {
       .cursor {
-        position: fixed;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #cccccc;
-        pointer-events: none;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s, height 0.2s, background-color 0.2s;
-        opacity: 60%;
-        z-index: 1000;
+        display: none;
       }
-      .cursor.active {
-        background-color: red;
-        width: 12px;
-        height: 12px;
-      }
-      .cursor.link-hover {
-        background-color: red;
-        width: 12px;
-        height: 12px;
-      }
-      .fade-in {
-        opacity: 0;
-        animation: fadeIn 2s forwards;
-      }
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-        }
-      }
-      .cursor-link-hover {
-        background-color: red !important;
-        width: 12px;
-        height: 12px;
-      }
-      .header-text {
-        position: absolute;
-        top: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 1rem;
-        font-weight: 700;
-        font-family: "Courier New", Courier, monospace;
-      }
+      .header-text,
       .logo-text {
-        position: absolute;
-        bottom: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 1.4rem;
-        font-weight: 1000;
-        font-family: "Courier New", Courier, monospace;
+        font-size: 1rem;
       }
-      @media (max-width: 768px) {
-        .cursor {
-          display: none;
-        }
-        .header-text,
-        .logo-text {
-          font-size: 1rem;
-        }
-      }
-      .cursor-grab {
-        cursor: grab;
-      }
+    }
+  </style>
+</head>
+<body class="fade-in">
+  <div class="cursor" id="cursor"></div>
+  <div class="header-text" id="current-time"></div>
+  <div class="logo-text">Skander Capital</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/OBJLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/MTLLoader.js"></script>
 
-      .cursor-grabbing {
-        cursor: grabbing;
-      }
-    </style>
-  </head>
-  <body class="fade-in">
-    <div class="cursor" id="cursor"></div>
-    <div class="header-text" id="current-time"></div>
-    <div class="logo-text">Skander Capital</div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/OBJLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/MTLLoader.js"></script>
+  <script>
+   const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 5;
 
-    <script>
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-      );
-      camera.position.z = 5;
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor("#eeece8");
+document.body.appendChild(renderer.domElement);
 
-      const renderer = new THREE.WebGLRenderer();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setClearColor("#eeece8");
-      document.body.appendChild(renderer.domElement);
+const ambientLight = new THREE.AmbientLight(0x404040);
+scene.add(ambientLight);
 
-      const ambientLight = new THREE.AmbientLight(0x404040);
-      scene.add(ambientLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
+directionalLight.position.set(-10, 10, 10).normalize();
+scene.add(directionalLight);
 
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
-      directionalLight.position.set(-10, 10, 10).normalize();
-      scene.add(directionalLight);
+const fillLight = new THREE.DirectionalLight(0x404040, 0.1);
+fillLight.position.set(-10, -5, -5).normalize();
+scene.add(fillLight);
 
-      const fillLight = new THREE.DirectionalLight(0x404040, 0.1);
-      fillLight.position.set(-10, -5, -5).normalize();
-      scene.add(fillLight);
+const pointLight = new THREE.PointLight(0xffffff, 1.0, 50);
+pointLight.position.set(10, 10, 10);
+scene.add(pointLight);
 
-      const pointLight = new THREE.PointLight(0xffffff, 1.0, 50);
-      pointLight.position.set(10, 10, 10);
-      scene.add(pointLight);
+let logoObject1;
+let logoObject2;
+let isDay = false;
+let lastCheckedTime = 0;
 
-      let logoObject1;
-      let logoObject2;
-      let isDay = false;
-      let lastCheckedTime = 0;
-
-      function loadLogos() {
-        const objLoader = new THREE.OBJLoader();
-
-        // Determine paths based on time of day
-        const objFile1 = isDay ? "src/logopreto.obj" : "src/logo.obj";
-        const objFile2 = isDay
-          ? "src/logosemnomepreta.obj"
-          : "src/logosemnomebranca.obj";
-
-        console.log(`Carregando logo central: ${objFile1}`);
-        console.log(`Carregando logo canto superior direito: ${objFile2}`);
-
-        // Clear existing objects
-        if (logoObject1) {
-          scene.remove(logoObject1);
-          logoObject1 = null;
-        }
-        if (logoObject2) {
-          scene.remove(logoObject2);
-          logoObject2 = null;
-        }
-
-        // Load central logo
-        objLoader.load(
-          objFile1,
-          function (object) {
-            logoObject1 = object;
-            updateObjectScale(logoObject1);
-            object.traverse((child) => {
-              if (child instanceof THREE.Mesh) {
-                child.material.color.set(isDay ? 0x000000 : 0xffffff); // Set color based on time of day
-              }
-            });
-            console.log("Logo 1 carregada");
-            scene.add(logoObject1);
-          },
-          undefined,
-          function (error) {
-            console.error("Erro ao carregar o modelo OBJ:", error);
-          }
-        );
-
-        // Load top-right logo
-        objLoader.load(
-          objFile2,
-          function (object) {
-            logoObject2 = object;
-            logoObject2.position.set(13, 5, -5);
-            logoObject2.rotation.set(0, 0, 0);
-            updateObjectScale(logoObject2);
-            object.traverse((child) => {
-              if (child instanceof THREE.Mesh) {
-                child.material.color.set(isDay ? 0x000000 : 0xffffff); // Set color based on time of day
-              }
-            });
-            console.log("Logo 2 carregada");
-            scene.add(logoObject2);
-          },
-          undefined,
-          function (error) {
-            console.error("Erro ao carregar o modelo OBJ:", error);
-          }
-        );
-      }
-
-      function adjustObjectScale() {
-        const width = window.innerWidth;
-        return width <= 768 ? 0.015 : 0.02;
-      }
-
-      function updateObjectScale(object) {
-        if (object) {
-          const newScale = adjustObjectScale();
-          object.scale.set(newScale, newScale, newScale);
-        }
-      }
-
-      function animate() {
-        requestAnimationFrame(animate);
-
-        if (logoObject1) logoObject1.rotation.y += 0.003;
-        if (logoObject2) logoObject2.rotation.y += 0.003;
-
-        renderer.render(scene, camera);
-      }
-
-      let isMousePressed = false;
-      let isMouseOverLogo = false;
-
-      let initialMouseX = 0;
-      let initialMouseY = 0;
-
-      document.addEventListener("mousedown", (event) => {
-        handleInteractionStart(event.clientX, event.clientY);
-      });
-
-      document.addEventListener("mouseup", () => {
-        isMousePressed = false;
-        if (!isMouseOverLogo) {
-          document.getElementById("cursor").classList.remove("active");
-        }
-      });
-
-      document.addEventListener("mousemove", (event) => {
-        handleInteractionMove(event.clientX, event.clientY);
-      });
-
-      document.addEventListener("touchstart", (event) => {
-        const touch = event.touches[0];
-        handleInteractionStart(touch.clientX, touch.clientY);
-      });
-
-      document.addEventListener("touchend", () => {
-        isMousePressed = false;
-        if (!isMouseOverLogo) {
-          document.getElementById("cursor").classList.remove("active");
-        }
-      });
-
-      document.addEventListener("touchmove", (event) => {
-        const touch = event.touches[0];
-        handleInteractionMove(touch.clientX, touch.clientY);
-      });
-
-      function handleInteractionStart(clientX, clientY) {
-        const mouse = new THREE.Vector2();
-        mouse.x = (clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(clientY / window.innerHeight) * 2 + 1;
-
-        const raycaster = new THREE.Raycaster();
-        raycaster.setFromCamera(mouse, camera);
-
-        const intersects = raycaster.intersectObjects(scene.children, true);
-        if (intersects.length > 0) {
-          isMousePressed = true;
-          isMouseOverLogo = true;
-          initialMouseX = clientX;
-          initialMouseY = clientY;
-          document.getElementById("cursor").classList.add("active");
-        } else {
-          window.location.href = "info.html";
-        }
-      }
-
-      function handleInteractionMove(clientX, clientY) {
-        const cursor = document.getElementById("cursor");
-        cursor.style.left = clientX + "px";
-        cursor.style.top = clientY + "px";
-
-        if (isMousePressed && logoObject1) {
-          const deltaX = clientX - initialMouseX;
-          const deltaY = clientY - initialMouseY;
-
-          // Rotate the central logo
-          logoObject1.rotation.x += deltaY * 0.01;
-          logoObject1.rotation.y += deltaX * 0.01;
-
-          initialMouseX = clientX;
-          initialMouseY = clientY;
-        }
-      }
-
-      function checkCursorOverLogo(event) {
-        const mouse = new THREE.Vector2();
-        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-        const raycaster = new THREE.Raycaster();
-        raycaster.setFromCamera(mouse, camera);
-
-        const intersects = raycaster.intersectObjects(scene.children, true);
-        const cursor = document.getElementById("cursor");
-        if (intersects.length > 0) {
-          cursor.style.backgroundColor = "red";
-          isMouseOverLogo = true;
-        } else {
-          cursor.style.backgroundColor = isMousePressed ? "red" : "#cccccc";
-          isMouseOverLogo = false;
-        }
-      }
-
-      document.addEventListener("mousemove", checkCursorOverLogo);
-      document.addEventListener("touchmove", (event) => {
-        const touch = event.touches[0];
-        checkCursorOverLogo(touch);
-      });
-
-      animate();
-
-      window.addEventListener("resize", () => {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
+function loadLogos() {
+    const objLoader = new THREE.OBJLoader();
+    
+    // Determine paths based on time of day
+    const objFile1 = isDay ? 'src/logopreto.obj' : 'src/logo.obj';
+    const objFile2 = isDay ? 'src/logosemnomepreta.obj' : 'src/logosemnomebranca.obj';
+  
+    console.log(`Carregando logo central: ${objFile1}`);
+    console.log(`Carregando logo canto superior direito: ${objFile2}`);
+  
+    // Clear existing objects
+    if (logoObject1) {
+        scene.remove(logoObject1);
+        logoObject1 = null;
+    }
+    if (logoObject2) {
+        scene.remove(logoObject2);
+        logoObject2 = null;
+    }
+  
+    // Load central logo
+    objLoader.load(objFile1, function (object) {
+        logoObject1 = object;
         updateObjectScale(logoObject1);
+        object.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+                child.material.color.set(isDay ? 0x000000 : 0xffffff); // Set color based on time of day
+            }
+        });
+        console.log('Logo 1 carregada');
+        scene.add(logoObject1);
+    }, undefined, function (error) {
+        console.error('Erro ao carregar o modelo OBJ:', error);
+    });
+  
+    // Load top-right logo
+    objLoader.load(objFile2, function (object) {
+        logoObject2 = object;
+        logoObject2.position.set(13, 5, -5);
+        logoObject2.rotation.set(0, 0, 0);
         updateObjectScale(logoObject2);
-      });
+        object.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+                child.material.color.set(isDay ? 0x000000 : 0xffffff); // Set color based on time of day
+            }
+        });
+        console.log('Logo 2 carregada');
+        scene.add(logoObject2);
+    }, undefined, function (error) {
+        console.error('Erro ao carregar o modelo OBJ:', error);
+    });
+}
 
-      function updateTime() {
-        const now = new Date();
-        const hours = String(now.getHours()).padStart(2, "0");
-        const minutes = String(now.getMinutes()).padStart(2, "0");
-        const day = String(now.getDate()).padStart(2, "0");
-        const month = String(now.getMonth() + 1).padStart(2, "0");
-        const year = now.getFullYear();
+function adjustObjectScale() {
+    const width = window.innerWidth;
+    return width <= 768 ? 0.015 : 0.020;
+}
 
-        document.getElementById(
-          "current-time"
-        ).textContent = `${hours}:${minutes} · ${day}/${month}/${year}`;
+function updateObjectScale(object) {
+    if (object) {
+        const newScale = adjustObjectScale();
+        object.scale.set(newScale, newScale, newScale);
+    }
+}
 
-        const currentTime = now.getTime();
-        if (currentTime - lastCheckedTime >= 6 * 60 * 60 * 1000) {
-          lastCheckedTime = currentTime;
+function animate() {
+    requestAnimationFrame(animate);
 
-          isDay = hours >= 6 && hours < 18;
-          console.log(`É dia: ${isDay}`); // Confirmação
+    if (logoObject1) logoObject1.rotation.y += 0.003;
+    if (logoObject2) logoObject2.rotation.y += 0.003;
 
-          if (isDay) {
+    renderer.render(scene, camera);
+}
+
+let isMousePressed = false;
+let isMouseOverLogo = false;
+
+let initialMouseX = 0;
+let initialMouseY = 0;
+
+document.addEventListener("mousedown", (event) => {
+    handleInteractionStart(event.clientX, event.clientY);
+});
+
+document.addEventListener("mouseup", () => {
+    isMousePressed = false;
+    if (!isMouseOverLogo) {
+        document.getElementById("cursor").classList.remove("active");
+    }
+});
+
+document.addEventListener("mousemove", (event) => {
+    handleInteractionMove(event.clientX, event.clientY);
+});
+
+document.addEventListener("touchstart", (event) => {
+    const touch = event.touches[0];
+    handleInteractionStart(touch.clientX, touch.clientY);
+});
+
+document.addEventListener("touchend", () => {
+    isMousePressed = false;
+    if (!isMouseOverLogo) {
+        document.getElementById("cursor").classList.remove("active");
+    }
+});
+
+document.addEventListener("touchmove", (event) => {
+    const touch = event.touches[0];
+    handleInteractionMove(touch.clientX, touch.clientY);
+});
+
+function handleInteractionStart(clientX, clientY) {
+    const mouse = new THREE.Vector2();
+    mouse.x = (clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
+
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, camera);
+
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    if (intersects.length > 0) {
+        isMousePressed = true;
+        isMouseOverLogo = true;
+        initialMouseX = clientX;
+        initialMouseY = clientY;
+        document.getElementById("cursor").classList.add("active");
+    } else {
+        window.location.href = 'info.html';
+    }
+}
+
+function handleInteractionMove(clientX, clientY) {
+    const cursor = document.getElementById("cursor");
+    cursor.style.left = clientX + 'px';
+    cursor.style.top = clientY + 'px';
+
+    if (isMousePressed && logoObject1) {
+        const deltaX = clientX - initialMouseX;
+        const deltaY = clientY - initialMouseY;
+
+        // Rotate the central logo
+        logoObject1.rotation.x += deltaY * 0.01;
+        logoObject1.rotation.y += deltaX * 0.01;
+
+        initialMouseX = clientX;
+        initialMouseY = clientY;
+    }
+}
+
+function checkCursorOverLogo(event) {
+    const mouse = new THREE.Vector2();
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, camera);
+
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    const cursor = document.getElementById("cursor");
+    if (intersects.length > 0) {
+        cursor.style.backgroundColor = "red";
+        isMouseOverLogo = true;
+    } else {
+        cursor.style.backgroundColor = isMousePressed ? "red" : "#cccccc";
+        isMouseOverLogo = false;
+    }
+}
+
+document.addEventListener("mousemove", checkCursorOverLogo);
+document.addEventListener("touchmove", (event) => {
+    const touch = event.touches[0];
+    checkCursorOverLogo(touch);
+});
+
+animate();
+
+window.addEventListener("resize", () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    updateObjectScale(logoObject1);
+    updateObjectScale(logoObject2);
+});
+
+function updateTime() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear();
+
+    document.getElementById('current-time').textContent = `${hours}:${minutes} · ${day}/${month}/${year}`;
+
+    const currentTime = now.getTime();
+    if (currentTime - lastCheckedTime >= 6 * 60 * 60 * 1000) {
+        lastCheckedTime = currentTime;
+
+        isDay = hours >= 6 && hours < 18;
+        console.log(`É dia: ${isDay}`); // Confirmação
+
+        if (isDay) {
             document.body.style.backgroundColor = "#eeece8";
             document.body.style.color = "#000000";
             renderer.setClearColor("#eeece8");
             document.getElementById("cursor").style.backgroundColor = "#4a4a4a";
-          } else {
+        } else {
             document.body.style.backgroundColor = "#000000";
             document.body.style.color = "#ffffff";
             renderer.setClearColor("#000000");
             document.getElementById("cursor").style.backgroundColor = "#cccccc";
-          }
-
-          console.log("Chamando loadLogos...");
-          loadLogos();
         }
-      }
 
-      setInterval(updateTime, 1000);
-      updateTime();
-    </script>
-  </body>
+        console.log('Chamando loadLogos...');
+        loadLogos();
+    }
+}
+
+setInterval(updateTime, 1000);
+updateTime();
+
+  </script>
+</body>
 </html>
