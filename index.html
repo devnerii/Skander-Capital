@@ -35,7 +35,7 @@
     const renderer1 = new THREE.WebGLRenderer({ antialias: true });
     const renderer2 = new THREE.WebGLRenderer({ antialias: true });
     const cursor = document.getElementById('cursor');
-    let logoObject1, logoObject2, isDay = false, lastCheckedTime = 0, isMousePressed = false, isMouseOverLogo = false, initialMouseX = 0, initialMouseY = 0;
+    let logoObject1, isDay = false, lastCheckedTime = 0, isMousePressed = false, isMouseOverLogo = false, initialMouseX = 0, initialMouseY = 0;
 
     camera1.position.z = 5;
     camera2.position.z = 5;
@@ -83,45 +83,39 @@
       const objLoader = new THREE.OBJLoader();
       const textureFile = isDay ? "src/texturadia.jpg" : "src/texturanoite.jpg";
       const objFile1 = isDay ? "src/logopreto.obj" : "src/logo.obj";
-      const objFile2 = isDay ? "src/logosemnomepreta.obj" : "src/logosemnomebranca.obj";
       const texture = textureLoader.load(textureFile);
 
-      [logoObject1, logoObject2].forEach(obj => obj && scene.remove(obj));
-      [logoObject1, logoObject2] = [null, null];
+      if (logoObject1) {
+        scene.remove(logoObject1);
+        logoObject1 = null;
+      }
 
-      [objFile1, objFile2].forEach((file, i) => {
-        objLoader.load(file, object => {
-          object.traverse(child => {
-            if (child instanceof THREE.Mesh) {
-              child.material = new THREE.MeshStandardMaterial({
-                map: texture,
-                metalness: 0.96,
-                roughness: 0.0,
-                aoMapIntensity: 3.0,
-                envMapIntensity: 3.0,
-                displacementScale: 2.436143,
-                normalScale: new THREE.Vector2(1, -1)
-              });
-              child.castShadow = true;
-              child.receiveShadow = true;
-            }
-          });
-          const group = new THREE.Group();
-          group.add(object);
-          if (i === 1) {
-            group.position.set(13, 5, -5); // Ajuste a posição aqui
-            group.rotation.set(0, 0, 0);
-          } else {
-            group.rotation.set(-0.15, 0, 0);
+      objLoader.load(objFile1, object => {
+        object.traverse(child => {
+          if (child instanceof THREE.Mesh) {
+            child.material = new THREE.MeshStandardMaterial({
+              map: texture,
+              metalness: 0.96,
+              roughness: 0.0,
+              aoMapIntensity: 3.0,
+              envMapIntensity: 3.0,
+              displacementScale: 2.436143,
+              normalScale: new THREE.Vector2(1, -1)
+            });
+            child.castShadow = true;
+            child.receiveShadow = true;
           }
-          updateObjectScale(group);
-          scene.add(i === 0 ? logoObject1 = group : logoObject2 = group);
         });
+        const group = new THREE.Group();
+        group.add(object);
+        group.rotation.set(-0.15, 0, 0);
+        updateObjectScale(group);
+        scene.add(logoObject1 = group);
       });
     }
 
     function adjustObjectScale() {
-      return window.innerWidth <= 768 ? 0.015 : 0.028;
+      return window.innerWidth <= 768 ? 0.015 : 0.025;
     }
 
     function updateObjectScale(object) {
@@ -131,7 +125,6 @@
     function animate() {
       requestAnimationFrame(animate);
       if (logoObject1) logoObject1.rotation.y += 0.005;
-      if (logoObject2) logoObject2.rotation.y += 0.005;
       renderer1.render(scene, camera1);
       renderer2.render(scene, camera2);
     }
@@ -148,9 +141,6 @@
         initialMouseX = clientX;
         initialMouseY = clientY;
         cursor.classList.add('active');
-        if (intersects[0].object.parent === logoObject2) {
-          logoObject2.userData.isBeingInteracted = true;
-        }
       } else {
         window.location.href = "info.html";
       }
@@ -159,19 +149,11 @@
     function handleInteractionMove(clientX, clientY) {
       cursor.style.left = `${clientX}px`;
       cursor.style.top = `${clientY}px`;
-      if (isMousePressed && logoObject1 && !logoObject2.userData.isBeingInteracted) {
+      if (isMousePressed && logoObject1) {
         const deltaX = clientX - initialMouseX;
         const deltaY = clientY - initialMouseY;
         logoObject1.rotation.x += deltaY * 0.01;
         logoObject1.rotation.y += deltaX * 0.01;
-        initialMouseX = clientX;
-        initialMouseY = clientY;
-      } else if (isMousePressed && logoObject2.userData.isBeingInteracted) {
-        const deltaX = clientX - initialMouseX;
-        const deltaY = clientY - initialMouseY;
-        const rotationFactor = Math.PI / 180;
-        logoObject2.rotation.x += deltaY * rotationFactor;
-        logoObject2.rotation.y += deltaX * rotationFactor;
         initialMouseX = clientX;
         initialMouseY = clientY;
       }
@@ -181,7 +163,6 @@
     document.addEventListener('mouseup', () => {
       isMousePressed = false;
       isMouseOverLogo = false;
-      if (logoObject2) logoObject2.userData.isBeingInteracted = false;
       cursor.classList.remove('active');
     });
     document.addEventListener('mousemove', event => handleInteractionMove(event.clientX, event.clientY));
@@ -192,7 +173,6 @@
     document.addEventListener('touchend', () => {
       isMousePressed = false;
       isMouseOverLogo = false;
-      if (logoObject2) logoObject2.userData.isBeingInteracted = false;
       cursor.classList.remove('active');
     });
     document.addEventListener('touchmove', event => {
@@ -225,7 +205,6 @@
       camera1.updateProjectionMatrix();
       camera2.updateProjectionMatrix();
       updateObjectScale(logoObject1);
-      updateObjectScale(logoObject2);
     });
 
     function updateTime() {
