@@ -89,8 +89,8 @@
         font-size: 2rem;
       }
       .link-style {
-        font-size: 1.2rem; /* Reduz o tamanho da fonte dos links no mobile */
-        padding: 0 0.5rem; /* Ajusta o padding dos links no mobile */
+        font-size: 0.8rem; /* Reduz consideravelmente o tamanho da fonte dos links no mobile */
+        padding: 0 0.2rem; /* Ajusta o padding dos links no mobile */
       }
     }
   </style>
@@ -195,7 +195,7 @@
     }
 
     function adjustObjectScale() {
-      return window.innerWidth <= 768 ? 0.0010 : 0.0020;
+      return window.innerWidth <= 768 ? 0.0010 : 0.0018;
     }
 
     function updateObjectScale(object) {
