@@ -89,7 +89,8 @@
         font-size: 2rem;
       }
       .link-style {
-        font-size: 1.5rem;
+        font-size: 1.2rem; /* Reduz o tamanho da fonte dos links no mobile */
+        padding: 0 0.5rem; /* Ajusta o padding dos links no mobile */
       }
     }
   </style>
@@ -141,13 +142,13 @@
     renderer2.shadowMap.type = THREE.PCFSoftShadowMap;
 
     renderer1.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer1.toneMappingExposure = 2.5;
+    renderer1.toneMappingExposure = 1.5; // Diminuir a exposição para reduzir a luz
     renderer2.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer2.toneMappingExposure = 2.5;
+    renderer2.toneMappingExposure = 1.5; // Diminuir a exposição para reduzir a luz
 
-    const ambientLight = new THREE.AmbientLight(0x404040, 10);
-    const spotLight = new THREE.SpotLight(0xffffff, 100);
-    const fillLight = new THREE.DirectionalLight(0x404040, 0.2);
+    const ambientLight = new THREE.AmbientLight(0x404040, 5); // Reduzir a intensidade da luz ambiente
+    const spotLight = new THREE.SpotLight(0xffffff, 50); // Reduzir a intensidade do spotlight
+    const fillLight = new THREE.DirectionalLight(0x404040, 0.1); // Reduzir a intensidade da luz direcional
 
     spotLight.position.set(0, 10, 0);
     spotLight.angle = Math.PI / 4;
@@ -203,7 +204,7 @@
 
     function animate() {
       requestAnimationFrame(animate);
-      if (logoObject1) logoObject1.rotation.y += 0.01; // Aumentar rotação para efeito insano
+      if (logoObject1) logoObject1.rotation.y += 0.0060; // Aumentar rotação para efeito insano
       renderer1.render(scene, camera1);
       renderer2.render(scene, camera2);
     }
