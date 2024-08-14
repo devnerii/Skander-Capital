@@ -22,6 +22,7 @@
       left: 0;
       width: 100%;
       height: 100%;
+      z-index: 1; /* Ajuste do z-index para garantir que o canvas fique atrás */
     }
     .cursor {
       position: fixed;
@@ -81,6 +82,17 @@
       color: #ff6347;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
     }
+    .footer-description {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      color: #2c3e50;
+      max-width: 300px;
+      z-index: 1002; /* Garante que o rodapé esteja acima do canvas */
+    }
     @media (max-width: 768px) {
       .cursor {
         display: none;
@@ -91,6 +103,12 @@
       .link-style {
         font-size: 0.8rem; /* Reduz consideravelmente o tamanho da fonte dos links no mobile */
         padding: 0 0.2rem; /* Ajusta o padding dos links no mobile */
+      }
+      .footer-description {
+        font-size: 0.8rem; /* Ajusta o tamanho da fonte no mobile */
+        right: 5px;
+        bottom: 5px;
+        max-width: 200px;
       }
     }
   </style>
@@ -103,14 +121,16 @@
             <a href="/inc" class="footer-link no-underline mx-1 relative link-style">Visitantes</a> ·
             <a href="/contact" class="footer-link no-underline mx-1 relative link-style">Empreendedores</a>
         </p>
-        <p class="footer-description mt-4 ml-1 max-w-xl">
-          <span style="font-weight: bold;">SKANDER CAPITAL</span>, uma empresa global de investimentos especializada em gestão 
-          patrimonial, wealth management, venture capital e asset management. 
-          Oferecendo um portfólio diversificado de produtos de investimento 
-          multiestratégia. 
-        </p>
     </div>
   </header>
+  
+  <div class="footer-description">
+    <span style="font-weight: bold;">SKANDER CAPITAL</span>, uma empresa global de investimentos especializada em gestão 
+    patrimonial, wealth management, venture capital e asset management. 
+    Oferecendo um portfólio diversificado de produtos de investimento 
+    multiestratégia.
+  </div>
+  
   <div class="cursor" id="cursor"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/OBJLoader.js"></script>
