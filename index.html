@@ -30,22 +30,33 @@
   <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.18.0/dist/lil-gui.umd.js"></script>
   <script>
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const camera1 = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera2 = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer1 = new THREE.WebGLRenderer({ antialias: true });
+    const renderer2 = new THREE.WebGLRenderer({ antialias: true });
     const cursor = document.getElementById('cursor');
     let logoObject1, logoObject2, isDay = false, lastCheckedTime = 0, isMousePressed = false, isMouseOverLogo = false, initialMouseX = 0, initialMouseY = 0;
 
-    camera.position.z = 5;
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor("#eeece8");
-    document.body.appendChild(renderer.domElement);
+    camera1.position.z = 5;
+    camera2.position.z = 5;
+    renderer1.setSize(window.innerWidth, window.innerHeight);
+    renderer2.setSize(window.innerWidth, window.innerHeight);
+    renderer1.setPixelRatio(window.devicePixelRatio);
+    renderer2.setPixelRatio(window.devicePixelRatio);
+    renderer1.setClearColor("#eeece8");
+    renderer2.setClearColor("#eeece8");
+    document.body.appendChild(renderer1.domElement);
+    document.body.appendChild(renderer2.domElement);
 
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer1.shadowMap.enabled = true;
+    renderer1.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer2.shadowMap.enabled = true;
+    renderer2.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 2.5;
+    renderer1.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer1.toneMappingExposure = 2.5;
+    renderer2.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer2.toneMappingExposure = 2.5;
 
     const ambientLight = new THREE.AmbientLight(0x404040, 10);
     const spotLight = new THREE.SpotLight(0xffffff, 100);
@@ -98,7 +109,7 @@
           const group = new THREE.Group();
           group.add(object);
           if (i === 1) {
-            group.position.set(13, 5, -5);
+            group.position.set(8.5, 3.2, -1); // Ajuste a posição aqui
             group.rotation.set(0, 0, 0);
           } else {
             group.rotation.set(-0.15, 0, 0);
@@ -110,7 +121,7 @@
     }
 
     function adjustObjectScale() {
-      return window.innerWidth <= 768 ? 0.015 : 0.03;
+      return window.innerWidth <= 768 ? 0.015 : 0.028;
     }
 
     function updateObjectScale(object) {
@@ -121,13 +132,14 @@
       requestAnimationFrame(animate);
       if (logoObject1) logoObject1.rotation.y += 0.005;
       if (logoObject2) logoObject2.rotation.y += 0.005;
-      renderer.render(scene, camera);
+      renderer1.render(scene, camera1);
+      renderer2.render(scene, camera2);
     }
 
     function handleInteractionStart(clientX, clientY) {
       const mouse = new THREE.Vector2((clientX / window.innerWidth) * 2 - 1, -(clientY / window.innerHeight) * 2 + 1);
       const raycaster = new THREE.Raycaster();
-      raycaster.setFromCamera(mouse, camera);
+      raycaster.setFromCamera(mouse, camera1);
 
       const intersects = raycaster.intersectObjects(scene.children, true);
       if (intersects.length > 0) {
@@ -191,7 +203,7 @@
     function checkCursorOverLogo(event) {
       const mouse = new THREE.Vector2((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1);
       const raycaster = new THREE.Raycaster();
-      raycaster.setFromCamera(mouse, camera);
+      raycaster.setFromCamera(mouse, camera1);
       const intersects = raycaster.intersectObjects(scene.children, true);
       cursor.style.backgroundColor = intersects.length > 0 ? 'red' : (isMousePressed ? 'red' : 'red');
       isMouseOverLogo = intersects.length > 0;
@@ -206,9 +218,12 @@
     animate();
 
     window.addEventListener('resize', () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
+      renderer1.setSize(window.innerWidth, window.innerHeight);
+      renderer2.setSize(window.innerWidth, window.innerHeight);
+      camera1.aspect = window.innerWidth / window.innerHeight;
+      camera2.aspect = window.innerWidth / window.innerHeight;
+      camera1.updateProjectionMatrix();
+      camera2.updateProjectionMatrix();
       updateObjectScale(logoObject1);
       updateObjectScale(logoObject2);
     });
@@ -228,7 +243,8 @@
         isDay = hours >= 6 && hours < 18;
         document.body.style.backgroundColor = isDay ? "#eeece8" : "#000";
         document.body.style.color = isDay ? "#000" : "#fff";
-        renderer.setClearColor(isDay ? "#eeece8" : "#000");
+        renderer1.setClearColor(isDay ? "#eeece8" : "#000");
+        renderer2.setClearColor(isDay ? "#eeece8" : "#000");
         cursor.style.backgroundColor = isDay ? "#4a4a4a" : "#fff";
         loadLogos();
       }
