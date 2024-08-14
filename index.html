@@ -99,9 +99,9 @@
           group.add(object);
           if (i === 1) {
             group.position.set(13, 5, -5);
-            group.rotation.set(0, 0, 0); // Define rotação para 0 em todos os eixos
+            group.rotation.set(0, 0, 0);
           } else {
-            group.rotation.set(-0.15, 0, 0); // Define rotação x para -15 graus
+            group.rotation.set(-0.15, 0, 0);
           }
           updateObjectScale(group);
           scene.add(i === 0 ? logoObject1 = group : logoObject2 = group);
@@ -129,12 +129,16 @@
       const raycaster = new THREE.Raycaster();
       raycaster.setFromCamera(mouse, camera);
 
-      if (raycaster.intersectObjects(scene.children, true).length > 0) {
+      const intersects = raycaster.intersectObjects(scene.children, true);
+      if (intersects.length > 0) {
         isMousePressed = true;
         isMouseOverLogo = true;
         initialMouseX = clientX;
         initialMouseY = clientY;
         cursor.classList.add('active');
+        if (intersects[0].object.parent === logoObject2) {
+          logoObject2.userData.isBeingInteracted = true;
+        }
       } else {
         window.location.href = "info.html";
       }
@@ -143,11 +147,19 @@
     function handleInteractionMove(clientX, clientY) {
       cursor.style.left = `${clientX}px`;
       cursor.style.top = `${clientY}px`;
-      if (isMousePressed && logoObject1) {
+      if (isMousePressed && logoObject1 && !logoObject2.userData.isBeingInteracted) {
         const deltaX = clientX - initialMouseX;
         const deltaY = clientY - initialMouseY;
         logoObject1.rotation.x += deltaY * 0.01;
         logoObject1.rotation.y += deltaX * 0.01;
+        initialMouseX = clientX;
+        initialMouseY = clientY;
+      } else if (isMousePressed && logoObject2.userData.isBeingInteracted) {
+        const deltaX = clientX - initialMouseX;
+        const deltaY = clientY - initialMouseY;
+        const rotationFactor = Math.PI / 180;
+        logoObject2.rotation.x += deltaY * rotationFactor;
+        logoObject2.rotation.y += deltaX * rotationFactor;
         initialMouseX = clientX;
         initialMouseY = clientY;
       }
@@ -156,7 +168,9 @@
     document.addEventListener('mousedown', event => handleInteractionStart(event.clientX, event.clientY));
     document.addEventListener('mouseup', () => {
       isMousePressed = false;
-      if (!isMouseOverLogo) cursor.classList.remove('active');
+      isMouseOverLogo = false;
+      if (logoObject2) logoObject2.userData.isBeingInteracted = false;
+      cursor.classList.remove('active');
     });
     document.addEventListener('mousemove', event => handleInteractionMove(event.clientX, event.clientY));
     document.addEventListener('touchstart', event => {
@@ -165,7 +179,9 @@
     });
     document.addEventListener('touchend', () => {
       isMousePressed = false;
-      if (!isMouseOverLogo) cursor.classList.remove('active');
+      isMouseOverLogo = false;
+      if (logoObject2) logoObject2.userData.isBeingInteracted = false;
+      cursor.classList.remove('active');
     });
     document.addEventListener('touchmove', event => {
       const touch = event.touches[0];
