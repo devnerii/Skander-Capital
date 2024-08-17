@@ -1,313 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Skander Capital, uma empresa global de investimentos especializada em gestão patrimonial, venture capital e oferecendo um portfólio diversificado de produtos de investimento multiestratégia. Este site visa atender diferentes perfis de usuários: investidores, visitantes e empreendedores." />
-  <title>Skander Capital</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Helvetica', 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #e4d5b7;
-      color: #393231;
-      overflow: hidden;
-    }
-    canvas {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1; /* Ajuste do z-index para garantir que o canvas fique atrás */
-    }
-    .cursor {
-      position: fixed;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background-color: #cccccc;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: width 0.2s, height 0.2s, background-color 0.2s, transform 0.2s;
-      opacity: 0.8;
-      z-index: 1000;
-    }
-    .cursor.active {
-      background-color: #ff6347;
-      width: 18px;
-      height: 18px;
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-    }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-    .header-content {
-      position: absolute;
-      top: 50px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Roboto', sans-serif;
-      font-weight: 900;
-      font-size: 3rem;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-      color: #2c3e50;
-      z-index: 1001;
-    }
-    .footer-text p {
-      font-family: 'Roboto', sans-serif;
-      font-size: 2rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-      color: #2c3e50;
-    }
-    .link-style {
-      font-family: 'Verdana', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #2c3e50;
-      text-transform: uppercase;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-      transition: color 0.3s, text-shadow 0.3s;
-    }
-    .link-style:hover {
-      color: #ff6347;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-    }
-    .footer-description {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      font-family: 'Roboto', sans-serif;
-      font-size: 1rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-      color: #2c3e50;
-      max-width: 300px;
-      z-index: 1002; /* Garante que o rodapé esteja acima do canvas */
-    }
-    @media (max-width: 768px) {
-      .cursor {
-        display: none;
-      }
-      .header-content {
-        font-size: 2rem;
-      }
-      .link-style {
-        font-size: 0.8rem; /* Reduz consideravelmente o tamanho da fonte dos links no mobile */
-        padding: 0 0.2rem; /* Ajusta o padding dos links no mobile */
-      }
-      .footer-description {
-        font-size: 0.8rem; /* Ajusta o tamanho da fonte no mobile */
-        right: 5px;
-        bottom: 5px;
-        max-width: 200px;
-      }
-    }
-  </style>
-</head>
-<body class="fade-in">
-  <header class="footer bg-[#e4d5b7] text-[#393231] fixed top-0 left-0 w-full flex flex-col p-5 cursor-default z-10 mb-5">
-    <div class="footer-content flex flex-col mr-5">
-        <p class="footer-text m-0 flex space-x-1 text-lg">
-            <a href="/" class="footer-link no-underline mx-1 relative link-style">Investidores</a> ·
-            <a href="/inc" class="footer-link no-underline mx-1 relative link-style">Visitantes</a> ·
-            <a href="/contact" class="footer-link no-underline mx-1 relative link-style">Empreendedores</a>
-        </p>
-    </div>
-  </header>
-  
-  <div class="footer-description">
-    <span style="font-weight: bold;">SKANDER CAPITAL</span>, uma empresa global de investimentos especializada em gestão 
-    patrimonial, wealth management, venture capital e asset management. 
-    Oferecendo um portfólio diversificado de produtos de investimento 
-    multiestratégia.
-  </div>
-  
-  <div class="cursor" id="cursor"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/OBJLoader.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/MTLLoader.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.18.0/dist/lil-gui.umd.js"></script>
-  <script>
-    const scene = new THREE.Scene();
-    const camera1 = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const camera2 = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer1 = new THREE.WebGLRenderer({ antialias: true });
-    const renderer2 = new THREE.WebGLRenderer({ antialias: true });
-    const cursor = document.getElementById('cursor');
-    let logoObject1, isMousePressed = false, isMouseOverLogo = false, initialMouseX = 0, initialMouseY = 0;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investify - Comprehensive Site</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for animations and hover effects */
 
-    camera1.position.z = 5;
-    camera2.position.z = 5;
-    renderer1.setSize(window.innerWidth, window.innerHeight);
-    renderer2.setSize(window.innerWidth, window.innerHeight);
-    renderer1.setPixelRatio(window.devicePixelRatio);
-    renderer2.setPixelRatio(window.devicePixelRatio);
-    renderer1.setClearColor("#e4d5b7");
-    renderer2.setClearColor("#e4d5b7");
-    document.body.appendChild(renderer1.domElement);
-    document.body.appendChild(renderer2.domElement);
+        .border-custom {
+            border: 2px solid black;
+            padding: 5px20px;
+        }
 
-    renderer1.shadowMap.enabled = true;
-    renderer1.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer2.shadowMap.enabled = true;
-    renderer2.shadowMap.type = THREE.PCFSoftShadowMap;
+        .hover-transform:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease-in-out;
+        }
 
-    renderer1.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer1.toneMappingExposure = 1.5; // Diminuir a exposição para reduzir a luz
-    renderer2.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer2.toneMappingExposure = 1.5; // Diminuir a exposição para reduzir a luz
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
 
-    const ambientLight = new THREE.AmbientLight(0x404040, 5); // Reduzir a intensidade da luz ambiente
-    const spotLight = new THREE.SpotLight(0xffffff, 50); // Reduzir a intensidade do spotlight
-    const fillLight = new THREE.DirectionalLight(0x404040, 0.1); // Reduzir a intensidade da luz direcional
-
-    spotLight.position.set(0, 10, 0);
-    spotLight.angle = Math.PI / 4;
-    spotLight.penumbra = 0.5;
-    spotLight.decay = 2;
-    spotLight.distance = 50;
-    spotLight.castShadow = true;
-    spotLight.shadow.mapSize.width = 2048;
-    spotLight.shadow.mapSize.height = 2048;
-    spotLight.shadow.camera.near = 1;
-    spotLight.shadow.camera.far = 20;
-    spotLight.shadow.focus = 1;
-
-    fillLight.position.set(-10, -5, -5).normalize();
-
-    scene.add(ambientLight, spotLight, fillLight);
-
-    function loadLogos() {
-      const textureLoader = new THREE.TextureLoader();
-      const mtlLoader = new THREE.MTLLoader();
-      const objLoader = new THREE.OBJLoader();
-      const objFile1 = "src/logomarrom.obj";
-      const mtlFile1 = "src/logomarrom.mtl";
-
-      mtlLoader.load(mtlFile1, materials => {
-        materials.preload();
-        objLoader.setMaterials(materials);
-
-        objLoader.load(objFile1, object => {
-          object.traverse(child => {
-            if (child instanceof THREE.Mesh) {
-              child.castShadow = true;
-              child.receiveShadow = true;
+        @keyframes fadeIn {
+            100% {
+                opacity: 1;
             }
-          });
+        }
 
-          const group = new THREE.Group();
-          group.add(object);
-          group.rotation.set(-0.15, 0, 0);
-          updateObjectScale(group);
-          scene.add(logoObject1 = group);
-        });
-      });
-    }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
 
-    function adjustObjectScale() {
-      return window.innerWidth <= 768 ? 0.0010 : 0.0018;
-    }
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+    </style>
+</head>
 
-    function updateObjectScale(object) {
-      if (object) object.scale.set(adjustObjectScale(), adjustObjectScale(), adjustObjectScale());
-    }
+<body class="bg-gray-100 text-gray-900">
+    <!-- Header Section -->
+    <header class="bg-white py-4 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+            <!-- Logo Section -->
+            <div class="flex items-center"><a href="/" aria-label="Home"><img class="h-12 w-auto" src="./src/img/logo2.svg" alt="Logo"></a></div>
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-8 ml-10"><a href="#about" class="text-base font-medium text-gray-900 hover:text-gray-700 focus:outline-none focus:text-gray-700">Invest</a><a href="#funds" class="text-base font-medium text-gray-900 hover:text-gray-700 focus:outline-none focus:text-gray-700">Empreend</a>
+                <a
+                    href="#philosophy" class="text-base font-medium text-gray-900 hover:text-gray-700 focus:outline-none focus:text-gray-700">Visit</a>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden"><button type="button" class="text-gray-900 hover:text-gray-700 focus:outline-none focus:text-gray-700" aria-label="Open menu"><svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button></div>
+        </div>
+    </div>
+    <!-- Mobile Navigation Menu -->
+    <div class="md:hidden">
+        <nav class="flex flex-col space-y-4 px-4 pt-4 pb-4"><a href="#about" class="text-base font-medium text-gray-900 hover:text-gray-700">Invest</a><a href="#funds" class="text-base font-medium text-gray-900 hover:text-gray-700">Empreend</a><a href="#philosophy" class="text-base font-medium text-gray-900 hover:text-gray-700">Visit</a></nav>
+    </div>
+    </header>
+    <!-- Main Content -->
+    <main class="bg-gray-50 py-20">
+        <!-- About Us Section -->
+        <section id="about" class="reveal py-20 bg-gray-100 fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-5xl font-bold mb-8">Sobre nós</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Quem nós somos</h3>
+                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                    </article>
+                    <article class="hover-transform p-6 bg-yellow-500 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Nossa Missão</h3>
+                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- Our Funds Section -->
+        <section id="funds" class="reveal py-20 bg-gray-50 fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-5xl font-bold mb-8">Nossos Fundos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Fund A</h3>
+                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+                        <p class="mt-2">Assets: $1,000,000</p>
+                    </article>
+                    <article class="hover-transform p-6 bg-yellow-500 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Fund B</h3>
+                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+                        <p class="mt-2">Assets: $2,500,000</p>
+                    </article>
+                    <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Fund C</h3>
+                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+                        <p class="mt-2">Assets: $5,000,000</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- Our Philosophy Section -->
+        <section id="philosophy" class="reveal py-20 bg-gray-100 fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-5xl font-bold mb-8">Nossa Filosofia</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Transparency</h3>
+                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+                    </article>
+                    <article class="hover-transform p-6 bg-yellow-500 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Sustainability</h3>
+                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- Our Team Section -->
+        <section id="team" class="reveal py-20 bg-gray-50 fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-5xl font-bold mb-8">Conheça Nosso Time</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Jane Doe</h3>
+                        <p class="mt-4">CEO</p>
+                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </article>
+                    <article class="hover-transform p-6 bg-yellow-500 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">John Smith</h3>
+                        <p class="mt-4">CFO</p>
+                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </article>
+                    <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Emily White</h3>
+                        <p class="mt-4">COO</p>
+                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- Our Strategies Section -->
+        <section id="strategies" class="reveal py-20 bg-gray-100 fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-5xl font-bold mb-8">Nossas Estratégias</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Long-term Growth</h3>
+                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+                    </article>
+                    <article class="hover-transform p-6 bg-yellow-500 border-2 border-black">
+                            <h3 class="text-2xl font-semibold">Short-term Gains</h3>
+                            <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+                    </class=>
+                </div>
+            </div>
+        </section>
+        <!-- Our Philosophy Section -->
+        <section id="philosophy" class="reveal py-20 bg-gray-100 fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-5xl font-bold mb-8">Nossa Filosofia</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Transparency</h3>
+                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+                    </article>
+                    <article class="hover-transform p-6 bg-yellow-500 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Sustainability</h3>
+                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- Meet Our Team Section -->
+        <section id="team" class="reveal py-20 bg-gray-50 fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-5xl font-bold mb-8">Conheça Nosso Time</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Jane Doe</h3>
+                        <p class="mt-4">CEO</p>
+                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </article>
+                    <article class="hover-transform p-6 bg-yellow-500 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">John Smith</h3>
+                        <p class="mt-4">CFO</p>
+                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </article>
+                    <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Emily White</h3>
+                        <p class="mt-4">COO</p>
+                        <p class="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Us Section -->
+        <section id="contact" class="reveal py-20 bg-gray-100 fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-5xl font-bold mb-8">Nos Contate</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                        <h3 class="text-2xl font-semibold">Entre Em Contato</h3>
+                        <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+                    </article>
+                    <form class="p-6 bg-yellow-500 border-2 border-black">
+                        <div class="mb-4"><label class="block text-sm font-semibold mb-2" for="name">Nome</label><input type="text" id="name" class="w-full px-4 py-2 border-2 border-black rounded-md"></div>
+                        <div class="mb-4"><label class="block text-sm font-semibold mb-2" for="email">Email</label><input type="email" id="email" class="w-full px-4 py-2 border-2 border-black rounded-md"></div>
+                        <div class="mb-4"><label class="block text-sm font-semibold mb-2" for="message">Mensagem</label><textarea id="message" class="w-full px-4 py-2 border-2 border-black rounded-md" rows="4"></textarea></div><button type="submit" class="px-8 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-800">Enviar Mensagem</button></form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between">
+                <p class="text-gray-600">&copy; 2024 Lorem Ipsum. All rights reserved.</p>
+                <nav class="flex space-x-4"><a href="#" class="text-gray-600 hover:text-gray-900">Política De Privacidade</a><a href="#" class="text-gray-600 hover:text-gray-900">Termos De Uso</a></nav>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Scroll reveal animationdocument.addEventListener('scroll', function () {
+        const reveals = document.querySelectorAll('.reveal');
+        for (let i = 0; i < reveals.length; i++) {
+            const windowHeight = window.innerHeight;
+            const elementTop = reveals[i].getBoundingClientRect().top;
+            const elementVisible = 150;
 
-    function animate() {
-      requestAnimationFrame(animate);
-      if (logoObject1) logoObject1.rotation.y += 0.0060; // Aumentar rotação para efeito insano
-      renderer1.render(scene, camera1);
-      renderer2.render(scene, camera2);
-    }
-
-    function handleInteractionStart(clientX, clientY) {
-      const mouse = new THREE.Vector2((clientX / window.innerWidth) * 2 - 1, -(clientY / window.innerHeight) * 2 + 1);
-      const raycaster = new THREE.Raycaster();
-      raycaster.setFromCamera(mouse, camera1);
-
-      const intersects = raycaster.intersectObjects(scene.children, true);
-      if (intersects.length > 0) {
-        isMousePressed = true;
-        isMouseOverLogo = true;
-        initialMouseX = clientX;
-        initialMouseY = clientY;
-        cursor.classList.add('active');
-      } else {
-        window.location.href = "info.html";
-      }
-    }
-
-    function handleInteractionMove(clientX, clientY) {
-      cursor.style.left = `${clientX}px`;
-      cursor.style.top = `${clientY}px`;
-      if (isMousePressed && logoObject1) {
-        const deltaX = clientX - initialMouseX;
-        const deltaY = clientY - initialMouseY;
-        logoObject1.rotation.x += deltaY * 0.01;
-        logoObject1.rotation.y += deltaX * 0.01;
-        initialMouseX = clientX;
-        initialMouseY = clientY;
-      }
-    }
-
-    document.addEventListener('mousedown', event => handleInteractionStart(event.clientX, event.clientY));
-    document.addEventListener('mouseup', () => {
-      isMousePressed = false;
-      isMouseOverLogo = false;
-      cursor.classList.remove('active');
-    });
-    document.addEventListener('mousemove', event => handleInteractionMove(event.clientX, event.clientY));
-    document.addEventListener('touchstart', event => {
-      const touch = event.touches[0];
-      handleInteractionStart(touch.clientX, touch.clientY);
-    });
-    document.addEventListener('touchend', () => {
-      isMousePressed = false;
-      isMouseOverLogo = false;
-      cursor.classList.remove('active');
-    });
-    document.addEventListener('touchmove', event => {
-      const touch = event.touches[0];
-      handleInteractionMove(touch.clientX, touch.clientY);
-    });
-
-    function checkCursorOverLogo(event) {
-      const mouse = new THREE.Vector2((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1);
-      const raycaster = new THREE.Raycaster();
-      raycaster.setFromCamera(mouse, camera1);
-      const intersects = raycaster.intersectObjects(scene.children, true);
-      cursor.style.backgroundColor = intersects.length > 0 ? '#ff6347' : (isMousePressed ? '#ff6347' : '#cccccc');
-      isMouseOverLogo = intersects.length > 0;
-    }
-
-    document.addEventListener('mousemove', checkCursorOverLogo);
-    document.addEventListener('touchmove', event => {
-      const touch = event.touches[0];
-      checkCursorOverLogo(touch);
-    });
-
-    animate();
-
-    window.addEventListener('resize', () => {
-      renderer1.setSize(window.innerWidth, window.innerHeight);
-      renderer2.setSize(window.innerWidth, window.innerHeight);
-      camera1.aspect = window.innerWidth / window.innerHeight;
-      camera2.aspect = window.innerWidth / window.innerHeight;
-      camera1.updateProjectionMatrix();
-      camera2.updateProjectionMatrix();
-      updateObjectScale(logoObject1);
-    });
-
-    loadLogos();
-  </script>
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add('visible');
+            } else {
+                reveals[i].classList.remove('visible');
+            }
+        };
+    </script>
 </body>
+
 </html>

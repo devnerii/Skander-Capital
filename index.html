@@ -1,236 +1,270 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Skander Capital, uma empresa global de investimentos especializada em gestão patrimonial, venture capital e oferecendo um portfólio diversificado de produtos de investimento multiestratégia. Este site visa atender diferentes perfis de usuários: investidores, visitantes e empreendedores.">
-  <title>Skander Capital</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    body { font-family: "Arial", sans-serif; margin: 0; padding: 0; background-color: #eeece8; color: #000; overflow: hidden; }
-    canvas { display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-    .cursor { position: fixed; width: 8px; height: 8px; border-radius: 50%; background-color: red; pointer-events: none; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background-color 0.2s; opacity: 60%; z-index: 1000; }
-    .cursor.active, .cursor.link-hover { width: 12px; height: 12px; }
-    .fade-in { opacity: 0; animation: fadeIn 2s forwards; }
-    @keyframes fadeIn { to { opacity: 1; } }
-    .header-text, .logo-text { position: absolute; left: 50%; transform: translateX(-50%); font-family: "Arial", sans-serif; z-index: 1001; }
-    .header-text { top: 50px; font-size: 1rem; font-weight: 700; }
-    .logo-text { bottom: 50px; font-size: 1.4rem; font-weight: 1000; text-transform: uppercase; }
-    @media (max-width: 768px) { .cursor { display: none; } .header-text, .logo-text { font-size: 1rem; } .gui-container { display: none; } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skander Capital</title>
+    <meta name="description" content="Skander Capital - Gestão global de investimentos em aplicações financeiras, venture capital e produtos multiestratégia.">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        /* Custom styles for Skander Capital */
+
+        .gradient-bg {
+            background: radial-gradient(circle at top right, rgba(195, 122, 52, 0.95), rgba(32, 33, 35, 0.95));
+        }
+
+        .bg-dark-gray {
+            background-color: rgb(32, 33, 35);
+        }
+
+        .text-beige-light {
+            color: rgb(185, 178, 171);
+        }
+
+        .text-brown-light {
+            color: rgb(195, 122, 52);
+        }
+
+        .text-brown-dark {
+            color: rgb(127, 81, 47);
+        }
+
+        .btn-primary {
+            background-color: rgb(195, 122, 52);
+            color: rgb(255, 255, 255);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: rgb(127, 81, 47);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: rgb(255, 255, 255);
+            color: rgb(32, 33, 35);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgb(185, 178, 171);
+            transform: scale(1.05);
+        }
+
+        /* Full-width sections */
+
+        #header {
+            height: 100vh;
+        }
+
+        /* Animations and minimalism */
+
+        .fade-in {
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hover-underline-animation:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: rgb(195, 122, 52);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Increased text size */
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 1.25rem;
+        }
+
+        /* Section Styling */
+
+        section {
+            border-radius: 15px;
+            border: 2px solid rgba(195, 122, 52, 0.3);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            box-shadow: 04px15pxrgba(0, 0, 0, 0.6);
+        }
+
+        section:nth-child(odd) {
+            background-color: rgb(28, 29, 31);
+        }
+
+        section:nth-child(even) {
+            background-color: rgb(35, 36, 38);
+        }
+
+        /* Section headers styling */
+
+        h2 {
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 3px;
+            background-color: rgb(195, 122, 52);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+        }
+    </style>
 </head>
-<body class="fade-in">
-  <div class="cursor" id="cursor"></div>
-  <div class="header-text" id="current-time"></div>
-  <div class="logo-text">Skander Capital</div>
-  <div class="gui-container" id="gui-container"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/OBJLoader.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/MTLLoader.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.18.0/dist/lil-gui.umd.js"></script>
-  <script>
-    const scene = new THREE.Scene();
-    const camera1 = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const camera2 = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer1 = new THREE.WebGLRenderer({ antialias: true });
-    const renderer2 = new THREE.WebGLRenderer({ antialias: true });
-    const cursor = document.getElementById('cursor');
-    let logoObject1, isDay = false, lastCheckedTime = 0, isMousePressed = false, isMouseOverLogo = false, initialMouseX = 0, initialMouseY = 0;
 
-    camera1.position.z = 5;
-    camera2.position.z = 5;
-    renderer1.setSize(window.innerWidth, window.innerHeight);
-    renderer2.setSize(window.innerWidth, window.innerHeight);
-    renderer1.setPixelRatio(window.devicePixelRatio);
-    renderer2.setPixelRatio(window.devicePixelRatio);
-    renderer1.setClearColor("#eeece8");
-    renderer2.setClearColor("#eeece8");
-    document.body.appendChild(renderer1.domElement);
-    document.body.appendChild(renderer2.domElement);
-
-    renderer1.shadowMap.enabled = true;
-    renderer1.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer2.shadowMap.enabled = true;
-    renderer2.shadowMap.type = THREE.PCFSoftShadowMap;
-
-    renderer1.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer1.toneMappingExposure = 2.5;
-    renderer2.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer2.toneMappingExposure = 2.5;
-
-    const ambientLight = new THREE.AmbientLight(0x404040, 10);
-    const spotLight = new THREE.SpotLight(0xffffff, 100);
-    const fillLight = new THREE.DirectionalLight(0x404040, 0.2);
-
-    spotLight.position.set(0, 10, 0);
-    spotLight.angle = Math.PI / 4;
-    spotLight.penumbra = 0.5;
-    spotLight.decay = 2;
-    spotLight.distance = 50;
-    spotLight.castShadow = true;
-    spotLight.shadow.mapSize.width = 2048;
-    spotLight.shadow.mapSize.height = 2048;
-    spotLight.shadow.camera.near = 1;
-    spotLight.shadow.camera.far = 20;
-    spotLight.shadow.focus = 1;
-
-    fillLight.position.set(-10, -5, -5).normalize();
-
-    scene.add(ambientLight, spotLight, fillLight);
-
-    function loadLogos() {
-      const textureLoader = new THREE.TextureLoader();
-      const objLoader = new THREE.OBJLoader();
-      const textureFile = isDay ? "src/texturadia.jpg" : "src/texturanoite.jpg";
-      const objFile1 = isDay ? "src/logopreto.obj" : "src/logo.obj";
-      const texture = textureLoader.load(textureFile);
-
-      if (logoObject1) {
-        scene.remove(logoObject1);
-        logoObject1 = null;
-      }
-
-      objLoader.load(objFile1, object => {
-        object.traverse(child => {
-          if (child instanceof THREE.Mesh) {
-            child.material = new THREE.MeshStandardMaterial({
-              map: texture,
-              metalness: 0.96,
-              roughness: 0.0,
-              aoMapIntensity: 3.0,
-              envMapIntensity: 3.0,
-              displacementScale: 2.436143,
-              normalScale: new THREE.Vector2(1, -1)
-            });
-            child.castShadow = true;
-            child.receiveShadow = true;
-          }
+<body class="bg-dark-gray text-white">
+    <!-- Header Section -->
+    <header id="header" class="gradient-bg full-width fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center"><img class="h-10 w-auto" src="https://via.placeholder.com/50" alt="Skander Capital Logo">
+                    <nav class="hidden md:flex space-x-10 ml-10"><a href="#client" class="text-base font-medium hover:text-beige-light hover-underline-animation">Cliente</a><a href="#investor" class="text-base font-medium hover:text-beige-light hover-underline-animation">Investidor</a><a href="#entrepreneur"
+                            class="text-base font-medium hover:text-beige-light hover-underline-animation">Empreendedor</a><a href="#visitor" class="text-base font-medium hover:text-beige-light hover-underline-animation">Visitante</a></nav>
+                </div>
+                <div class="md:hidden"><button class="text-beige-light focus:outline-none"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button></div>
+            </div>
+            <div class="mt-16 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight fade-in">
+                    Descubra o Poder da
+                    <spanclass="text-brown-light">Skander Capital</span>
+                </h1>
+                <p class="mt-6 text-lg text-beige-light max-w-2xl mx-auto fade-in">
+                    Onde o futuro dos investimentos encontra a tradição e o compromisso com o sucesso financeiro.
+                </p>
+                <div class="mt-8 flex justify-center space-x-4 fade-in"><a href="#" class="px-8 py-3 btn-secondary font-semibold rounded-full">Explore Agora</a><a href="#" class="px-8 py-3 btn-primary font-semibold rounded-full">Invista Conosco</a></div>
+            </div>
+        </div>
+    </header>
+    <!-- Sobre a Empresa Section -->
+    <section id="about" class="fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-brown-light">Sobre a Skander Capital</h2>
+            <p class="mt-8 text-xl text-beige-light text-center max-w-4xl mx-auto">
+                A Skander Capital é uma empresa global de investimentos. Somos especializados em gestão patrimonial, venture capital e oferecemos um grupo de produtos de investimento multiestratégia.
+            </p>
+        </div>
+    </section>
+    <!-- Cliente Section -->
+    <section id="client" class="fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-brown-light">Para o Cliente</h2>
+            <p class="mt-8 text-xl text-beige-light text-center max-w-4xl mx-auto">
+                Cada passo que você dá é respaldado por décadas de experiência. Na Skander Capital, tratamos seu patrimônio com estratégias personalizadas e um compromisso inabalável com o seu sucesso. Proteja o que é seu. Potencialize o que você tem.
+            </p>
+        </div>
+    </section>
+    <!-- Investidor Section -->
+    <section id="investor" class="fade-in" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-brown-light">Para o Investidor</h2>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="bg-gray-800 p-8 rounded-lg shadow-lg" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-brown-light">Venture Capital</h3>
+                    <p class="mt-4 text-beige-light">
+                        Navegue no oceano azul de oportunidades com investimentos que desafiam o status quo. Apoie a próxima geração de gigantes do mercado.
+                    </p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-lg" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-brown-light">Multiestratégia</h3>
+                    <p class="mt-4 text-beige-light">
+                        Diversificação inteligente para maximizar retornos e mitigar riscos. Um portfólio tão dinâmico quanto suas ambições.
+                    </p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-lg" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-brown-light">Previdência</h3>
+                    <p class="mt-4 text-beige-light">
+                        Segurança e performance de longo prazo. Construa um futuro tranquilo com soluções previdenciárias sólidas e eficientes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Empreendedor Section -->
+    <section id="entrepreneur" class="fade-in" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-brown-light">Para o Empreendedor</h2>
+            <p class="mt-8 text-xl text-beige-light text-center max-w-4xl mx-auto">
+                Seu espírito de inovação, nosso capital e expertise. Juntos, transformamos ideias em empresas líderes de mercado. Na Skander Capital, seu sonho encontra o suporte que merece.
+            </p>
+        </div>
+    </section>
+    <!-- Visitante Section -->
+    <section id="visitor" class="fade-in" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-brown-light">Para o Visitante</h2>
+            <p class="mt-8 text-xl text-beige-light text-center max-w-4xl mx-auto">
+                Curioso sobre quem somos? Explore nossa história, nossa filosofia, e como estamos revolucionando o mundo dos investimentos. Bem-vindo à Skander Capital, onde a tradição encontra a inovação.
+            </p>
+        </div>
+    </section>
+    <!-- Contato Section -->
+    <section id="contact" class="fade-in" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-center text-brown-light">Entre em Contato</h2>
+            <p class="mt-8 text-xl text-beige-light text-center max-w-4xl mx-auto">
+                Pronto para dar o próximo passo? Nossa equipe está à disposição para ajudá-lo a alcançar seus objetivos financeiros com a confiança que só a Skander Capital pode oferecer.
+            </p>
+            <form class="mt-8 max-w-xl mx-auto">
+                <div class="mb-4"><input type="text" class="w-full px-4 py-2 bg-gray-800 text-beige-light rounded-lg focus:outline-none focus:ring-2 focus:ring-brown-light" placeholder="Seu nome" required></div>
+                <div class="mb-4"><input type="email" class="w-full px-4 py-2 bg-gray-800 text-beige-light rounded-lg focus:outline-none focus:ring-2 focus:ring-brown-light" placeholder="Seu email" required></div>
+                <div class="mb-4"><input type="text" class="w-full px-4 py-2 bg-gray-800 text-beige-light rounded-lg focus:outline-none focus:ring-2 focus:ring-brown-light" placeholder="Assunto" required></div>
+                <div class="mb-4"><textarea class="w-full px-4 py-2 bg-gray-800 text-beige-light rounded-lg focus:outline-none focus:ring-2 focus:ring-brown-light" rows="4" placeholder="Sua mensagem" required></textarea></div><button type="submit" class="w-full px-4 py-2 btn-primary font-semibold rounded-lg">Enviar Mensagem</button></form>
+            <div
+                class="mt-8">
+                <p>Av. Atlântica, 1234, 12º andar | Copacabana, Rio de Janeiro - RJ | CEP: 22021-001</p>
+                <p>Telefone: +55 21 1234 5678</p>
+                <p>Email:
+                    <ahref="mailto:contato@skandercapital.com.br" class="text-brown-light hover:text-brown-dark hover-underline-animation">contato@skandercapital.com.br</a>
+                </p>
+        </div>
+        </div>
+    </section>
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 full-width py-8 fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-beige-light">&copy; 2024 Skander Capital. Todos os direitos reservados.</p>
+            <p class="text-beige-light">Investimentos não garantidos pelo administrador, gestor da carteira, qualquer mecanismo de seguro ou pelo fundo garantidor de crédito – FGC.</p>
+        </div>
+    </footer>
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
         });
-        const group = new THREE.Group();
-        group.add(object);
-        group.rotation.set(-0.15, 0, 0);
-        updateObjectScale(group);
-        scene.add(logoObject1 = group);
-      });
-    }
-
-    function adjustObjectScale() {
-      return window.innerWidth <= 768 ? 0.015 : 0.025;
-    }
-
-    function updateObjectScale(object) {
-      if (object) object.scale.set(adjustObjectScale(), adjustObjectScale(), adjustObjectScale());
-    }
-
-    function animate() {
-      requestAnimationFrame(animate);
-      if (logoObject1) logoObject1.rotation.y += 0.005;
-      renderer1.render(scene, camera1);
-      renderer2.render(scene, camera2);
-    }
-
-    function handleInteractionStart(clientX, clientY) {
-      const mouse = new THREE.Vector2((clientX / window.innerWidth) * 2 - 1, -(clientY / window.innerHeight) * 2 + 1);
-      const raycaster = new THREE.Raycaster();
-      raycaster.setFromCamera(mouse, camera1);
-
-      const intersects = raycaster.intersectObjects(scene.children, true);
-      if (intersects.length > 0) {
-        isMousePressed = true;
-        isMouseOverLogo = true;
-        initialMouseX = clientX;
-        initialMouseY = clientY;
-        cursor.classList.add('active');
-      } else {
-        window.location.href = "info.html";
-      }
-    }
-
-    function handleInteractionMove(clientX, clientY) {
-      cursor.style.left = `${clientX}px`;
-      cursor.style.top = `${clientY}px`;
-      if (isMousePressed && logoObject1) {
-        const deltaX = clientX - initialMouseX;
-        const deltaY = clientY - initialMouseY;
-        logoObject1.rotation.x += deltaY * 0.01;
-        logoObject1.rotation.y += deltaX * 0.01;
-        initialMouseX = clientX;
-        initialMouseY = clientY;
-      }
-    }
-
-    document.addEventListener('mousedown', event => handleInteractionStart(event.clientX, event.clientY));
-    document.addEventListener('mouseup', () => {
-      isMousePressed = false;
-      isMouseOverLogo = false;
-      cursor.classList.remove('active');
-    });
-    document.addEventListener('mousemove', event => handleInteractionMove(event.clientX, event.clientY));
-    document.addEventListener('touchstart', event => {
-      const touch = event.touches[0];
-      handleInteractionStart(touch.clientX, touch.clientY);
-    });
-    document.addEventListener('touchend', () => {
-      isMousePressed = false;
-      isMouseOverLogo = false;
-      cursor.classList.remove('active');
-    });
-    document.addEventListener('touchmove', event => {
-      const touch = event.touches[0];
-      handleInteractionMove(touch.clientX, touch.clientY);
-    });
-
-    function checkCursorOverLogo(event) {
-      const mouse = new THREE.Vector2((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1);
-      const raycaster = new THREE.Raycaster();
-      raycaster.setFromCamera(mouse, camera1);
-      const intersects = raycaster.intersectObjects(scene.children, true);
-      cursor.style.backgroundColor = intersects.length > 0 ? 'red' : (isMousePressed ? 'red' : 'red');
-      isMouseOverLogo = intersects.length > 0;
-    }
-
-    document.addEventListener('mousemove', checkCursorOverLogo);
-    document.addEventListener('touchmove', event => {
-      const touch = event.touches[0];
-      checkCursorOverLogo(touch);
-    });
-
-    animate();
-
-    window.addEventListener('resize', () => {
-      renderer1.setSize(window.innerWidth, window.innerHeight);
-      renderer2.setSize(window.innerWidth, window.innerHeight);
-      camera1.aspect = window.innerWidth / window.innerHeight;
-      camera2.aspect = window.innerWidth / window.innerHeight;
-      camera1.updateProjectionMatrix();
-      camera2.updateProjectionMatrix();
-      updateObjectScale(logoObject1);
-    });
-
-    function updateTime() {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, "0");
-      const minutes = String(now.getMinutes()).padStart(2, "0");
-      const day = String(now.getDate()).padStart(2, "0");
-      const month = String(now.getMonth() + 1).padStart(2, "0");
-      const year = now.getFullYear();
-
-      document.getElementById('current-time').textContent = `${hours}:${minutes} · ${day}/${month}/${year}`;
-      const currentTime = now.getTime();
-      if (currentTime - lastCheckedTime >= 6 * 60 * 60 * 1000) {
-        lastCheckedTime = currentTime;
-        isDay = hours >= 6 && hours < 18;
-        document.body.style.backgroundColor = isDay ? "#eeece8" : "#000";
-        document.body.style.color = isDay ? "#000" : "#fff";
-        renderer1.setClearColor(isDay ? "#eeece8" : "#000");
-        renderer2.setClearColor(isDay ? "#eeece8" : "#000");
-        cursor.style.backgroundColor = isDay ? "#4a4a4a" : "#fff";
-        loadLogos();
-      }
-    }
-
-    setInterval(updateTime, 1000);
-    updateTime();
-  </script>
+    </script>
 </body>
+
 </html>
