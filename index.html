@@ -4,265 +4,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skander Capital</title>
-    <meta name="description" content="Skander Capital - Gestão global de investimentos em aplicações financeiras, venture capital e produtos multiestratégia.">
+    <meta name="description" content="Skander Capital - Especializados em gestão patrimonial, venture capital e multiestratégia. Protegendo e potencializando seu patrimônio.">
+    <title>Skander Capital - Agência de Investimentos</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Custom styles for Skander Capital */
-
-        .gradient-bg {
-            background: radial-gradient(circle at top right, rgba(195, 122, 52, 0.95), rgba(32, 33, 35, 0.95));
+        /* Orbit animation for logos or important elements */
+        .orbit {
+            animation: orbit 10s infinite linear;
         }
 
-        .bg-dark-gray {
-            background-color: rgb(32, 33, 35);
+        @keyframes orbit {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
-        .text-beige-light {
-            color: rgb(185, 178, 171);
+        /* Highlight with gradient background */
+        .highlight {
+            background: linear-gradient(90deg, rgba(255, 136, 0, 1) 0%, rgba(255, 182, 0, 1) 100%);
+            color: white;
+            padding: 0 10px;
+            border-radius: 5px;
         }
 
-        .text-brown-light {
-            color: rgb(195, 122, 52);
+        /* Custom button style with hover animation */
+        .btn-custom {
+            background: linear-gradient(90deg, rgba(255, 136, 0, 1) 0%, rgba(255, 182, 0, 1) 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: transform 0.3s;
         }
 
-        .text-brown-dark {
-            color: rgb(127, 81, 47);
-        }
-
-        .btn-primary {
-            background-color: rgb(195, 122, 52);
-            color: rgb(255, 255, 255);
-            transition: transform 0.3s, background-color 0.3s;
-        }
-
-        .btn-primary:hover {
-            background-color: rgb(127, 81, 47);
+        .btn-custom:hover {
             transform: scale(1.05);
         }
 
-        .btn-secondary {
-            background-color: rgb(255, 255, 255);
-            color: rgb(32, 33, 35);
-            transition: transform 0.3s, background-color 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background-color: rgb(185, 178, 171);
-            transform: scale(1.05);
-        }
-
-        /* Full-width sections */
-
-        #header {
-            height: 100vh;
-        }
-
-        /* Animations and minimalism */
-
+        /* Fade-in animation */
         .fade-in {
-            animation: fadeIn 2s ease-out;
+            opacity: 0;
+            animation: fadeIn ease 2s;
+            animation-fill-mode: forwards;
         }
 
         @keyframes fadeIn {
             0% {
                 opacity: 0;
             }
+
             100% {
                 opacity: 1;
             }
         }
 
-        .hover-underline-animation {
-            display: inline-block;
-            position: relative;
+        /* Reveal animation on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
-        .hover-underline-animation:after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: rgb(195, 122, 52);
-            transform-origin: bottom right;
-            transition: transform 0.25s ease-out;
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
         }
 
-        .hover-underline-animation:hover:after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
+        /* Custom border and hover effect */
+        .border-custom {
+            border: 2px solid black;
+            padding: 20px;
         }
 
-        /* Increased text size */
-
-        h2 {
-            font-size: 2.5rem;
-        }
-
-        p {
-            font-size: 1.25rem;
-        }
-
-        /* Section Styling */
-
-        section {
-            border-radius: 15px;
-            border: 2px solid rgba(195, 122, 52, 0.3);
-            margin-bottom: 2rem;
-            padding: 2rem;
-            box-shadow: 04px15pxrgba(0, 0, 0, 0.6);
-        }
-
-        section:nth-child(odd) {
-            background-color: rgb(28, 29, 31);
-        }
-
-        section:nth-child(even) {
-            background-color: rgb(35, 36, 38);
-        }
-
-        /* Section headers styling */
-
-        h2 {
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            width: 150px;
-            height: 3px;
-            background-color: rgb(195, 122, 52);
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -10px;
+        .hover-transform:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease-in-out;
         }
     </style>
 </head>
 
-<body class="bg-dark-gray text-white">
-    <!-- Header Section -->
-    <header id="header" class="gradient-bg full-width fade-in">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center"><img class="h-10 w-auto" src="https://via.placeholder.com/50" alt="Skander Capital Logo">
-                    <nav class="hidden md:flex space-x-10 ml-10"><a href="#client" class="text-base font-medium hover:text-beige-light hover-underline-animation">Cliente</a><a href="#investor" class="text-base font-medium hover:text-beige-light hover-underline-animation">Investidor</a><a href="#entrepreneur"
-                            class="text-base font-medium hover:text-beige-light hover-underline-animation">Empreendedor</a><a href="#visitor" class="text-base font-medium hover:text-beige-light hover-underline-animation">Visitante</a></nav>
-                </div>
-                <div class="md:hidden"><button class="text-beige-light focus:outline-none"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button></div>
+<body class="bg-gray-100 text-gray-900">
+    <!-- Header -->
+    <header class="bg-white py-4 shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="/" aria-label="Home">
+                    <img class="h-12 w-auto orbit" src="https://via.placeholder.com/150x150?text=Logo" alt="Logo Skander Capital">
+                </a>
             </div>
-            <div class="mt-16 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight fade-in">
-                    Descubra o Poder da
-                    <spanclass="text-brown-light">Skander Capital</span>
-                </h1>
-                <p class="mt-6 text-lg text-beige-light max-w-2xl mx-auto fade-in">
-                    Onde o futuro dos investimentos encontra a tradição e o compromisso com o sucesso financeiro.
-                </p>
-                <div class="mt-8 flex justify-center space-x-4 fade-in"><a href="#" class="px-8 py-3 btn-secondary font-semibold rounded-full">Explore Agora</a><a href="#" class="px-8 py-3 btn-primary font-semibold rounded-full">Invista Conosco</a></div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#overview" class="text-base font-medium text-gray-900 hover:text-gray-700">Investidores</a>
+                <a href="#services" class="text-base font-medium text-gray-900 hover:text-gray-700">Visitantes</a>
+                <a href="#contact" class="text-base font-medium text-gray-900 hover:text-gray-700">Empreendedores</a>
+            </nav>
+            <div class="md:hidden">
+                <button type="button" class="text-gray-900 hover:text-gray-700 focus:outline-none focus:text-gray-700" aria-label="Open menu">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
             </div>
+            <a href="#contact" class="btn-custom">Entre em contato</a>
         </div>
     </header>
-    <!-- Sobre a Empresa Section -->
-    <section id="about" class="fade-in">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-brown-light">Sobre a Skander Capital</h2>
-            <p class="mt-8 text-xl text-beige-light text-center max-w-4xl mx-auto">
-                A Skander Capital é uma empresa global de investimentos. Somos especializados em gestão patrimonial, venture capital e oferecemos um grupo de produtos de investimento multiestratégia.
-            </p>
+
+    <!-- Hero Section -->
+    <section id="overview" class="max-w-7xl mx-auto px-4 py-16 text-center fade-in">
+        <div class="flex justify-center mb-12">
+            <img src="https://via.placeholder.com/150x150?text=Logo" alt="Logo Skander Capital" class="h-16">
+        </div>
+        <h1 class="text-5xl font-bold text-gray-800 mb-6">Venture builders para <span class="highlight">investimentos globais</span></h1>
+        <p class="text-xl text-gray-600">Especializados em gestão patrimonial, venture capital e oferecemos um grupo de produtos de investimento multiestratégia.</p>
+        <div class="mt-12 flex justify-center space-x-12">
+            <div class="text-center">
+                <p class="text-2xl font-bold text-gray-800">2010</p>
+                <p class="text-gray-600">Fundada</p>
+            </div>
+            <div class="text-center">
+                <p class="text-2xl font-bold text-gray-800">$5.6BN</p>
+                <p class="text-gray-600">Valuation</p>
+            </div>
         </div>
     </section>
-    <!-- Cliente Section -->
-    <section id="client" class="fade-in">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-brown-light">Para o Cliente</h2>
-            <p class="mt-8 text-xl text-beige-light text-center max-w-4xl mx-auto">
-                Cada passo que você dá é respaldado por décadas de experiência. Na Skander Capital, tratamos seu patrimônio com estratégias personalizadas e um compromisso inabalável com o seu sucesso. Proteja o que é seu. Potencialize o que você tem.
-            </p>
-        </div>
-    </section>
-    <!-- Investidor Section -->
-    <section id="investor" class="fade-in" data-aos="fade-up">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-brown-light">Para o Investidor</h2>
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="bg-gray-800 p-8 rounded-lg shadow-lg" data-aos="fade-up">
-                    <h3 class="text-2xl font-bold text-brown-light">Venture Capital</h3>
-                    <p class="mt-4 text-beige-light">
-                        Navegue no oceano azul de oportunidades com investimentos que desafiam o status quo. Apoie a próxima geração de gigantes do mercado.
-                    </p>
+
+    <!-- Services Section -->
+    <section id="services" class="bg-gray-50 py-16 fade-in reveal">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">Para o Cliente</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <!-- Service 1: Venture Capital -->
+                <div class="p-8 bg-white rounded-lg shadow-lg hover-transform border-custom">
+                    <img src="https://via.placeholder.com/100x100?text=VC" alt="Ícone Venture Capital" class="mx-auto mb-4 h-12">
+                    <h3 class="text-2xl font-semibold text-gray-800">Venture Capital</h3>
+                    <p class="text-gray-600 mt-4">Navegue no oceano azul de oportunidades com investimentos que desafiam o status quo. Apoie a próxima geração de gigantes do mercado.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-lg shadow-lg" data-aos="fade-up">
-                    <h3 class="text-2xl font-bold text-brown-light">Multiestratégia</h3>
-                    <p class="mt-4 text-beige-light">
-                        Diversificação inteligente para maximizar retornos e mitigar riscos. Um portfólio tão dinâmico quanto suas ambições.
-                    </p>
+                <!-- Service 2: Multiestratégia -->
+                <div class="p-8 bg-yellow-500 rounded-lg shadow-lg hover-transform border-custom">
+                    <img src="https://via.placeholder.com/100x100?text=MS" alt="Ícone Multiestratégia" class="mx-auto mb-4 h-12">
+                    <h3 class="text-2xl font-semibold text-gray-800">Multiestratégia</h3>
+                    <p class="text-gray-600 mt-4">Diversificação inteligente para maximizar retornos e mitigar riscos. Um portfólio tão dinâmico quanto suas ambições.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-lg shadow-lg" data-aos="fade-up">
-                    <h3 class="text-2xl font-bold text-brown-light">Previdência</h3>
-                    <p class="mt-4 text-beige-light">
-                        Segurança e performance de longo prazo. Construa um futuro tranquilo com soluções previdenciárias sólidas e eficientes.
-                    </p>
+                <!-- Service 3: Previdência -->
+                <div class="p-8 bg-white rounded-lg shadow-lg hover-transform border-custom">
+                    <img src="https://via.placeholder.com/100x100?text=P" alt="Ícone Previdência" class="mx-auto mb-4 h-12">
+                    <h3 class="text-2xl font-semibold text-gray-800">Previdência</h3>
+                    <p class="text-gray-600 mt-4">Segurança e performance de longo prazo. Construa um futuro tranquilo com soluções previdenciárias sólidas e eficientes.</p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Empreendedor Section -->
-    <section id="entrepreneur" class="fade-in" data-aos="fade-up">
+
+    <!-- Contact Section -->
+    <section id="contact" class="reveal py-20 bg-gray-100 fade-in">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-brown-light">Para o Empreendedor</h2>
-            <p class="mt-8 text-xl text-beige-light text-center max-w-4xl mx-auto">
-                Seu espírito de inovação, nosso capital e expertise. Juntos, transformamos ideias em empresas líderes de mercado. Na Skander Capital, seu sonho encontra o suporte que merece.
-            </p>
+            <h2 class="text-5xl font-bold mb-8">Nos Contate</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
+                    <h3 class="text-2xl font-semibold">Entre Em Contato</h3>
+                    <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+                </article>
+                <form class="p-6 bg-yellow-500 border-2 border-black">
+                    <div class="mb-4"><label class="block text-sm font-semibold mb-2" for="name">Nome</label><input type="text" id="name" class="w-full px-4 py-2 border-2 border-black rounded-md"></div>
+                    <div class="mb-4"><label class="block text-sm font-semibold mb-2" for="email">Email</label><input type="email" id="email" class="w-full px-4 py-2 border-2 border-black rounded-md"></div>
+                    <div class="mb-4"><label class="block text-sm font-semibold mb-2" for="message">Mensagem</label><textarea id="message" class="w-full px-4 py-2 border-2 border-black rounded-md" rows="4"></textarea></div><button type="submit" class="px-8 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-800">Enviar Mensagem</button></form>
+            </div>
         </div>
     </section>
-    <!-- Visitante Section -->
-    <section id="visitor" class="fade-in" data-aos="fade-up">
+
+    <!-- Footer -->
+    <footer class="bg-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-brown-light">Para o Visitante</h2>
-            <p class="mt-8 text-xl text-beige-light text-center max-w-4xl mx-auto">
-                Curioso sobre quem somos? Explore nossa história, nossa filosofia, e como estamos revolucionando o mundo dos investimentos. Bem-vindo à Skander Capital, onde a tradição encontra a inovação.
-            </p>
-        </div>
-    </section>
-    <!-- Contato Section -->
-    <section id="contact" class="fade-in" data-aos="fade-up">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold text-center text-brown-light">Entre em Contato</h2>
-            <p class="mt-8 text-xl text-beige-light text-center max-w-4xl mx-auto">
-                Pronto para dar o próximo passo? Nossa equipe está à disposição para ajudá-lo a alcançar seus objetivos financeiros com a confiança que só a Skander Capital pode oferecer.
-            </p>
-            <form class="mt-8 max-w-xl mx-auto">
-                <div class="mb-4"><input type="text" class="w-full px-4 py-2 bg-gray-800 text-beige-light rounded-lg focus:outline-none focus:ring-2 focus:ring-brown-light" placeholder="Seu nome" required></div>
-                <div class="mb-4"><input type="email" class="w-full px-4 py-2 bg-gray-800 text-beige-light rounded-lg focus:outline-none focus:ring-2 focus:ring-brown-light" placeholder="Seu email" required></div>
-                <div class="mb-4"><input type="text" class="w-full px-4 py-2 bg-gray-800 text-beige-light rounded-lg focus:outline-none focus:ring-2 focus:ring-brown-light" placeholder="Assunto" required></div>
-                <div class="mb-4"><textarea class="w-full px-4 py-2 bg-gray-800 text-beige-light rounded-lg focus:outline-none focus:ring-2 focus:ring-brown-light" rows="4" placeholder="Sua mensagem" required></textarea></div><button type="submit" class="w-full px-4 py-2 btn-primary font-semibold rounded-lg">Enviar Mensagem</button></form>
-            <div
-                class="mt-8">
-                <p>Av. Atlântica, 1234, 12º andar | Copacabana, Rio de Janeiro - RJ | CEP: 22021-001</p>
-                <p>Telefone: +55 21 1234 5678</p>
-                <p>Email:
-                    <ahref="mailto:contato@skandercapital.com.br" class="text-brown-light hover:text-brown-dark hover-underline-animation">contato@skandercapital.com.br</a>
-                </p>
-        </div>
-        </div>
-    </section>
-    <!-- Footer Section -->
-    <footer class="bg-gray-900 full-width py-8 fade-in">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-beige-light">&copy; 2024 Skander Capital. Todos os direitos reservados.</p>
-            <p class="text-beige-light">Investimentos não garantidos pelo administrador, gestor da carteira, qualquer mecanismo de seguro ou pelo fundo garantidor de crédito – FGC.</p>
+            <div class="flex justify-between">
+                <p class="text-gray-600">&copy; 2024 Lorem Ipsum. All rights reserved.</p>
+                <nav class="flex space-x-4"><a href="#" class="text-gray-600 hover:text-gray-900">Política De Privacidade</a><a href="#" class="text-gray-600 hover:text-gray-900">Termos De Uso</a></nav>
+            </div>
         </div>
     </footer>
-    <!-- AOS Animation Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Scroll reveal script -->
     <script>
-        AOS.init({
-            duration: 1200,
+        document.addEventListener('DOMContentLoaded', function () {
+            let fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(function (element) {
+                element.classList.add('fadeIn');
+            });
+
+            // Scroll reveal animation
+            const reveals = document.querySelectorAll('.reveal');
+            function reveal() {
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('visible');
+                    } else {
+                        reveals[i].classList.remove('visible');
+                    }
+                }
+            }
+            window.addEventListener('scroll', reveal);
+            reveal();
         });
     </script>
 </body>
