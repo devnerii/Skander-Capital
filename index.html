@@ -1,216 +1,235 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Skander Capital - Especializados em gestão patrimonial, venture capital e multiestratégia. Protegendo e potencializando seu patrimônio.">
-    <title>Skander Capital - Agência de Investimentos</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="description" content="Skader Capital - Investimentos inteligentes para o futuro.">
+    <meta name="keywords" content="Skader Capital, Investimentos, Empreendedores, Visitantes, Investidores">
+    <title>Skader Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Orbit animation for logos or important elements */
-        .orbit {
-            animation: orbit 10s infinite linear;
+        :root {
+            --primary-color: #f1c50e;
+            --secondary-color: #333;
+            --background-color: #000;
+            --text-color: #fff;
         }
 
-        @keyframes orbit {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
         }
 
-        /* Highlight with gradient background */
-        .highlight {
-            background: linear-gradient(90deg, rgba(255, 136, 0, 1) 0%, rgba(255, 182, 0, 1) 100%);
-            color: white;
-            padding: 0 10px;
-            border-radius: 5px;
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        /* Custom button style with hover animation */
-        .btn-custom {
-            background: linear-gradient(90deg, rgba(255, 136, 0, 1) 0%, rgba(255, 182, 0, 1) 100%);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: transform 0.3s;
+        header {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
         }
 
-        .btn-custom:hover {
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--secondary-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 400;
+            color: var(--secondary-color);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            background: var(--primary-color);
+            transition: width 0.3s;
+            bottom: -5px;
+            left: 0;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Toggle Bar for mobile */
+        .toggle-bar {
+            display: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+
+        .hero {
+            height: 80vh;
+            padding: 50px 0;
+            background: url('../images/young-successful-businessman-correcting-tie.jpg') center center/cover no-repeat;
+            background-position: center 15%; /* Aumenta a altura do background */
+            position: relative;
+        }
+
+        .hero .container {
+            display: block;
+            padding-left: 20px;
+        }
+
+        .hero-content {
+            max-width: 500px;
+            text-align: left;
+            margin-left: 0;
+            padding-top: 50px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 5.5em;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            color: var(--primary-color);
+        }
+
+        .hero-content p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1em;
+            font-weight: 800;
+            color: var(--background-color);
+            background-color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-color);
             transform: scale(1.05);
         }
 
-        /* Fade-in animation */
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn ease 2s;
-            animation-fill-mode: forwards;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .toggle-bar {
+                display: block;
             }
 
-            100% {
-                opacity: 1;
+            nav ul {
+                flex-direction: column;
+                display: none;
             }
-        }
 
-        /* Reveal animation on scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
+            nav ul.show {
+                display: flex;
+                background-color: var(--background-color);
+                padding: 20px;
+                border-radius: 10px;
+            }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: none;
-        }
+            nav ul li {
+                margin-left: 0;
+                margin-top: 10px;
+            }
 
-        /* Custom border and hover effect */
-        .border-custom {
-            border: 2px solid black;
-            padding: 20px;
-        }
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
 
-        .hover-transform:hover {
-            transform: translateY(-10px);
-            transition: transform 0.3s ease-in-out;
+            .hero-content p {
+                font-size: 1em;
+            }
+
+            .hero {
+                height: 50%;
+            }
+
+            .cta-button {
+                font-size: 0.9em;
+                padding: 12px 25px;
+            }
         }
     </style>
 </head>
-
-<body class="bg-gray-100 text-gray-900">
-    <!-- Header -->
-    <header class="bg-white py-4 shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <div class="flex items-center">
-                <a href="/" aria-label="Home">
-                    <img class="h-12 w-auto orbit" src="https://via.placeholder.com/150x150?text=Logo" alt="Logo Skander Capital">
-                </a>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Skader Capital</div>
+                <div class="toggle-bar" onclick="toggleMenu()">☰</div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link">Investidores</a></li>
+                        <li><a href="#" class="nav-link">Visitantes</a></li>
+                        <li><a href="#" class="nav-link">Empreendedores</a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#overview" class="text-base font-medium text-gray-900 hover:text-gray-700">Investidores</a>
-                <a href="#services" class="text-base font-medium text-gray-900 hover:text-gray-700">Visitantes</a>
-                <a href="#contact" class="text-base font-medium text-gray-900 hover:text-gray-700">Empreendedores</a>
-            </nav>
-            <div class="md:hidden">
-                <button type="button" class="text-gray-900 hover:text-gray-700 focus:outline-none focus:text-gray-700" aria-label="Open menu">
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
-            <a href="#contact" class="btn-custom">Entre em contato</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="overview" class="max-w-7xl mx-auto px-4 py-16 text-center fade-in">
-        <div class="flex justify-center mb-12">
-            <img src="https://via.placeholder.com/150x150?text=Logo" alt="Logo Skander Capital" class="h-16">
-        </div>
-        <h1 class="text-5xl font-bold text-gray-800 mb-6">Venture builders para <span class="highlight">investimentos globais</span></h1>
-        <p class="text-xl text-gray-600">Especializados em gestão patrimonial, venture capital e oferecemos um grupo de produtos de investimento multiestratégia.</p>
-        <div class="mt-12 flex justify-center space-x-12">
-            <div class="text-center">
-                <p class="text-2xl font-bold text-gray-800">2010</p>
-                <p class="text-gray-600">Fundada</p>
-            </div>
-            <div class="text-center">
-                <p class="text-2xl font-bold text-gray-800">$5.6BN</p>
-                <p class="text-gray-600">Valuation</p>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Visão</h1>
+                <p>A Skader é uma empresa de investimentos que presta serviços de planejamento de patrimônio e de gestão de ativos em todo mundo.</p>
+                <a href="#contact" class="cta-button">ENTRE EM CONTATO</a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="bg-gray-50 py-16 fade-in reveal">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-4xl font-bold text-gray-800 text-center mb-12">Para o Cliente</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-                <!-- Service 1: Venture Capital -->
-                <div class="p-8 bg-white rounded-lg shadow-lg hover-transform border-custom">
-                    <img src="https://via.placeholder.com/100x100?text=VC" alt="Ícone Venture Capital" class="mx-auto mb-4 h-12">
-                    <h3 class="text-2xl font-semibold text-gray-800">Venture Capital</h3>
-                    <p class="text-gray-600 mt-4">Navegue no oceano azul de oportunidades com investimentos que desafiam o status quo. Apoie a próxima geração de gigantes do mercado.</p>
-                </div>
-                <!-- Service 2: Multiestratégia -->
-                <div class="p-8 bg-yellow-500 rounded-lg shadow-lg hover-transform border-custom">
-                    <img src="https://via.placeholder.com/100x100?text=MS" alt="Ícone Multiestratégia" class="mx-auto mb-4 h-12">
-                    <h3 class="text-2xl font-semibold text-gray-800">Multiestratégia</h3>
-                    <p class="text-gray-600 mt-4">Diversificação inteligente para maximizar retornos e mitigar riscos. Um portfólio tão dinâmico quanto suas ambições.</p>
-                </div>
-                <!-- Service 3: Previdência -->
-                <div class="p-8 bg-white rounded-lg shadow-lg hover-transform border-custom">
-                    <img src="https://via.placeholder.com/100x100?text=P" alt="Ícone Previdência" class="mx-auto mb-4 h-12">
-                    <h3 class="text-2xl font-semibold text-gray-800">Previdência</h3>
-                    <p class="text-gray-600 mt-4">Segurança e performance de longo prazo. Construa um futuro tranquilo com soluções previdenciárias sólidas e eficientes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="reveal py-20 bg-gray-100 fade-in">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-5xl font-bold mb-8">Nos Contate</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <article class="hover-transform p-6 bg-gray-200 border-2 border-black">
-                    <h3 class="text-2xl font-semibold">Entre Em Contato</h3>
-                    <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
-                </article>
-                <form class="p-6 bg-yellow-500 border-2 border-black">
-                    <div class="mb-4"><label class="block text-sm font-semibold mb-2" for="name">Nome</label><input type="text" id="name" class="w-full px-4 py-2 border-2 border-black rounded-md"></div>
-                    <div class="mb-4"><label class="block text-sm font-semibold mb-2" for="email">Email</label><input type="email" id="email" class="w-full px-4 py-2 border-2 border-black rounded-md"></div>
-                    <div class="mb-4"><label class="block text-sm font-semibold mb-2" for="message">Mensagem</label><textarea id="message" class="w-full px-4 py-2 border-2 border-black rounded-md" rows="4"></textarea></div><button type="submit" class="px-8 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-800">Enviar Mensagem</button></form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-white py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between">
-                <p class="text-gray-600">&copy; 2024 Lorem Ipsum. All rights reserved.</p>
-                <nav class="flex space-x-4"><a href="#" class="text-gray-600 hover:text-gray-900">Política De Privacidade</a><a href="#" class="text-gray-600 hover:text-gray-900">Termos De Uso</a></nav>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scroll reveal script -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            let fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(function (element) {
-                element.classList.add('fadeIn');
-            });
-
-            // Scroll reveal animation
-            const reveals = document.querySelectorAll('.reveal');
-            function reveal() {
-                for (let i = 0; i < reveals.length; i++) {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = reveals[i].getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveals[i].classList.add('visible');
-                    } else {
-                        reveals[i].classList.remove('visible');
-                    }
-                }
-            }
-            window.addEventListener('scroll', reveal);
-            reveal();
-        });
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('show');
+        }
     </script>
 </body>
-
 </html>
