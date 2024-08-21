@@ -1,291 +1,329 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Skader Capital - Investimentos inteligentes para o futuro.">
-    <meta name="keywords" content="Skader Capital, Investimentos, Empreendedores, Visitantes, Investidores">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Skader Capital - Investimentos inteligentes para o futuro."
+    />
+    <meta
+      name="keywords"
+      content="Skader Capital, Investimentos, Empreendedores, Visitantes, Investidores"
+    />
     <title>Skader Capital</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --primary-color: rgb(229, 127, 51);
-            --secondary-color: #333;
-            --background-color: #000;
-            --text-color: #fff;
-            --logo-color-1: rgb(229, 127, 51);
-            --logo-color-2: rgb(212, 127, 63);
-            --logo-color-3: rgb(205, 127, 52);
-            --logo-color-4: rgb(204, 127, 52);
-            --logo-color-5: rgb(191, 127, 63);
-        }
+      :root {
+        --primary-color: rgb(229, 127, 51);
+        --secondary-color: #333;
+        --background-color: #000;
+        --text-color: #fff;
+        --logo-color-1: rgb(229, 127, 51);
+        --logo-color-2: rgb(212, 127, 63);
+        --logo-color-3: rgb(205, 127, 52);
+        --logo-color-4: rgb(204, 127, 52);
+        --logo-color-5: rgb(191, 127, 63);
+      }
 
-        body {
-            margin: 0;
-            font-family: 'Open Sans', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-        }
+      body {
+        margin: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+      }
 
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
 
-        header {
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px 0;
-        }
+      header {
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+      }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        .logo {
-            background-image: url('/images/logo.png');
-            width: 250px;
-            height: 40px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            cursor: pointer;
+      .logo {
+        background-image: url("/images/logo.png");
+        width: 250px;
+        height: 40px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+      }
+
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      nav ul li {
+        margin-left: 20px;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        font-size: 1em;
+        font-weight: 400;
+        color: var(--secondary-color);
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        display: block;
+        background: var(--primary-color);
+        transition: width 0.3s;
+        bottom: -5px;
+        left: 0;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color);
+      }
+
+      /* Toggle Bar for mobile */
+      .toggle-bar {
+        display: none;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: var(--secondary-color);
+      }
+
+      .hero {
+        height: 80vh;
+        padding: 50px 0;
+        position: relative;
+        overflow: hidden; /* Para garantir que o pseudo-elemento não saia do contêiner */
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("../images/jhhhhhh.jpg") center center/cover no-repeat;
+        background-position: center 15%;
+        filter: blur(5px); /* Ajuste o valor do desfoque conforme necessário */
+        z-index: -1; /* Coloca o pseudo-elemento atrás do conteúdo */
+      }
+
+      .hero .container {
+        display: block;
+        padding-left: 20px;
+        position: relative; /* Certifique-se de que o conteúdo da .hero esteja acima do pseudo-elemento */
+        color: white; /* Ajuste a cor do texto conforme necessário */
+      }
+
+      .hero-content {
+        max-width: 500px;
+        text-align: left;
+        margin-left: 0;
+        padding-top: 50px;
+      }
+
+      .hero-content h1 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 5.5em;
+        font-weight: 700;
+        margin: 0 0 20px 0;
+        color: var(--primary-color);
+      }
+
+      .hero-content p {
+        font-family: "Open Sans", sans-serif;
+        font-size: 1.2em;
+        line-height: 1.6;
+        color: var(--text-color);
+      }
+
+      .cta-button {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 15px 30px;
+        font-family: "Open Sans", sans-serif;
+        font-size: 1em;
+        font-weight: 800;
+        color: var(--background-color);
+        background-color: var(--primary-color);
+        text-decoration: none;
+        border-radius: 50px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .cta-button:hover {
+        background-color: var(--primary-color);
+        transform: scale(1.05);
+      }
+
+      /* Sessão de Contato */
+      .contact-section {
+        padding: 50px 0;
+        text-align: center;
+        background-color: var(--secondary-color);
+      }
+
+      .contact-section h2 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.5em;
+        color: var(--logo-color-1);
+        margin-bottom: 20px;
+      }
+
+      .contact-info {
+        font-size: 1.2em;
+        line-height: 2;
+        color: var(--text-color);
+      }
+
+      .contact-info a {
+        color: var(--logo-color-3);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .contact-info a:hover {
+        color: var(--logo-color-5);
+      }
+
+      .construction-note {
+        margin-top: 30px;
+        font-size: 1em;
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .toggle-bar {
+          display: block;
         }
 
         nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
+          flex-direction: column;
+          display: none;
+        }
+
+        nav ul.show {
+          display: flex;
+          background-color: var(--background-color);
+          padding: 20px;
+          border-radius: 10px;
         }
 
         nav ul li {
-            margin-left: 20px;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            font-size: 1em;
-            font-weight: 400;
-            color: var(--secondary-color);
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            display: block;
-            background: var(--primary-color);
-            transition: width 0.3s;
-            bottom: -5px;
-            left: 0;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
-
-        /* Toggle Bar for mobile */
-        .toggle-bar {
-            display: none;
-            font-size: 1.5em;
-            cursor: pointer;
-            color: var(--secondary-color);
-        }
-
-        .hero {
-            height: 80vh;
-            padding: 50px 0;
-            background: url('../images/young-successful-businessman-correcting-tie.jpg') center center/cover no-repeat;
-            background-position: center 15%; /* Aumenta a altura do background */
-            position: relative;
-        }
-
-        .hero .container {
-            display: block;
-            padding-left: 20px;
-        }
-
-        .hero-content {
-            max-width: 500px;
-            text-align: left;
-            margin-left: 0;
-            padding-top: 50px;
+          margin-left: 0;
+          margin-top: 10px;
         }
 
         .hero-content h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 5.5em;
-            font-weight: 700;
-            margin: 0 0 20px 0;
-            color: var(--primary-color);
+          font-size: 2.5em;
         }
 
         .hero-content p {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1.2em;
-            line-height: 1.6;
-            color: var(--text-color);
+          font-size: 1em;
+        }
+
+        .hero {
+          height: 50%;
         }
 
         .cta-button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 30px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1em;
-            font-weight: 800;
-            color: var(--background-color);
-            background-color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 50px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+          font-size: 0.9em;
+          padding: 12px 25px;
         }
-
-        .cta-button:hover {
-            background-color: var(--primary-color);
-            transform: scale(1.05);
-        }
-
-        /* Sessão de Contato */
-        .contact-section {
-            padding: 50px 0;
-            text-align: center;
-            background-color: var(--secondary-color);
-        }
-
-        .contact-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            color: var(--logo-color-1);
-            margin-bottom: 20px;
-        }
-
-        .contact-info {
-            font-size: 1.2em;
-            line-height: 2;
-            color: var(--text-color);
-        }
-
-        .contact-info a {
-            color: var(--logo-color-3);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            color: var(--logo-color-5);
-        }
-
-        .construction-note {
-            margin-top: 30px;
-            font-size: 1em;
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .toggle-bar {
-                display: block;
-            }
-
-            nav ul {
-                flex-direction: column;
-                display: none;
-            }
-
-            nav ul.show {
-                display: flex;
-                background-color: var(--background-color);
-                padding: 20px;
-                border-radius: 10px;
-            }
-
-            nav ul li {
-                margin-left: 0;
-                margin-top: 10px;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5em;
-            }
-
-            .hero-content p {
-                font-size: 1em;
-            }
-
-            .hero {
-                height: 50%;
-            }
-
-            .cta-button {
-                font-size: 0.9em;
-                padding: 12px 25px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo"></div>
-                <div class="toggle-bar" onclick="toggleMenu()">☰</div>
-                <nav>
-                    <ul>
-                        <li><a href="#" class="nav-link">Investidores</a></li>
-                        <li><a href="#" class="nav-link">Visitantes</a></li>
-                        <li><a href="#" class="nav-link">Empreendedores</a></li>
-                    </ul>
-                </nav>
-            </div>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo"></div>
+          <div class="toggle-bar" onclick="toggleMenu()">☰</div>
+          <nav>
+            <ul>
+              <li><a href="#" class="nav-link">Investidores</a></li>
+              <li><a href="#" class="nav-link">Visitantes</a></li>
+              <li><a href="#" class="nav-link">Empreendedores</a></li>
+            </ul>
+          </nav>
         </div>
+      </div>
     </header>
 
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Visão</h1>
-                <p>A Skader é uma empresa de investimentos que presta serviços de planejamento de patrimônio e de gestão de ativos em todo mundo.</p>
-                <a href="#contact" class="cta-button">ENTRE EM CONTATO</a>
-            </div>
+      <div class="container">
+        <div class="hero-content">
+          <h1>Visão</h1>
+          <p>
+            A Skander é uma empresa de investimentos que presta serviços de
+            planejamento de patrimônio e de gestão de ativos em todo mundo.
+          </p>
+          <a href="#contact" class="cta-button">ENTRE EM CONTATO</a>
         </div>
+      </div>
     </section>
 
     <section class="contact-section" id="contact">
-        <div class="container">
-            <h2>Contato</h2>
-            <div class="contact-info">
-                <p>TELEFONES</p>
-                <p>+55 21 2018 3394</p>
-                <p>EMAILS</p>
-                <p><a href="mailto:contato@skandercapital.com">contato@skandercapital.com</a></p>
-                <p><a href="mailto:compliance@skandercapital.com">compliance@skandercapital.com</a></p>
-                <p><a href="mailto:ouvidoria@skandercapital.com">ouvidoria@skandercapital.com</a></p>
-            </div>
-            <div class="construction-note">
-                <p>O site está em construção.</p>
-            </div>
+      <div class="container">
+        <h2>Contato</h2>
+        <div class="contact-info">
+          <p>TELEFONES</p>
+          <p>+55 21 2018 3394</p>
+          <p>EMAILS</p>
+          <p>
+            <a href="mailto:contato@skandercapital.com"
+              >contato@skandercapital.com</a
+            >
+          </p>
+          <p>
+            <a href="mailto:compliance@skandercapital.com"
+              >compliance@skandercapital.com</a
+            >
+          </p>
+          <p>
+            <a href="mailto:ouvidoria@skandercapital.com"
+              >ouvidoria@skandercapital.com</a
+            >
+          </p>
         </div>
+        <div class="construction-note">
+          <p>O site está em construção.</p>
+        </div>
+      </div>
     </section>
 
     <script>
-        function toggleMenu() {
-            const nav = document.querySelector('nav ul');
-            nav.classList.toggle('show');
-        }
+      function toggleMenu() {
+        const nav = document.querySelector("nav ul");
+        nav.classList.toggle("show");
+      }
     </script>
-</body>
+  </body>
 </html>
