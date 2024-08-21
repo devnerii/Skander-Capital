@@ -11,10 +11,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #f1c50e;
+            --primary-color: rgb(229, 127, 51);
             --secondary-color: #333;
             --background-color: #000;
             --text-color: #fff;
+            --logo-color-1: rgb(229, 127, 51);
+            --logo-color-2: rgb(212, 127, 63);
+            --logo-color-3: rgb(205, 127, 52);
+            --logo-color-4: rgb(204, 127, 52);
+            --logo-color-5: rgb(191, 127, 63);
         }
 
         body {
@@ -43,15 +48,12 @@
         }
 
         .logo {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: var(--secondary-color);
+            background-image: url('/images/logo.png');
+            width: 250px;
+            height: 40px;
+            background-size: contain;
+            background-repeat: no-repeat;
             cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .logo:hover {
-            color: var(--primary-color);
         }
 
         nav ul {
@@ -156,6 +158,43 @@
             transform: scale(1.05);
         }
 
+        /* Sessão de Contato */
+        .contact-section {
+            padding: 50px 0;
+            text-align: center;
+            background-color: var(--secondary-color);
+        }
+
+        .contact-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: var(--logo-color-1);
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            font-size: 1.2em;
+            line-height: 2;
+            color: var(--text-color);
+        }
+
+        .contact-info a {
+            color: var(--logo-color-3);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--logo-color-5);
+        }
+
+        .construction-note {
+            margin-top: 30px;
+            font-size: 1em;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
         /* Responsividade */
         @media (max-width: 768px) {
             .toggle-bar {
@@ -202,7 +241,7 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Skader Capital</div>
+                <div class="logo"></div>
                 <div class="toggle-bar" onclick="toggleMenu()">☰</div>
                 <nav>
                     <ul>
@@ -221,6 +260,23 @@
                 <h1>Visão</h1>
                 <p>A Skader é uma empresa de investimentos que presta serviços de planejamento de patrimônio e de gestão de ativos em todo mundo.</p>
                 <a href="#contact" class="cta-button">ENTRE EM CONTATO</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2>Contato</h2>
+            <div class="contact-info">
+                <p>TELEFONES</p>
+                <p>+55 21 2018 3394</p>
+                <p>EMAILS</p>
+                <p><a href="mailto:contato@skandercapital.com">contato@skandercapital.com</a></p>
+                <p><a href="mailto:compliance@skandercapital.com">compliance@skandercapital.com</a></p>
+                <p><a href="mailto:ouvidoria@skandercapital.com">ouvidoria@skandercapital.com</a></p>
+            </div>
+            <div class="construction-note">
+                <p>O site está em construção.</p>
             </div>
         </div>
     </section>
