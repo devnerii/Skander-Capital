@@ -50,7 +50,7 @@
             font-family: "Open Sans", sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
-            overflow: hidden;
+            overflow-x: hidden;
             font-size: 1rem;
             line-height: 1.6;
             display: flex;
@@ -74,6 +74,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
         }
 
         .header-content {
@@ -84,17 +85,15 @@
         }
 
         .logo {
-            width: 250px;
+            width: 200px;
             height: 40px;
-            background-image: url("/images/logo.png");
+            background-image: url("/images/logobranca.svg");
             background-size: contain;
             background-repeat: no-repeat;
         }
 
         nav ul {
             list-style: none;
-            margin: 0;
-            padding: 0;
             display: flex;
             gap: calc(var(--spacing-unit) * 1.5);
             align-items: center;
@@ -154,6 +153,14 @@
             cursor: pointer;
             font-weight: bold;
             transition: background-color 0.3s ease, color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .language-button img {
+            margin-right: 8px;
+            width: 20px;
+            height: auto;
         }
 
         .language-button:hover {
@@ -171,15 +178,22 @@
             border-radius: 5px;
             margin-top: 10px;
             z-index: 1001;
-            width: 150px;
+            width: 200px;
         }
 
         .language-options a {
-            display: block;
+            display: flex;
+            align-items: center;
             padding: var(--spacing-unit);
             color: var(--text-color);
             text-decoration: none;
             transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .language-options a img {
+            margin-right: 8px;
+            width: 20px;
+            height: auto;
         }
 
         .language-options a:hover {
@@ -243,7 +257,23 @@
         }
 
         /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                max-width: 720px;
+            }
+        }
+
         @media (max-width: 768px) {
+            .container {
+                max-width: 540px;
+            }
+
             .toggle-bar {
                 display: block;
             }
@@ -278,6 +308,43 @@
                 font-size: 1.3rem;
             }
         }
+
+        @media (max-width: 576px) {
+            .container {
+                max-width: 100%;
+                padding: 0 var(--spacing-unit);
+            }
+
+            .logo {
+                width: 150px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .language-button {
+                padding: calc(var(--spacing-unit) / 3) var(--spacing-unit);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-content {
+                padding: calc(var(--spacing-unit) * 1.5);
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -294,12 +361,27 @@
                 </ul>
             </nav>
             <div class="language-switcher">
-                <button class="language-button" onclick="toggleLanguageMenu()">Português</button>
+                <button class="language-button" onclick="toggleLanguageMenu()">
+                    <img src="https://flagcdn.com/w20/br.png" alt="Brasil">
+                    Português
+                </button>
                 <div class="language-options">
-                    <a href="#" onclick="changeLanguage('pt')">Português</a>
-                    <a href="#" onclick="changeLanguage('en')">English</a>
-                    <a href="#" onclick="changeLanguage('es')">Español</a>
-                    <a href="#" onclick="changeLanguage('fr')">Français</a>
+                    <a href="#" onclick="changeLanguage('pt')">
+                        <img src="https://flagcdn.com/w20/br.png" alt="Brasil">
+                        Português
+                    </a>
+                    <a href="#" onclick="changeLanguage('en')">
+                        <img src="https://flagcdn.com/w20/gb.png" alt="Reino Unido">
+                        English
+                    </a>
+                    <a href="#" onclick="changeLanguage('es')">
+                        <img src="https://flagcdn.com/w20/es.png" alt="Espanha">
+                        Español
+                    </a>
+                    <a href="#" onclick="changeLanguage('fr')">
+                        <img src="https://flagcdn.com/w20/fr.png" alt="França">
+                        Français
+                    </a>
                 </div>
             </div>
             <div class="toggle-bar" onclick="toggleMenu()">☰</div>
@@ -311,7 +393,7 @@
 <section class="hero">
     <div class="container">
         <div class="hero-content">
-            <h1>Skader Capital</h1>
+            <h1>Skander Capital</h1>
             <p>A Skander é uma empresa de investimentos que presta serviços de planejamento de patrimônio e de gestão de ativos em todo mundo.</p>
         </div>
     </div>
