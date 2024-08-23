@@ -1,333 +1,1031 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Skader Capital - Investimentos inteligentes para o futuro."
-    />
-    <meta
-      name="keywords"
-      content="Skader Capital, Investimentos, Empreendedores, Visitantes, Investidores"
-    />
+    <meta name="description" content="Skader Capital - Investimentos inteligentes para o futuro." />
+    <meta name="keywords" content="Skader Capital, Investimentos, Empreendedores, Visitantes, Investidores" />
     <title>Skader Capital</title>
+
+    <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="icon" href="/images/ico.png" type="image/x-icon" />
+
+    <!-- Styles -->
     <style>
-      :root {
-        --primary-color: rgb(229, 127, 51);
-        --secondary-color: #333;
-        --background-color: #000;
-        --text-color: #fff;
-        --logo-color-1: rgb(229, 127, 51);
-        --logo-color-2: rgb(212, 127, 63);
-        --logo-color-3: rgb(205, 127, 52);
-        --logo-color-4: rgb(204, 127, 52);
-        --logo-color-5: rgb(191, 127, 63);
-      }
+        :root {
+            --primary-color: #e57f33;
+            --secondary-color: #333;
+            --background-color: #000;
+            --text-color: #fff;
+            --logo-color-1: #e57f33;
+        }
 
-      body {
-        margin: 0;
-        font-family: "Open Sans", sans-serif;
-        background-color: var(--background-color);
-        color: var(--text-color);
-      }
+        body {
+            margin: 0;
+            font-family: "Open Sans", sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            font-size: 1rem;
+        }
 
-      .container {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-      header {
-        background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px 0;
-      }
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+        }
 
-      .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-      .logo {
-        background-image: url("/images/logo.png");
-        width: 250px;
-        height: 40px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        cursor: pointer;
-      }
-
-      nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-      }
-
-      nav ul li {
-        margin-left: 20px;
-      }
-
-      .nav-link {
-        text-decoration: none;
-        font-size: 1em;
-        font-weight: 400;
-        color: var(--secondary-color);
-        position: relative;
-        transition: color 0.3s ease;
-      }
-
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 2px;
-        display: block;
-        background: var(--primary-color);
-        transition: width 0.3s;
-        bottom: -5px;
-        left: 0;
-      }
-
-      .nav-link:hover::after {
-        width: 100%;
-      }
-
-      .nav-link:hover {
-        color: var(--primary-color);
-      }
-
-      /* Toggle Bar for mobile */
-      .toggle-bar {
-        display: none;
-        font-size: 1.5em;
-        cursor: pointer;
-        color: var(--secondary-color);
-      }
-
-      .hero {
-        height: 80vh;
-        padding: 50px 0;
-        position: relative;
-        overflow: hidden; /* Para garantir que o pseudo-elemento não saia do contêiner */
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url("../images/jhhhhhh.jpg") center center/cover no-repeat;
-        background-position: center 15%;
-        filter: blur(5px); /* Ajuste o valor do desfoque conforme necessário */
-        z-index: -1; /* Coloca o pseudo-elemento atrás do conteúdo */
-      }
-
-      .hero .container {
-        display: block;
-        padding-left: 20px;
-        position: relative; /* Certifique-se de que o conteúdo da .hero esteja acima do pseudo-elemento */
-        color: white; /* Ajuste a cor do texto conforme necessário */
-      }
-
-      .hero-content {
-        max-width: 500px;
-        text-align: left;
-        margin-left: 0;
-        padding-top: 50px;
-      }
-
-      .hero-content h1 {
-        font-family: "Montserrat", sans-serif;
-        font-size: 5.5em;
-        font-weight: 700;
-        margin: 0 0 20px 0;
-        color: var(--primary-color);
-      }
-
-      .hero-content p {
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.2em;
-    line-height: 1.6;
-    color: var(--text-color);
-    font-weight: bold; /* Torna o texto em negrito */
-    text-shadow: 4px 4px 12px rgba(0, 0, 0, 2.0); /* Sombra mais pronunciada */
-}
-
-
-
-      .cta-button {
-        display: inline-block;
-        margin-top: 30px;
-        padding: 15px 30px;
-        font-family: "Open Sans", sans-serif;
-        font-size: 1em;
-        font-weight: 800;
-        color: var(--background-color);
-        background-color: var(--primary-color);
-        text-decoration: none;
-        border-radius: 50px;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-      }
-
-      .cta-button:hover {
-        background-color: var(--primary-color);
-        transform: scale(1.05);
-      }
-
-      /* Sessão de Contato */
-      .contact-section {
-        padding: 50px 0;
-        text-align: center;
-        background-color: var(--secondary-color);
-      }
-
-      .contact-section h2 {
-        font-family: "Montserrat", sans-serif;
-        font-size: 2.5em;
-        color: var(--logo-color-1);
-        margin-bottom: 20px;
-      }
-
-      .contact-info {
-        font-size: 1.2em;
-        line-height: 2;
-        color: var(--text-color);
-      }
-
-      .contact-info a {
-        color: var(--logo-color-3);
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .contact-info a:hover {
-        color: var(--logo-color-5);
-      }
-
-      .construction-note {
-        margin-top: 30px;
-        font-size: 1em;
-        color: var(--primary-color);
-        font-weight: 600;
-      }
-
-      /* Responsividade */
-      @media (max-width: 768px) {
-        .toggle-bar {
-          display: block;
+        .logo {
+            background-image: url("/images/logo.png");
+            width: 15.625rem;
+            height: 2.5rem;
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor: pointer;
         }
 
         nav ul {
-          flex-direction: column;
-          display: none;
-        }
-
-        nav ul.show {
-          display: flex;
-          background-color: var(--background-color);
-          padding: 20px;
-          border-radius: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 1.25rem;
         }
 
         nav ul li {
-          margin-left: 0;
-          margin-top: 10px;
+            margin-left: 1.25rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--secondary-color);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s;
+            bottom: -5px;
+            left: 0;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .toggle-bar {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            padding: 3.125rem 0;
+            position: relative;
+            overflow: hidden;
+            background: url("../images/business-concept-with-graphic-holography.jpg") center center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 31.25rem;
+            padding-top: 3.125rem;
         }
 
         .hero-content h1 {
-          font-size: 2.5em;
+            font-family: "Montserrat", sans-serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin: 0 0 1.25rem 0;
+            color: var(--primary-color);
         }
 
         .hero-content p {
-          font-size: 1em;
-        }
-
-        .hero {
-          height: 50%;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            font-weight: bold;
+            text-shadow: 4px 4px 12px rgba(0, 0, 0, 2);
         }
 
         .cta-button {
-          font-size: 0.9em;
-          padding: 12px 25px;
+            display: inline-block;
+            margin-top: 1.875rem;
+            padding: 0.9375rem 1.875rem;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--background-color);
+            background-color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
-      }
+
+        .cta-button:hover {
+            background-color: #ff8c42;
+            transform: scale(1.1);
+        }
+
+        /* Solutions Section */
+        .solutions-section {
+            padding: 3.125rem 0;
+            background-color: #1a1a1a;
+        }
+
+        .section-title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 2.5rem;
+            color: #ffffff;
+            text-align: left;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #ffffff;
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+
+        .solutions-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+            gap: 1.25rem;
+        }
+
+        .solution-item {
+            padding: 1.25rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-item:nth-child(1)::before,
+        .solution-item:nth-child(3)::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .solution-item:hover {
+            transform: translateY(-0.625rem);
+        }
+
+        .solution-item .icon-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .solution-item .solution-title,
+        .solution-item .solution-details {
+            position: relative;
+            z-index: 1;
+            text-align: left;
+        }
+
+        .icon-wrapper {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 7.5rem;
+            height: 7.5rem;
+            border-radius: 100%;
+            background-color: var(--secondary-color);
+            margin-bottom: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-wrapper i {
+            font-size: 3rem;
+            color: var(--primary-color);
+        }
+
+        .solution-title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 1.25rem;
+        }
+
+        .solution-details {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ffffff;
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+
+        .solution-details li {
+            margin-bottom: 0.625rem;
+        }
+
+        /* Background customization */
+        .solution-item:nth-child(1) {
+            background-image: url("/images/top-view-image-motivated-employees-working-together-office-official-meeting-concept-business.jpg");
+            background-size: cover;
+            background-position: 50%;
+        }
+
+        .solution-item:nth-child(1) .icon-wrapper {
+            background-color: var(--primary-color);
+        }
+
+        .solution-item:nth-child(1) .icon-wrapper i {
+            color: #fff;
+        }
+
+        .solution-item:nth-child(2) {
+            background-color: var(--primary-color);
+        }
+
+        .solution-item:nth-child(2) li {
+            color: #000;
+        }
+
+        .solution-item:nth-child(2) h5 {
+            color: #000;
+        }
+
+        .solution-item:nth-child(1) h5,
+        .solution-item:nth-child(2) h5,
+        .solution-item:nth-child(3) h5 {
+            font-size: 1.3rem;
+        }
+
+        .solution-item:nth-child(3) {
+            background-image: url("/images/front-view-team-meeting-mock-up.jpg");
+            background-size: cover;
+            background-position: 50%;
+        }
+
+        .solution-item:nth-child(3) .icon-wrapper {
+            background-color: var(--primary-color);
+        }
+
+        .solution-item:nth-child(3) .icon-wrapper i {
+            color: #fff;
+        }
+
+        .solution-item:nth-child(1):hover .icon-wrapper,
+        .solution-item:nth-child(2):hover .icon-wrapper,
+        .solution-item:nth-child(3):hover .icon-wrapper {
+            transform: scale(1.1);
+        }
+
+        /* Custom Section */
+        .custom-section {
+            padding: 50px 0;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .custom-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .custom-layout {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .custom-row {
+            display: flex;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .custom-cell {
+            flex: 1;
+            margin: 10px;
+        }
+
+        .custom-image {
+            position: relative;
+            height: 250px;
+        }
+
+        .custom-image-content {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .custom-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .custom-title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .custom-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .image-credit {
+            font-size: 0.8rem;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .credit-link {
+            color: #e57f33;
+            text-decoration: none;
+        }
+
+        .credit-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Intensity Section */
+        .intensity-section {
+            padding: 50px 0;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url("images/silhouette-business-people-discussion-meeting-cityscape-team-concept.jpg");
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+        }
+
+        .intensity-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .intensity-title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .intensity-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            color: #ffffff;
+            max-width: 800px;
+        }
+
+        /* Vision Section */
+        .vision-section {
+            padding: 50px 0;
+            background-color: var(--primary-color);
+            color: #111111;
+        }
+
+        .vision-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .vision-content {
+            flex: 1;
+            max-width: 50%;
+            text-align: left;
+        }
+
+        .testimonial-container {
+            flex: 1;
+            max-width: 35%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .testimonial-item {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-content {
+            position: relative;
+            text-align: left;
+        }
+
+        .testimonial-icon img {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Call-to-Action Section */
+        .call-to-action {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+        }
+
+        .call-to-action .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .call-to-action p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+            max-width: 600px;
+        }
+
+        .call-button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            width: 200px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .call-button:hover {
+            background-color: #444;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Custom Section */
+        .custom-section {
+            padding: 3rem 0;
+            background-color: #1a1a1a;
+        }
+
+        .custom-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .custom-section-title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 2.5rem;
+            color: #ffffff;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .custom-section-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #ffffff;
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+
+        .custom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .custom-card {
+            background-color: #2e2e2e;
+            padding: 1.25rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .custom-icon-circle {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: #e57f33;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+        }
+
+        .custom-card-title {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .custom-card-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .contact-section {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.contact-info h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.contact-list img {
+    margin-right: 15px;
+}
+
+.contact-form {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-submit {
+    display: inline-block;
+    background-color: #e57f33;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #ff8c42;
+}
+
+
+        @media (max-width: 768px) {
+            .custom-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .toggle-bar {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                display: none;
+            }
+
+            nav ul.show {
+                display: flex;
+                background-color: var(--background-color);
+                padding: 20px;
+                border-radius: 10px;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero {
+                height: 50%;
+            }
+
+            .cta-button {
+                font-size: 0.9rem;
+                padding: 0.75rem 1.5625rem;
+            }
+
+            .icon-wrapper {
+                width: 5rem;
+                height: 5rem;
+            }
+
+            .icon-wrapper i {
+                font-size: 2rem;
+            }
+
+            .vision-container {
+                flex-direction: column;
+            }
+
+            .vision-content,
+            .testimonial-container {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .testimonial-item {
+                text-align: center;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
+
+    <!-- Header -->
     <header>
-      <div class="container">
-        <div class="header-content">
-          <div class="logo"></div>
-          <div class="toggle-bar" onclick="toggleMenu()">☰</div>
-          <nav>
-            <ul>
-              <li><a href="#" class="nav-link">Investidores</a></li>
-              <li><a href="#" class="nav-link">Visitantes</a></li>
-              <li><a href="#" class="nav-link">Empreendedores</a></li>
-            </ul>
-          </nav>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo"></div>
+                <div class="toggle-bar" onclick="toggleMenu()">☰</div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link">Investidores</a></li>
+                        <li><a href="#" class="nav-link">Visitantes</a></li>
+                        <li><a href="#" class="nav-link">Empreendedores</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-      </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1>Visão</h1>
-          <p>
-            A Skander é uma empresa de investimentos que presta serviços de
-            planejamento de patrimônio e de gestão de ativos em todo mundo.
-          </p>
-          <a href="#contact" class="cta-button">ENTRE EM CONTATO</a>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Visão</h1>
+                <p>A Skander é uma empresa de investimentos que presta serviços de planejamento de patrimônio e de gestão de ativos em todo mundo.</p>
+                <a href="#contact" class="cta-button">ENTRE EM CONTATO</a>
+            </div>
         </div>
-      </div>
     </section>
 
-    <section class="contact-section" id="contact">
-      <div class="container">
-        <h2>Contato</h2>
-        <div class="contact-info">
-          <p>TELEFONES</p>
-          <p>+55 21 2018 3394</p>
-          <p>EMAILS</p>
-          <p>
-            <a href="mailto:contato@skandercapital.com"
-              >contato@skandercapital.com</a
-            >
-          </p>
-          <p>
-            <a href="mailto:compliance@skandercapital.com"
-              >compliance@skandercapital.com</a
-            >
-          </p>
-          <p>
-            <a href="mailto:ouvidoria@skandercapital.com"
-              >ouvidoria@skandercapital.com</a
-            >
-          </p>
+    <!-- Solutions Section -->
+    <section class="solutions-section">
+        <div class="container">
+            <h2 class="section-title">Oferecemos Soluções de Gestão de Patrimônio Flexíveis</h2>
+            <p class="section-description">Na Skander, entendemos que cada cliente tem necessidades únicas. Por isso, nossas soluções são desenhadas para se adaptar de forma flexível aos seus objetivos financeiros e patrimoniais.</p>
+            <div class="solutions-list">
+                <div class="solution-item">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h5 class="solution-title">Segurança de Negócios</h5>
+                    <ul class="solution-details">
+                        <li>Suporte Multilíngue</li>
+                        <li>Atendimento por E-mail e Telefone</li>
+                        <li>Planejamento de Projetos Digitais</li>
+                    </ul>
+                </div>
+                <div class="solution-item">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h5 class="solution-title">Powerful Admin Panel</h5>
+                    <ul class="solution-details">
+                        <li>Gestão Eficiente e Centralizada</li>
+                        <li>Atendimento por E-mail e Telefone</li>
+                        <li>Planejamento de Projetos Digitais</li>
+                    </ul>
+                </div>
+                <div class="solution-item">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h5 class="solution-title">Suporte Multilíngue</h5>
+                    <ul class="solution-details">
+                        <li>Assistência em Diversos Idiomas</li>
+                        <li>Suporte Técnico Personalizado</li>
+                        <li>Atendimento por E-mail e Telefone</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="construction-note">
-          <p>O site está em construção.</p>
-        </div>
-      </div>
     </section>
 
+    <!-- Call-to-Action Section -->
+    <section class="call-to-action">
+        <div class="container">
+            <div class="content">
+                <p>Orientamos líderes em estratégias de investimento, planejamento patrimonial, organização e inovação financeira.</p>
+            </div>
+            <div class="button-container">
+                <a href="tel:+552120183394" class="call-button">+55 21 2018 3394</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Section -->
+    <section class="custom-section">
+        <div class="custom-container">
+            <h2 class="custom-section-title">Oferecemos Soluções de Gestão de Patrimônio Flexíveis</h2>
+            <p class="custom-section-description">Na Skander, entendemos que cada cliente tem necessidades únicas. Por isso, nossas soluções são desenhadas para se adaptar de forma flexível aos seus objetivos financeiros e patrimoniais.</p>
+            <div class="custom-grid">
+                <div class="custom-card">
+                    <div class="custom-icon-circle">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4 class="custom-card-title">Alta Qualidade</h4>
+                    <p class="custom-card-text">Na Skander Capital, garantimos um serviço de excelência, focado em soluções personalizadas e estratégias robustas para a gestão de patrimônio e investimentos. Nossa dedicação à qualidade reflete-se em cada etapa do processo.</p>
+                </div>
+                <div class="custom-card">
+                    <div class="custom-icon-circle">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4 class="custom-card-title">Equipe Criativa</h4>
+                    <p class="custom-card-text">Contamos com uma equipe altamente criativa e experiente, pronta para desenvolver estratégias inovadoras que atendem às necessidades exclusivas de cada cliente. Nossa abordagem é sempre personalizada, buscando maximizar resultados.</p>
+                </div>
+                <div class="custom-card">
+                    <div class="custom-icon-circle">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="custom-card-title">Resultados Impressionantes</h4>
+                    <p class="custom-card-text">Nossa prioridade é alcançar resultados excepcionais para nossos clientes, combinando expertise financeira e planejamento estratégico para superar expectativas e construir um legado financeiro duradouro.</p>
+                </div>
+                <div class="custom-card">
+                    <div class="custom-icon-circle">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h4 class="custom-card-title">Melhor Custo-Benefício</h4>
+                    <p class="custom-card-text">Oferecemos um portfólio de serviços de gestão de patrimônio que alia qualidade e valor. Nossos preços são competitivos, garantindo o melhor retorno sobre o investimento de nossos clientes.</p>
+                </div>
+                <div class="custom-card">
+                    <div class="custom-icon-circle">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h4 class="custom-card-title">Inovações</h4>
+                    <p class="custom-card-text">Na Skander Capital, estamos sempre à frente com soluções financeiras inovadoras, buscando constantemente novas oportunidades e tecnologias para proporcionar vantagens competitivas aos nossos clientes.</p>
+                </div>
+                <div class="custom-card">
+                    <div class="custom-icon-circle">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4 class="custom-card-title">Suporte 24/7</h4>
+                    <p class="custom-card-text">Entendemos que o mercado financeiro não para, e por isso oferecemos suporte contínuo, 24 horas por dia, 7 dias por semana. Estamos sempre disponíveis para atender às necessidades dos nossos clientes, proporcionando tranquilidade e confiança.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Section -->
+    <section class="custom-section">
+        <div class="custom-container">
+            <div class="custom-layout">
+                <div class="custom-row">
+                    <div class="custom-image custom-cell">
+                        <img src="/images/female-work-brainstorming.jpg" alt="Marketing Image 1" class="custom-image-content" />
+                    </div>
+                    <div class="custom-text custom-cell">
+                        <h6 class="custom-title">Marketing</h6>
+                        <p class="custom-description">Utilizamos estratégias de marketing sofisticadas e direcionadas para maximizar o impacto dos investimentos dos nossos clientes.</p>
+                    </div>
+                    <div class="custom-image custom-cell">
+                        <img src="/images/16758708_rm405-da01-04-mockup.jpg" alt="Marketing Image 2" class="custom-image-content" />
+                    </div>
+                    <div class="custom-image custom-cell">
+                        <img src="/images/front-view-team-meeting-mock-up.jpg" alt="Marketing Image 3" class="custom-image-content" />
+                    </div>
+                </div>
+                <div class="custom-row">
+                    <div class="custom-image custom-cell">
+                        <img src="/images/top-view-image-motivated-employees-working-together-office-official-meeting-concept-business.jpg" alt="Flexibilidade Image 1" class="custom-image-content" />
+                    </div>
+                    <div class="custom-image custom-cell">
+                        <img src="/images/planning-risk-strategy-project-management-business.jpg" alt="Flexibilidade Image 2" class="custom-image-content" />
+                    </div>
+                    <div class="custom-image custom-cell">
+                        <img src="/images/group-people-working-out-business-plan-office.jpg" alt="Flexibilidade Image 3" class="custom-image-content" />
+                    </div>
+                    <div class="custom-text custom-cell">
+                        <h6 class="custom-title">Flexibilidade</h6>
+                        <p class="custom-description">Entendemos que cada cliente tem necessidades únicas, e é por isso que oferecemos soluções de investimento flexíveis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intensity Section -->
+    <section class="intensity-section">
+        <div class="intensity-container">
+            <h3 class="intensity-title">Intensidade é exatamente o que você precisa</h3>
+            <p class="intensity-description">Embora não tenhamos sido os primeiros no setor de gestão de patrimônio, nos orgulhamos de ser líderes de mercado ao oferecer soluções personalizadas e uma plataforma inovadora que permite aos nossos clientes monitorar e gerenciar seus investimentos a qualquer hora, todos os dias do ano, colocando você no controle total.</p>
+            <h3 class="intensity-title">Expandindo com Elegância</h3>
+            <p class="intensity-description">Como parte da nossa filosofia de ser a empresa de gestão de patrimônio mais inovadora, focada em compreender profundamente as necessidades dos nossos clientes, continuamos a expandir nossa presença. Com operações consolidadas no Brasil e em Portugal, estamos prontos para atender clientes globais com um atendimento exclusivo e personalizado, mantendo sempre o foco em resultados de excelência.</p>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision-section">
+        <div class="vision-container">
+            <div class="vision-content">
+                <p class="vision-text-bold" style="font-size: 1.5rem; font-weight: bold;">Na Skander Capital, nossa visão é transformar a gestão de patrimônio em uma jornada de crescimento contínuo, com foco em soluções financeiras inovadoras e personalizadas, sempre alinhadas às necessidades e objetivos dos nossos clientes.</p>
+                <p class="vision-text" style="font-size: 1.4rem; margin-top: 8rem;">Oferecemos uma plataforma sofisticada e intuitiva que coloca nossos clientes no controle total de seus investimentos. Com suporte contínuo e ferramentas avançadas, você pode gerenciar seu patrimônio 24/7, de qualquer lugar do mundo.</p>
+            </div>
+            <div class="testimonial-container">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <span class="testimonial-icon"><img src="/images/59149-6f03daa8.png" alt="Quote Icon" /></span>
+                        <p class="testimonial-text">A Skander Capital transformou minha abordagem de investimento. Com seu suporte contínuo e estratégias personalizadas, consegui expandir meu patrimônio de forma significativa. Confio totalmente em sua expertise.</p>
+                        <h5 class="testimonial-author">João M., Empresário</h5>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <span class="testimonial-icon"><img src="/images/59149-6f03daa8.png" alt="Quote Icon" /></span>
+                        <p class="testimonial-text">O compromisso da Skander Capital com a excelência é incomparável. Eles não apenas cuidam do meu portfólio de investimentos, mas também me fornecem insights valiosos que me ajudam a tomar decisões informadas.</p>
+                        <h5 class="testimonial-author">Maria L., Investidora</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" style="background-image: url('images/jhhhhhh.jpg'); background-size: cover; background-position: center;">
+      <div class="contact-container">
+          <div class="contact-info">
+              <h2>Nos Contate</h2>
+              <ul class="contact-list">
+                  <li>
+                      <img src="images/1082334-3da3ecc0.png" alt="Phone Icon">
+                      <h5>Nos Ligue</h5>
+                      <p>+55 XX XXXX-XXXX</p>
+                  </li>
+                  <li>
+                      <img src="images/205d33fb-71c4-40dc-a07f-7a1273e85973-a71d61bb.png" alt="Location Icon">
+                      <h5>Location</h5>
+                      <p>Lorem Ipsum 124</p>
+                  </li>
+                  <li>
+                      <img src="images/2791568-72648669.png" alt="Hours Icon">
+                      <h5>Horário De Atendimento</h5>
+                      <p>Segunda – Sexta ...... 10 – 20 Hrs, Sáb, Dom ...... Fechado</p>
+                  </li>
+              </ul>
+          </div>
+          <div class="contact-form">
+              <form action="https://forms.nicepagesrv.com/v2/form/process" method="POST">
+                  <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" id="email" name="email" placeholder="Insira um e-mail válido" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" id="name" name="name" placeholder="Insira seu Nome" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="address">Endereço</label>
+                      <input type="text" id="address" name="address" placeholder="Insira seu endereço" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="message">Mensagem</label>
+                      <textarea id="message" name="message" placeholder="Insira sua mensagem" rows="4" required></textarea>
+                  </div>
+                  <button type="submit" class="btn-submit">Enviar</button>
+              </form>
+          </div>
+      </div>
+  </section>
+  
+
+    <!-- Scripts -->
     <script>
-      function toggleMenu() {
-        const nav = document.querySelector("nav ul");
-        nav.classList.toggle("show");
-      }
+        function toggleMenu() {
+            const nav = document.querySelector("nav ul");
+            nav.classList.toggle("show");
+        }
     </script>
-  </body>
+</body>
 </html>
