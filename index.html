@@ -171,6 +171,7 @@
             border-radius: 5px;
             margin-top: 10px;
             z-index: 1001;
+            width: 150px;
         }
 
         .language-options a {
@@ -186,8 +187,7 @@
             color: var(--button-hover-color);
         }
 
-        .language-switcher:focus-within .language-options,
-        .language-switcher:hover .language-options {
+        .language-switcher.show .language-options {
             display: block;
         }
 
@@ -222,10 +222,10 @@
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             text-align: center;
-            margin: auto; /* Centraliza horizontalmente */
+            margin: auto;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centraliza verticalmente */
+            justify-content: center;
         }
 
         .hero-content h1 {
@@ -294,7 +294,7 @@
                 </ul>
             </nav>
             <div class="language-switcher">
-                <button class="language-button" aria-haspopup="true" aria-expanded="false">Português</button>
+                <button class="language-button" onclick="toggleLanguageMenu()">Português</button>
                 <div class="language-options">
                     <a href="#" onclick="changeLanguage('pt')">Português</a>
                     <a href="#" onclick="changeLanguage('en')">English</a>
@@ -324,10 +324,24 @@
         nav.classList.toggle("show");
     }
 
+    function toggleLanguageMenu() {
+        const languageSwitcher = document.querySelector(".language-switcher");
+        languageSwitcher.classList.toggle("show");
+    }
+
     function changeLanguage(lang) {
         // Implementar a lógica de troca de idioma aqui
         alert('Idioma selecionado: ' + lang);
     }
+
+    // Fechar o menu de idiomas ao clicar fora
+    document.addEventListener('click', function(event) {
+        const languageSwitcher = document.querySelector('.language-switcher');
+        const isClickInside = languageSwitcher.contains(event.target);
+        if (!isClickInside) {
+            languageSwitcher.classList.remove('show');
+        }
+    });
 </script>
 </body>
 </html>
