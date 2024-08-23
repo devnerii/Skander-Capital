@@ -37,6 +37,7 @@
             --button-hover-color: #fff;
             --button-background-hover: #444;
             --spacing-unit: 20px;
+            --transition-speed: 0.3s;
         }
 
         * {
@@ -102,11 +103,12 @@
             width: 30px;
             height: auto;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
         }
 
         .language-flags img:hover {
-            transform: scale(1.1);
+            transform: scale(1.2);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.5);
         }
 
         nav ul {
@@ -126,7 +128,7 @@
             font-weight: 400;
             color: var(--text-color);
             position: relative;
-            transition: color 0.3s ease;
+            transition: color var(--transition-speed) ease;
             padding-bottom: calc(var(--spacing-unit) / 2);
         }
 
@@ -136,7 +138,7 @@
             width: 0;
             height: 2px;
             background: var(--primary-color);
-            transition: width 0.3s;
+            transition: width var(--transition-speed);
             bottom: 0;
             left: 0;
         }
@@ -191,6 +193,12 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+            transition: box-shadow var(--transition-speed);
+        }
+
+        .hero-content:hover {
+            box-shadow: 0 6px 30px rgba(255, 255, 255, 0.2);
         }
 
         .hero-content h1 {
@@ -199,6 +207,12 @@
             font-weight: 700;
             margin-bottom: calc(var(--spacing-unit) * 1.5);
             letter-spacing: 1.5px;
+            transition: transform var(--transition-speed), color var(--transition-speed);
+        }
+
+        .hero-content h1:hover {
+            transform: scale(1.05);
+            color: var(--hover-color);
         }
 
         .hero-content p {
@@ -312,10 +326,10 @@
                 </ul>
             </nav>
             <div class="language-flags">
-                <img src="https://flagcdn.com/w20/br.png" alt="Português" onclick="changeLanguage('pt')" />
-                <img src="https://flagcdn.com/w20/gb.png" alt="English" onclick="changeLanguage('en')" />
-                <img src="https://flagcdn.com/w20/es.png" alt="Español" onclick="changeLanguage('es')" />
-                <img src="https://flagcdn.com/w20/fr.png" alt="Français" onclick="changeLanguage('fr')" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Português" onclick="changeLanguage('pt')" />
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="English" onclick="changeLanguage('en')" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Español" onclick="changeLanguage('es')" />
+                <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" alt="Français" onclick="changeLanguage('fr')" />
             </div>
             <div class="toggle-bar" onclick="toggleMenu()">☰</div>
         </div>
@@ -340,7 +354,6 @@
     }
 
     function changeLanguage(lang) {
-        // Implementar a lógica de troca de idioma aqui
         alert('Idioma selecionado: ' + lang);
     }
 </script>
