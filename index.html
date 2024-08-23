@@ -92,6 +92,23 @@
             background-repeat: no-repeat;
         }
 
+        .language-flags {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-unit);
+        }
+
+        .language-flags img {
+            width: 30px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .language-flags img:hover {
+            transform: scale(1.1);
+        }
+
         nav ul {
             list-style: none;
             display: flex;
@@ -137,72 +154,6 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--text-color);
-        }
-
-        .language-switcher {
-            position: relative;
-            margin-left: var(--spacing-unit);
-        }
-
-        .language-button {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .language-button img {
-            margin-right: 8px;
-            width: 20px;
-            height: auto;
-        }
-
-        .language-button:hover {
-            background-color: var(--hover-color);
-            color: var(--button-hover-color);
-        }
-
-        .language-options {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--background-color);
-            border: 1px solid var(--primary-color);
-            border-radius: 5px;
-            margin-top: 10px;
-            z-index: 1001;
-            width: 200px;
-        }
-
-        .language-options a {
-            display: flex;
-            align-items: center;
-            padding: var(--spacing-unit);
-            color: var(--text-color);
-            text-decoration: none;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .language-options a img {
-            margin-right: 8px;
-            width: 20px;
-            height: auto;
-        }
-
-        .language-options a:hover {
-            background-color: var(--hover-color);
-            color: var(--button-hover-color);
-        }
-
-        .language-switcher.show .language-options {
-            display: block;
         }
 
         /* Hero Section */
@@ -360,29 +311,11 @@
                     <li><a href="#" class="nav-link">Empreendedores</a></li>
                 </ul>
             </nav>
-            <div class="language-switcher">
-                <button class="language-button" onclick="toggleLanguageMenu()">
-                    <img src="https://flagcdn.com/w20/br.png" alt="Brasil">
-                    Português
-                </button>
-                <div class="language-options">
-                    <a href="#" onclick="changeLanguage('pt')">
-                        <img src="https://flagcdn.com/w20/br.png" alt="Brasil">
-                        Português
-                    </a>
-                    <a href="#" onclick="changeLanguage('en')">
-                        <img src="https://flagcdn.com/w20/gb.png" alt="Reino Unido">
-                        English
-                    </a>
-                    <a href="#" onclick="changeLanguage('es')">
-                        <img src="https://flagcdn.com/w20/es.png" alt="Espanha">
-                        Español
-                    </a>
-                    <a href="#" onclick="changeLanguage('fr')">
-                        <img src="https://flagcdn.com/w20/fr.png" alt="França">
-                        Français
-                    </a>
-                </div>
+            <div class="language-flags">
+                <img src="https://flagcdn.com/w20/br.png" alt="Português" onclick="changeLanguage('pt')" />
+                <img src="https://flagcdn.com/w20/gb.png" alt="English" onclick="changeLanguage('en')" />
+                <img src="https://flagcdn.com/w20/es.png" alt="Español" onclick="changeLanguage('es')" />
+                <img src="https://flagcdn.com/w20/fr.png" alt="Français" onclick="changeLanguage('fr')" />
             </div>
             <div class="toggle-bar" onclick="toggleMenu()">☰</div>
         </div>
@@ -406,24 +339,10 @@
         nav.classList.toggle("show");
     }
 
-    function toggleLanguageMenu() {
-        const languageSwitcher = document.querySelector(".language-switcher");
-        languageSwitcher.classList.toggle("show");
-    }
-
     function changeLanguage(lang) {
         // Implementar a lógica de troca de idioma aqui
         alert('Idioma selecionado: ' + lang);
     }
-
-    // Fechar o menu de idiomas ao clicar fora
-    document.addEventListener('click', function(event) {
-        const languageSwitcher = document.querySelector('.language-switcher');
-        const isClickInside = languageSwitcher.contains(event.target);
-        if (!isClickInside) {
-            languageSwitcher.classList.remove('show');
-        }
-    });
 </script>
 </body>
 </html>
