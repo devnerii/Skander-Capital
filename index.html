@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Skader Capital - Investimentos inteligentes para o futuro." />
-    <meta name="keywords" content="Skader Capital, Investimentos, Empreendedores, Visitantes, Investidores" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Skader Capital - Investimentos inteligentes para o futuro.">
+    <meta name="keywords" content="Skader Capital, Investimentos, Empreendedores, Visitantes, Investidores">
+    <meta name="robots" content="index, follow">
     <title>Skader Capital</title>
 
     <!-- Fonts and Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="icon" href="/images/ico.png" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="/images/ico.png" type="image/x-icon">
 
     <!-- Styles -->
     <style>
@@ -21,7 +20,8 @@
             --secondary-color: #333;
             --background-color: #000;
             --text-color: #fff;
-            --logo-color-1: #e57f33;
+            --logo-color: #e57f33;
+            --hover-color: #ff8c42;
         }
 
         body {
@@ -31,10 +31,11 @@
             color: var(--text-color);
             overflow-x: hidden;
             font-size: 1rem;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 960px;
+            max-width: 1140px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -44,6 +45,9 @@
             background-color: #fff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .header-content {
@@ -53,12 +57,11 @@
         }
 
         .logo {
+            width: 250px;
+            height: 40px;
             background-image: url("/images/logo.png");
-            width: 15.625rem;
-            height: 2.5rem;
             background-size: contain;
             background-repeat: no-repeat;
-            cursor: pointer;
         }
 
         nav ul {
@@ -66,11 +69,11 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: 1.25rem;
+            gap: 20px;
         }
 
         nav ul li {
-            margin-left: 1.25rem;
+            margin-left: 20px;
         }
 
         .nav-link {
@@ -111,52 +114,41 @@
         /* Hero Section */
         .hero {
             height: 80vh;
-            padding: 3.125rem 0;
+            padding: 50px 0;
             position: relative;
-            overflow: hidden;
-            background: url("../images/business-concept-with-graphic-holography.jpg") center center/cover no-repeat;
+            background: url("../images/business-concept-with-graphic-holography.jpg") center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.8);
+            background-blend-mode: overlay;
         }
 
         .hero-content {
-            max-width: 31.25rem;
-            padding-top: 3.125rem;
+            max-width: 500px;
+            color: var(--text-color);
+            padding-top: 50px;
         }
 
         .hero-content h1 {
             font-family: "Montserrat", sans-serif;
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            margin: 0 0 1.25rem 0;
             color: var(--primary-color);
+            margin-bottom: 20px;
         }
 
         .hero-content p {
             font-size: 1.2rem;
-            line-height: 1.6;
             font-weight: bold;
-            text-shadow: 4px 4px 12px rgba(0, 0, 0, 2);
+            text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .cta-button {
             display: inline-block;
-            margin-top: 1.875rem;
-            padding: 0.9375rem 1.875rem;
+            margin-top: 30px;
+            padding: 15px 30px;
             font-size: 1rem;
             font-weight: 800;
             color: var(--background-color);
@@ -167,13 +159,13 @@
         }
 
         .cta-button:hover {
-            background-color: #ff8c42;
+            background-color: var(--hover-color);
             transform: scale(1.1);
         }
 
         /* Solutions Section */
         .solutions-section {
-            padding: 3.125rem 0;
+            padding: 50px 0;
             background-color: #1a1a1a;
         }
 
@@ -182,68 +174,45 @@
             font-size: 2.5rem;
             color: #ffffff;
             text-align: left;
-            margin-bottom: 1.25rem;
+            margin-bottom: 20px;
         }
 
         .section-description {
             font-size: 1.2rem;
-            line-height: 1.6;
             color: #ffffff;
             text-align: left;
-            margin-bottom: 2.5rem;
+            margin-bottom: 40px;
         }
 
         .solutions-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
-            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .solution-item {
-            padding: 1.25rem;
+            padding: 20px;
             border-radius: 10px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
             position: relative;
             overflow: hidden;
-        }
-
-        .solution-item:nth-child(1)::before,
-        .solution-item:nth-child(3)::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .solution-item:hover {
-            transform: translateY(-0.625rem);
-        }
-
-        .solution-item .icon-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        .solution-item .solution-title,
-        .solution-item .solution-details {
-            position: relative;
-            z-index: 1;
-            text-align: left;
+            transform: translateY(-10px);
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
         .icon-wrapper {
-            display: inline-flex;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            display: flex;
             justify-content: center;
             align-items: center;
-            width: 7.5rem;
-            height: 7.5rem;
-            border-radius: 100%;
-            background-color: var(--secondary-color);
-            margin-bottom: 1.25rem;
+            margin-bottom: 20px;
             transition: transform 0.3s ease;
         }
 
@@ -256,241 +225,31 @@
             font-family: "Montserrat", sans-serif;
             font-size: 1.5rem;
             color: #ffffff;
-            margin-bottom: 1.25rem;
+            margin-bottom: 20px;
         }
 
         .solution-details {
             font-size: 1rem;
-            line-height: 1.6;
             color: #ffffff;
-            list-style-type: disc;
-            padding-left: 1.5rem;
+            list-style: disc;
+            padding-left: 20px;
         }
 
         .solution-details li {
-            margin-bottom: 0.625rem;
-        }
-
-        /* Background customization */
-        .solution-item:nth-child(1) {
-            background-image: url("/images/top-view-image-motivated-employees-working-together-office-official-meeting-concept-business.jpg");
-            background-size: cover;
-            background-position: 50%;
-        }
-
-        .solution-item:nth-child(1) .icon-wrapper {
-            background-color: var(--primary-color);
-        }
-
-        .solution-item:nth-child(1) .icon-wrapper i {
-            color: #fff;
-        }
-
-        .solution-item:nth-child(2) {
-            background-color: var(--primary-color);
-        }
-
-        .solution-item:nth-child(2) li {
-            color: #000;
-        }
-
-        .solution-item:nth-child(2) h5 {
-            color: #000;
-        }
-
-        .solution-item:nth-child(1) h5,
-        .solution-item:nth-child(2) h5,
-        .solution-item:nth-child(3) h5 {
-            font-size: 1.3rem;
-        }
-
-        .solution-item:nth-child(3) {
-            background-image: url("/images/front-view-team-meeting-mock-up.jpg");
-            background-size: cover;
-            background-position: 50%;
-        }
-
-        .solution-item:nth-child(3) .icon-wrapper {
-            background-color: var(--primary-color);
-        }
-
-        .solution-item:nth-child(3) .icon-wrapper i {
-            color: #fff;
-        }
-
-        .solution-item:nth-child(1):hover .icon-wrapper,
-        .solution-item:nth-child(2):hover .icon-wrapper,
-        .solution-item:nth-child(3):hover .icon-wrapper {
-            transform: scale(1.1);
-        }
-
-        /* Custom Section */
-        .custom-section {
-            padding: 50px 0;
-            background-color: #1a1a1a;
-            color: #ffffff;
-        }
-
-        .custom-container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .custom-layout {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .custom-row {
-            display: flex;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .custom-cell {
-            flex: 1;
-            margin: 10px;
-        }
-
-        .custom-image {
-            position: relative;
-            height: 250px;
-        }
-
-        .custom-image-content {
-            width: 100%;
-            height: 100%;
-            border-radius: 10px;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .custom-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .custom-title {
-            font-family: "Montserrat", sans-serif;
-            font-size: 1.2rem;
             margin-bottom: 10px;
         }
 
-        .custom-description {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .image-credit {
-            font-size: 0.8rem;
-            text-align: left;
-            margin-top: 20px;
-        }
-
-        .credit-link {
-            color: #e57f33;
-            text-decoration: none;
-        }
-
-        .credit-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Intensity Section */
-        .intensity-section {
-            padding: 50px 0;
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url("images/silhouette-business-people-discussion-meeting-cityscape-team-concept.jpg");
+        /* Background customization */
+        .solution-item:nth-child(odd) {
+            background-image: url("/images/solution-bg-1.jpg");
             background-size: cover;
             background-position: center;
-            color: #ffffff;
         }
 
-        .intensity-container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .intensity-title {
-            font-family: "Montserrat", sans-serif;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-
-        .intensity-description {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            color: #ffffff;
-            max-width: 800px;
-        }
-
-        /* Vision Section */
-        .vision-section {
-            padding: 50px 0;
-            background-color: var(--primary-color);
-            color: #111111;
-        }
-
-        .vision-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: flex-start;
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .vision-content {
-            flex: 1;
-            max-width: 50%;
-            text-align: left;
-        }
-
-        .testimonial-container {
-            flex: 1;
-            max-width: 35%;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .testimonial-item {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .testimonial-content {
-            position: relative;
-            text-align: left;
-        }
-
-        .testimonial-icon img {
-            width: 24px;
-            height: 24px;
-            margin-bottom: 20px;
-        }
-
-        .testimonial-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .testimonial-author {
-            font-family: "Montserrat", sans-serif;
-            font-size: 1rem;
-            font-weight: bold;
-            color: #333;
+        .solution-item:nth-child(even) {
+            background-image: url("/images/solution-bg-2.jpg");
+            background-size: cover;
+            background-position: center;
         }
 
         /* Call-to-Action Section */
@@ -520,29 +279,23 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            width: 200px;
-            text-align: center;
             display: inline-block;
+            text-align: center;
+            transition: background-color 0.3s ease;
         }
 
         .call-button:hover {
             background-color: #444;
         }
 
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
         /* Custom Section */
         .custom-section {
-            padding: 3rem 0;
+            padding: 50px 0;
             background-color: #1a1a1a;
         }
 
         .custom-container {
-            max-width: 960px;
+            max-width: 1140px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -552,26 +305,25 @@
             font-size: 2.5rem;
             color: #ffffff;
             text-align: left;
-            margin-bottom: 1.5rem;
+            margin-bottom: 30px;
         }
 
         .custom-section-description {
             font-size: 1.2rem;
-            line-height: 1.6;
             color: #ffffff;
             text-align: left;
-            margin-bottom: 2.5rem;
+            margin-bottom: 50px;
         }
 
         .custom-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .custom-card {
             background-color: #2e2e2e;
-            padding: 1.25rem;
+            padding: 20px;
             border-radius: 10px;
             text-align: center;
             transition: transform 0.3s ease;
@@ -581,7 +333,7 @@
             width: 80px;
             height: 80px;
             margin: 0 auto 20px;
-            background-color: #e57f33;
+            background-color: var(--primary-color);
             color: #fff;
             border-radius: 50%;
             display: flex;
@@ -594,12 +346,11 @@
             font-family: "Montserrat", sans-serif;
             font-size: 1.5rem;
             color: #ffffff;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
         }
 
         .custom-card-text {
             font-size: 1rem;
-            line-height: 1.6;
             color: #ffffff;
         }
 
@@ -607,94 +358,92 @@
             transform: translateY(-10px);
         }
 
+        /* Contact Section */
         .contact-section {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 50px 20px;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.75);
-}
+            padding: 50px 20px;
+            color: #fff;
+            background-image: url('images/jhhhhhh.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            background-blend-mode: overlay;
+        }
 
-.contact-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1140px;
-    margin: 0 auto;
-}
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1140px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
 
-.contact-info {
-    flex: 1;
-    margin-right: 20px;
-}
+        .contact-info {
+            flex: 1;
+            margin-right: 20px;
+        }
 
-.contact-info h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5rem;
-}
+        .contact-info h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
 
-.contact-list {
-    list-style: none;
-    padding: 0;
-}
+        .contact-list {
+            list-style: none;
+            padding: 0;
+        }
 
-.contact-list li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-.contact-list img {
-    margin-right: 15px;
-}
+        .contact-list img {
+            margin-right: 15px;
+        }
 
-.contact-form {
-    flex: 1;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-}
+        .contact-form {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
 
-.form-group {
-    margin-bottom: 15px;
-}
+        .form-group {
+            margin-bottom: 15px;
+        }
 
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-}
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
 
-.btn-submit {
-    display: inline-block;
-    background-color: #e57f33;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
+        .btn-submit {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
 
-.btn-submit:hover {
-    background-color: #ff8c42;
-}
-
-
-        @media (max-width: 768px) {
-            .custom-grid {
-                grid-template-columns: 1fr;
-            }
+        .btn-submit:hover {
+            background-color: var(--hover-color);
         }
 
         /* Responsive Styles */
@@ -706,40 +455,32 @@
             nav ul {
                 flex-direction: column;
                 display: none;
-            }
-
-            nav ul.show {
-                display: flex;
                 background-color: var(--background-color);
                 padding: 20px;
                 border-radius: 10px;
             }
 
-            nav ul li {
-                margin-left: 0;
-                margin-top: 10px;
+            nav ul.show {
+                display: flex;
+            }
+
+            .nav-link {
+                font-size: 1.2rem;
+                padding: 10px;
             }
 
             .hero-content h1 {
                 font-size: 2.5rem;
             }
 
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .hero {
-                height: 50%;
-            }
-
             .cta-button {
-                font-size: 0.9rem;
-                padding: 0.75rem 1.5625rem;
+                font-size: 1rem;
+                padding: 10px 20px;
             }
 
             .icon-wrapper {
-                width: 5rem;
-                height: 5rem;
+                width: 80px;
+                height: 80px;
             }
 
             .icon-wrapper i {
@@ -763,7 +504,6 @@
     </style>
 </head>
 <body>
-
     <!-- Header -->
     <header>
         <div class="container">
@@ -837,9 +577,7 @@
     <!-- Call-to-Action Section -->
     <section class="call-to-action">
         <div class="container">
-            <div class="content">
-                <p>Orientamos líderes em estratégias de investimento, planejamento patrimonial, organização e inovação financeira.</p>
-            </div>
+            <p>Orientamos líderes em estratégias de investimento, planejamento patrimonial, organização e inovação financeira.</p>
             <div class="button-container">
                 <a href="tel:+552120183394" class="call-button">+55 21 2018 3394</a>
             </div>
@@ -898,126 +636,52 @@
         </div>
     </section>
 
-    <!-- Custom Section -->
-    <section class="custom-section">
-        <div class="custom-container">
-            <div class="custom-layout">
-                <div class="custom-row">
-                    <div class="custom-image custom-cell">
-                        <img src="/images/female-work-brainstorming.jpg" alt="Marketing Image 1" class="custom-image-content" />
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Nos Contate</h2>
+                <ul class="contact-list">
+                    <li>
+                        <img src="images/1082334-3da3ecc0.png" alt="Phone Icon">
+                        <h5>Nos Ligue</h5>
+                        <p>+55 XX XXXX-XXXX</p>
+                    </li>
+                    <li>
+                        <img src="images/205d33fb-71c4-40dc-a07f-7a1273e85973-a71d61bb.png" alt="Location Icon">
+                        <h5>Localização</h5>
+                        <p>Lorem Ipsum 124</p>
+                    </li>
+                    <li>
+                        <img src="images/2791568-72648669.png" alt="Hours Icon">
+                        <h5>Horário De Atendimento</h5>
+                        <p>Segunda – Sexta: 10h – 20h, Sáb, Dom: Fechado</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="contact-form">
+                <form action="https://forms.nicepagesrv.com/v2/form/process" method="POST">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Insira um e-mail válido" required>
                     </div>
-                    <div class="custom-text custom-cell">
-                        <h6 class="custom-title">Marketing</h6>
-                        <p class="custom-description">Utilizamos estratégias de marketing sofisticadas e direcionadas para maximizar o impacto dos investimentos dos nossos clientes.</p>
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" name="name" placeholder="Insira seu Nome" required>
                     </div>
-                    <div class="custom-image custom-cell">
-                        <img src="/images/16758708_rm405-da01-04-mockup.jpg" alt="Marketing Image 2" class="custom-image-content" />
+                    <div class="form-group">
+                        <label for="address">Endereço</label>
+                        <input type="text" id="address" name="address" placeholder="Insira seu endereço" required>
                     </div>
-                    <div class="custom-image custom-cell">
-                        <img src="/images/front-view-team-meeting-mock-up.jpg" alt="Marketing Image 3" class="custom-image-content" />
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="message" placeholder="Insira sua mensagem" rows="4" required></textarea>
                     </div>
-                </div>
-                <div class="custom-row">
-                    <div class="custom-image custom-cell">
-                        <img src="/images/top-view-image-motivated-employees-working-together-office-official-meeting-concept-business.jpg" alt="Flexibilidade Image 1" class="custom-image-content" />
-                    </div>
-                    <div class="custom-image custom-cell">
-                        <img src="/images/planning-risk-strategy-project-management-business.jpg" alt="Flexibilidade Image 2" class="custom-image-content" />
-                    </div>
-                    <div class="custom-image custom-cell">
-                        <img src="/images/group-people-working-out-business-plan-office.jpg" alt="Flexibilidade Image 3" class="custom-image-content" />
-                    </div>
-                    <div class="custom-text custom-cell">
-                        <h6 class="custom-title">Flexibilidade</h6>
-                        <p class="custom-description">Entendemos que cada cliente tem necessidades únicas, e é por isso que oferecemos soluções de investimento flexíveis.</p>
-                    </div>
-                </div>
+                    <button type="submit" class="btn-submit">Enviar</button>
+                </form>
             </div>
         </div>
     </section>
-
-    <!-- Intensity Section -->
-    <section class="intensity-section">
-        <div class="intensity-container">
-            <h3 class="intensity-title">Intensidade é exatamente o que você precisa</h3>
-            <p class="intensity-description">Embora não tenhamos sido os primeiros no setor de gestão de patrimônio, nos orgulhamos de ser líderes de mercado ao oferecer soluções personalizadas e uma plataforma inovadora que permite aos nossos clientes monitorar e gerenciar seus investimentos a qualquer hora, todos os dias do ano, colocando você no controle total.</p>
-            <h3 class="intensity-title">Expandindo com Elegância</h3>
-            <p class="intensity-description">Como parte da nossa filosofia de ser a empresa de gestão de patrimônio mais inovadora, focada em compreender profundamente as necessidades dos nossos clientes, continuamos a expandir nossa presença. Com operações consolidadas no Brasil e em Portugal, estamos prontos para atender clientes globais com um atendimento exclusivo e personalizado, mantendo sempre o foco em resultados de excelência.</p>
-        </div>
-    </section>
-
-    <!-- Vision Section -->
-    <section class="vision-section">
-        <div class="vision-container">
-            <div class="vision-content">
-                <p class="vision-text-bold" style="font-size: 1.5rem; font-weight: bold;">Na Skander Capital, nossa visão é transformar a gestão de patrimônio em uma jornada de crescimento contínuo, com foco em soluções financeiras inovadoras e personalizadas, sempre alinhadas às necessidades e objetivos dos nossos clientes.</p>
-                <p class="vision-text" style="font-size: 1.4rem; margin-top: 8rem;">Oferecemos uma plataforma sofisticada e intuitiva que coloca nossos clientes no controle total de seus investimentos. Com suporte contínuo e ferramentas avançadas, você pode gerenciar seu patrimônio 24/7, de qualquer lugar do mundo.</p>
-            </div>
-            <div class="testimonial-container">
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <span class="testimonial-icon"><img src="/images/59149-6f03daa8.png" alt="Quote Icon" /></span>
-                        <p class="testimonial-text">A Skander Capital transformou minha abordagem de investimento. Com seu suporte contínuo e estratégias personalizadas, consegui expandir meu patrimônio de forma significativa. Confio totalmente em sua expertise.</p>
-                        <h5 class="testimonial-author">João M., Empresário</h5>
-                    </div>
-                </div>
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <span class="testimonial-icon"><img src="/images/59149-6f03daa8.png" alt="Quote Icon" /></span>
-                        <p class="testimonial-text">O compromisso da Skander Capital com a excelência é incomparável. Eles não apenas cuidam do meu portfólio de investimentos, mas também me fornecem insights valiosos que me ajudam a tomar decisões informadas.</p>
-                        <h5 class="testimonial-author">Maria L., Investidora</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-section" style="background-image: url('images/jhhhhhh.jpg'); background-size: cover; background-position: center;">
-      <div class="contact-container">
-          <div class="contact-info">
-              <h2>Nos Contate</h2>
-              <ul class="contact-list">
-                  <li>
-                      <img src="images/1082334-3da3ecc0.png" alt="Phone Icon">
-                      <h5>Nos Ligue</h5>
-                      <p>+55 XX XXXX-XXXX</p>
-                  </li>
-                  <li>
-                      <img src="images/205d33fb-71c4-40dc-a07f-7a1273e85973-a71d61bb.png" alt="Location Icon">
-                      <h5>Location</h5>
-                      <p>Lorem Ipsum 124</p>
-                  </li>
-                  <li>
-                      <img src="images/2791568-72648669.png" alt="Hours Icon">
-                      <h5>Horário De Atendimento</h5>
-                      <p>Segunda – Sexta ...... 10 – 20 Hrs, Sáb, Dom ...... Fechado</p>
-                  </li>
-              </ul>
-          </div>
-          <div class="contact-form">
-              <form action="https://forms.nicepagesrv.com/v2/form/process" method="POST">
-                  <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" id="email" name="email" placeholder="Insira um e-mail válido" required>
-                  </div>
-                  <div class="form-group">
-                      <label for="name">Name</label>
-                      <input type="text" id="name" name="name" placeholder="Insira seu Nome" required>
-                  </div>
-                  <div class="form-group">
-                      <label for="address">Endereço</label>
-                      <input type="text" id="address" name="address" placeholder="Insira seu endereço" required>
-                  </div>
-                  <div class="form-group">
-                      <label for="message">Mensagem</label>
-                      <textarea id="message" name="message" placeholder="Insira sua mensagem" rows="4" required></textarea>
-                  </div>
-                  <button type="submit" class="btn-submit">Enviar</button>
-              </form>
-          </div>
-      </div>
-  </section>
-  
 
     <!-- Scripts -->
     <script>
