@@ -382,6 +382,307 @@
             transform: translateY(-3px);
         }
 
+        /* Newsletter Section */
+        .newsletter {
+            margin: 3rem auto;
+            padding: 4rem 1.5rem;
+            background: linear-gradient(to bottom, #110f0f, #1a1a1a);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .newsletter h2 {
+            font-size: 2.75rem;
+            margin-bottom: 2rem;
+            color: #fa7c0b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInDown 1.5s ease-out;
+            text-align: center; /* Ensure it remains centered */
+        }
+
+        .newsletter p,
+        .newsletter button,
+        .newsletter input {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            font-size: 1.25rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.85);
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .newsletter form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .newsletter input[type="text"],
+        .newsletter input[type="email"],
+        .newsletter input[type="tel"] {
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: none;
+            background: #1a1a1a;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .newsletter input[type="text"]::placeholder,
+        .newsletter input[type="email"]::placeholder,
+        .newsletter input[type="tel"]::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter input:focus {
+            outline: none;
+            border: 2px solid #fa7c0b;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .newsletter .button {
+            background-color: #fa7c0b;
+            color: #fff;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .newsletter .button:hover {
+            background-color: #ffa800;
+            transform: translateY(-3px);
+        }
+
+        /* Contact Section */
+        .contact {
+            margin: 3rem auto;
+            padding: 4rem 1.5rem;
+            background: linear-gradient(to bottom, #1a1a1a, #110f0f);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact h2 {
+            font-size: 2.75rem;
+            margin-bottom: 2rem;
+            color: #9de8ee;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .contact p,
+        .contact button,
+        .contact input,
+        .contact textarea {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            font-size: 1.25rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.85);
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .contact input[type="text"],
+        .contact input[type="email"],
+        .contact textarea {
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: none;
+            background: #1a1a1a;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact input[type="text"]::placeholder,
+        .contact input[type="email"]::placeholder,
+        .contact textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            outline: none;
+            border: 2px solid #9de8ee;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact .button {
+            background-color: #9de8ee;
+            color: #000;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact .button:hover {
+            background-color: #ffa800;
+            transform: translateY(-3px);
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            animation: fadeInUp 1.5s ease-in-out;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .contact-info a {
+            color: #9de8ee;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info .icon-linkedin {
+            font-size: 1.5rem;
+            color: #9de8ee;
+            margin-top: 1rem;
+            display: inline-block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-info .icon-linkedin:hover {
+            color: #fa7c0b;
+            transform: scale(1.1);
+        }
+
+        /* Complaints Section */
+        .complaints {
+            margin: 3rem auto;
+            padding: 4rem 1.5rem;
+            background: linear-gradient(to bottom, #110f0f, #1a1a1a);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .complaints h2 {
+            font-size: 2.75rem;
+            margin-bottom: 2rem;
+            color: #fa7c0b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .complaints p,
+        .complaints button,
+        .complaints input,
+        .complaints textarea {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 1rem;
+        }
+
+        .complaints .button {
+            background-color: #fa7c0b;
+            color: #fff;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .complaints .button:hover {
+            background-color: #ffa800;
+            transform: translateY(-3px);
+        }
+
+        .complaints-form {
+            display: none;
+            margin-top: 2rem;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .complaints-form.active {
+            display: block;
+        }
+
+        .complaints input[type="text"],
+        .complaints input[type="email"],
+        .complaints textarea {
+            width: 30rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: none;
+            background: #1a1a1a;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .complaints input[type="text"]::placeholder,
+        .complaints input[type="email"]::placeholder,
+        .complaints textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .complaints input:focus,
+        .complaints textarea:focus {
+            outline: none;
+            border: 2px solid #fa7c0b;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .complaints .submit-button {
+            background-color: #9de8ee;
+            color: #000;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .complaints .submit-button:hover {
+            background-color: #ffa800;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 1.5rem;
+            background: #0f0f0f;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid #1a1a1a;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
     </style>
 </head>
 <body>
@@ -426,43 +727,67 @@
         </div>
     </section>
 
-    <section id="copy">
-        <div class="image-content">
-            <img src="/images/ico4.svg" alt="Ilustração">
-        </div>
-        <div class="text-content">
-            <h2 class="title">Por que nos escolher</h2>
-            <p class="description highlight-gradient">SUCESSO CONSTRUÍDO ATRAVÉS DE DÉCADAS DE RELACIONAMENTOS SÓLIDOS E COMPETÊNCIA TÉCNICA.</p>
-            <p>Nossa cultura é baseada em confiança e total transparência. Nós cultivamos talentos que prosperam em curiosidade intelectual com diversas origens e procedências. <br><br>Uma abordagem de "portas abertas" para cada desafio, valorizando sempre a verdade em cada negócio ou relação.</p>
-            <a href="#" class="button">Entre em contato</a>
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h2>Assine nossa Newsletter</h2>
+        <p>Fique por dentro das últimas notícias e atualizações sobre gestão patrimonial e investimentos.</p>
+        <form>
+            <input type="text" placeholder="Nome">
+            <input type="email" placeholder="Email">
+            <input type="tel" placeholder="Telefone">
+            <button type="submit" class="button" onclick="toggleForm(this, 'newsletter-form')">Cadastrar</button>
+        </form>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2>Entre em Contato</h2>
+        <p>Estamos aqui para ajudar. Envie-nos uma mensagem e entraremos em contato o mais rápido possível.</p>
+        <form>
+            <input type="text" placeholder="Nome">
+            <input type="email" placeholder="Email">
+            <textarea placeholder="Sua mensagem" rows="4"></textarea>
+            <button type="submit" class="button" onclick="toggleForm(this, 'contact-form')">Enviar Mensagem</button>
+        </form>
+        <div class="contact-info">
+            <p>Email: <a href="mailto:contato@skandercapital.com">contato@skandercapital.com</a></p>
+            <p>Telefone: <a href="tel:+552120183394">+55 21 2018 3394</a></p>
+            <p>Linkedin: <a href="https://www.linkedin.com/company/skander-capital/">Skander Capital</a></p>
+            <p>Endereço: Av. Brig. Faria Lima, 2066/2092, Bl. B, 13º andar, 01451-000 – Jd. Paulistano – São Paulo/SP – Brasil</p>
+            <a href="https://www.linkedin.com/company/skander-capital/" class="icon-linkedin"><i class="fa fa-linkedin"></i></a>
         </div>
     </section>
 
-    <section class="frame">
-        <div class="container">
-            <h2 class="title">Wealth Management</h2>
-            <h3 class="subtitle">Wealth Planning</h3>
-            <p class="description">
-                Estudamos o perfil, os objetivos, os ativos e a realidade pessoal de nossos clientes para ajudá-los a encontrar a estrutura correta para esse patrimônio. A eficiência é maximizada por meio de uma base legal sólida, custos otimizados e uma tomada de decisões coerente.
-            </p>
-            <p class="description">
-                Adotamos uma visão abrangente de cada parte do patrimônio de nossos clientes, desde mercados privados até ativos líquidos, para moldar portfólios que se ajustem perfeitamente a cada realidade. Integramos nossa gestão de riscos para considerar todas as partes do patrimônio, a fim de construir retornos ajustados ao risco a longo prazo.
-            </p>
+    <!-- Complaints Section -->
+    <section class="complaints">
+        <h2>Canal de Denúncias</h2>
+        <button class="button" onclick="toggleComplaintsForm(this)">Clique Aqui</button>
+        <div class="complaints-form">
+            <form>
+                <textarea placeholder="Descreva sua denúncia" rows="4"></textarea>
+                <input type="email" placeholder="Email">
+                <button type="submit" class="button submit-button">Enviar</button>
+            </form>
         </div>
     </section>
-    
-    <section class="frame">
-        <div class="container">
-            <h2 class="title">Asset Management</h2>
-            <h3 class="subtitle">Investimentos Management</h3>
-            <p class="description">
-                Nossa extensa rede nos permite combinar pesquisa interna e geração de negócios com os melhores gestores e empresas externas a nível global. Nossos clientes têm uma mesa de negociação privada e uma equipe de analistas que buscam e executam seus investimentos com excelência técnica e discrição.
-            </p>
-            <p class="description">
-                Nossas práticas em imóveis e capital de risco são aplicadas tanto para gerenciar investimentos quanto para projetos de consultoria adaptados à situação de cada cliente.
-            </p>
-        </div>
-    </section>
-    
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Skander Capital. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleForm(button, formClass) {
+            const form = button.parentElement;
+            form.style.display = 'none'; // Hide the button's form
+        }
+
+        function toggleComplaintsForm(button) {
+            const form = document.querySelector('.complaints-form');
+            form.classList.toggle('active');
+            button.style.display = 'none'; // Hide the button after clicking
+        }
+    </script>
+
 </body>
 </html>
