@@ -52,9 +52,10 @@
         display: grid;
         grid-template-columns: 1fr 3fr 1fr;
         align-items: center;
-        width: 100%; /* Garantir que o header ocupe 100% da largura */
+        width: 100%;
         color: #ffffff;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
       }
 
       .logo {
@@ -98,7 +99,12 @@
         position: absolute;
         width: 0;
         height: 2px;
-        background: linear-gradient(217.81deg, #9de8ee, #fa7c0b 49%, #9f8ced);
+        background: linear-gradient(
+          217.81deg,
+          #9de8ee,
+          #fa7c0b 49%,
+          #9f8ced
+        );
         transition: width 0.3s;
         bottom: 0;
         left: 0;
@@ -224,11 +230,16 @@
         font-size: 3.5rem;
         line-height: 1.2;
         margin-bottom: 1.5rem;
-        background: linear-gradient(217.81deg, #9de8ee, #fa7c0b 49%, #9f8ced);
+        background: linear-gradient(
+          217.81deg,
+          #9de8ee,
+          #fa7c0b 49%,
+          #9f8ced
+        );
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        color: transparent;
+        text-fill-color: transparent;
         animation: slideIn 1s ease-out;
       }
 
@@ -283,7 +294,7 @@
           transform: translateX(-30px);
         }
         to {
-          transform: translateX(0);
+          transform: translateX(30px);
         }
       }
 
@@ -301,7 +312,7 @@
           transform: translateX(30px);
         }
         to {
-          transform: translateX(0);
+          transform: translateX(-30px);
         }
       }
 
@@ -370,25 +381,41 @@
         right: -50px;
         width: 300px;
         height: 300px;
-        background: radial-gradient(circle, rgba(0, 0, 0, 0) 30%, #fa7c0b 90%);
+        background: radial-gradient(
+          circle,
+          rgba(0, 0, 0, 0) 30%,
+          #fa7c0b 90%
+        );
         opacity: 0.6;
         border-radius: 50%;
-        animation: rotate 8s linear infinite;
+        animation: rotateAndMove 8s linear infinite;
       }
 
-      @keyframes rotate {
-        from {
-          transform: rotate(0deg);
+      @keyframes rotateAndMove {
+        0% {
+          transform: rotate(0deg) translateX(0);
         }
-        to {
-          transform: rotate(360deg);
+        50% {
+          transform: rotate(180deg) translateX(50px);
+        }
+        100% {
+          transform: rotate(360deg) translateX(0);
         }
       }
 
       .services h2 {
         font-size: 2.75rem;
         margin-bottom: 2.5rem;
-        color: #fff;
+        background: linear-gradient(
+          217.81deg,
+          #9de8ee,
+          #fa7c0b 49%,
+          #9f8ced
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
         grid-column: 1 / -1;
         text-align: center;
         letter-spacing: 2px;
@@ -417,6 +444,12 @@
         align-items: center; /* Alinhamento vertical ao centro */
         animation: fadeInUp 1.5s ease-in-out;
         text-align: center; /* Centraliza o conteúdo dos itens */
+      }
+
+      @media screen and (max-width: 768px) {
+        .services .container {
+          grid-template-columns: 1fr; /* Um item por linha no celular */
+        }
       }
 
       .service-item {
@@ -461,7 +494,12 @@
         bottom: 0;
         width: 100%;
         height: 4px;
-        background: linear-gradient(90deg, #9de8ee, #fa7c0b, #9f8ced);
+        background: linear-gradient(
+          90deg,
+          #9de8ee,
+          #fa7c0b,
+          #9f8ced
+        );
         animation: loadingBar 2s ease-in-out infinite;
       }
 
@@ -602,12 +640,20 @@
 
       .newsletter h2 {
         font-size: 2.75rem;
-        margin-bottom: 0.5rem;
-        color: #fa7c0b;
+        margin-bottom: -1rem;
+        background: linear-gradient(
+          217.81deg,
+          #9de8ee,
+          #fa7c0b 49%,
+          #9f8ced
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
         text-transform: uppercase;
         letter-spacing: 2px;
         animation: fadeInDown 1.5s ease-out;
-        text-align: center; /* Ensure it remains centered */
+        text-align: center;
       }
 
       .newsletter p,
@@ -685,8 +731,16 @@
 
       .contact h2 {
         font-size: 2.75rem;
-        margin-bottom: 2rem;
-        color: #fa7c0b;
+        margin-bottom: -1rem;
+        background: linear-gradient(
+          217.81deg,
+          #9de8ee,
+          #fa7c0b 49%,
+          #9f8ced
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
         text-transform: uppercase;
         letter-spacing: 2px;
         animation: fadeInDown 1.5s ease-out;
@@ -798,7 +852,15 @@
       .complaints h2 {
         font-size: 2.75rem;
         margin-bottom: 2rem;
-        color: #fa7c0b;
+        background: linear-gradient(
+          217.81deg,
+          #9de8ee,
+          #fa7c0b 49%,
+          #9f8ced
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
         text-transform: uppercase;
         letter-spacing: 2px;
         animation: fadeInDown 1.5s ease-out;
@@ -862,7 +924,7 @@
       }
 
       .complaints .submit-button {
-        background-color: #9de8ee;
+        background-color: #ffa800;
         color: #000;
         transition: background-color 0.3s ease, transform 0.3s ease;
       }
@@ -997,42 +1059,31 @@
     <section class="newsletter">
       <h2>Assine nossa Newsletter</h2>
       <p>
-        Cadastre-se e receba receba atualizações sobre a Skander, artigos e
-        conteúdos exclusivos em seu e-mail. Fique por dentro das últimas
-        notícias e atualizações sobre gestão patrimonial e investimentos.
+        Cadastre-se e receba atualizações sobre a Skander, artigos e conteúdos
+        exclusivos em seu e-mail. Fique por dentro das últimas notícias e
+        atualizações sobre gestão patrimonial e investimentos.
       </p>
-      <form>
-        <input type="text" placeholder="Nome" />
-        <input type="email" placeholder="Email" />
-        <input type="tel" placeholder="Telefone" />
-        <button
-          type="submit"
-          class="button"
-          onclick="toggleForm(this, 'newsletter-form')"
-        >
-          Cadastrar
-        </button>
+      <form id="newsletter-form" onsubmit="return validateNewsletterForm()">
+        <input type="text" id="name" placeholder="Nome" />
+        <input type="email" id="email" placeholder="Email" />
+        <input type="tel" id="phone" placeholder="Telefone" />
+        <button type="submit" class="button">Cadastrar</button>
       </form>
     </section>
 
     <!-- Contact Section -->
     <section class="contact">
       <h2>Entre em Contato</h2>
-      <p>
-        Estamos aqui para ajudar. Envie-nos uma mensagem e entraremos em contato
-        o mais rápido possível.
-      </p>
-      <form>
-        <input type="text" placeholder="Nome" />
-        <input type="email" placeholder="Email" />
-        <textarea placeholder="Sua mensagem" rows="4"></textarea>
-        <button
-          type="submit"
-          class="button"
-          onclick="toggleForm(this, 'contact-form')"
-        >
-          Enviar Mensagem
-        </button>
+      <p>Utilize um dos canais abaixo para entrar em contato conosco.</p>
+      <form id="contact-form" onsubmit="return validateContactForm()">
+        <input type="text" id="contact-name" placeholder="Nome" />
+        <input type="email" id="contact-email" placeholder="Email" />
+        <textarea
+          placeholder="Sua mensagem"
+          id="contact-message"
+          rows="4"
+        ></textarea>
+        <button type="submit" class="button">Enviar Mensagem</button>
       </form>
       <div class="contact-info">
         <p>Skander Capital</p>
@@ -1072,11 +1123,15 @@
         Clique Aqui
       </button>
       <div class="complaints-form">
-        <form>
+        <form id="complaints-form" onsubmit="return validateComplaintsForm()">
           <input type="text" placeholder="Nome (opcional)" />
           <input type="email" placeholder="E-mail (opcional)" />
-          <input type="text" placeholder="Assunto" />
-          <textarea placeholder="Descreva sua denúncia" rows="4"></textarea>
+          <input type="text" id="subject" placeholder="Assunto" />
+          <textarea
+            placeholder="Descreva sua denúncia"
+            id="complaint-message"
+            rows="4"
+          ></textarea>
           <button type="submit" class="button submit-button">Enviar</button>
         </form>
       </div>
@@ -1084,7 +1139,9 @@
 
     <!-- Footer -->
     <footer>
-      <p style="color: #fa7c0b;">© 2024 Skander Capital. Todos os direitos reservados.</p>
+      <p style="color: #fa7c0b">
+        © 2024 Skander Capital. Todos os direitos reservados.
+      </p>
     </footer>
 
     <script>
@@ -1102,6 +1159,44 @@
         const form = document.querySelector(".complaints-form");
         form.classList.toggle("active");
         button.style.display = "none"; // Hide the button after clicking
+      }
+
+      function validateNewsletterForm() {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+
+        if (!name || !email || !phone) {
+          alert("Por favor, preencha todos os campos obrigatórios.");
+          return false;
+        }
+
+        return true;
+      }
+
+      function validateContactForm() {
+        const name = document.getElementById("contact-name").value;
+        const email = document.getElementById("contact-email").value;
+        const message = document.getElementById("contact-message").value;
+
+        if (!name || !email || !message) {
+          alert("Por favor, preencha todos os campos obrigatórios.");
+          return false;
+        }
+
+        return true;
+      }
+
+      function validateComplaintsForm() {
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("complaint-message").value;
+
+        if (!subject || !message) {
+          alert("Por favor, preencha os campos obrigatórios.");
+          return false;
+        }
+
+        return true;
       }
     </script>
   </body>
