@@ -1,0 +1,114 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Archivo', sans-serif;
+    color: #fff;
+    background-color: #0f0f0f;
+}
+
+.about-us {
+    padding: 2rem;
+}
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.vector-icon {
+    width: 100%;
+    max-width: 1440px;
+    height: auto;
+}
+
+.content, .text-section, .footer-content {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.text-content {
+    margin-top: -20rem;
+}
+
+.text-content h1, .text-content h2 {
+    margin: 0;
+}
+
+.text-content p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.button, .button-secondary {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    background-color: #ffa800;
+    color: #000;
+    text-decoration: none;
+}
+
+.button-secondary {
+    background-color: transparent;
+    border: 1px solid #ffa800;
+    color: #ffa800;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-column h4 {
+    margin-bottom: 1rem;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-column a {
+    color: #ffa800;
+    text-decoration: none;
+}
+
+.footer-info {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.footer-info .logo {
+    width: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.footer-info p, .footer-info label {
+    margin: 0;
+}
+
+.footer-info form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.footer-info input {
+    padding: 0.75rem;
+    border-radius: 25px;
+    border: 1px solid #a1aebf;
+    max-width: 300px;
+    margin-top: 0.5rem;
+}
