@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skander Capital - Gestão Patrimonial e Ativos</title>
+    <meta name="description" content="A Skander é uma empresa de investimentos que oferece serviços globais de planejamento patrimonial e gestão de ativos.">
+    <meta name="keywords" content="Gestão Patrimonial, Investimentos, Planejamento Patrimonial, Ativos, Skander Capital">
+    <meta name="author" content="Skander Capital">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Skander Capital - Gestão Patrimonial e Ativos">
+    <meta property="og:description" content="A Skander é uma empresa de investimentos que oferece serviços globais de planejamento patrimonial e gestão de ativos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.skander.com">
+    <meta property="og:image" content="https://www.skander.com/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Agrandir:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            font-family: 'Agrandir', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Background geral */
+        body {
+            background: linear-gradient(
+                to bottom,
+                #0f0f0f 0%, /* Cor principal do body e HTML */
+                #1a1a1a 33%, /* Cor da seção hero */
+                #0f0f0f 66%, /* Cor da seção frame */
+                #110f0f 100% /* Cor da seção services */
+            );
+        }
+
+        /* Hero Section */
+        .hero {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(
+                to bottom,
+                #0f0f0f 0%, /* Início com a cor do body */
+                #1a1a1a 300% /* Transição para a cor da seção hero */
+            );
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero .container {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(217.81deg, #9de8ee, #fa7c0b 49%, #9f8ced);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .description {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .blur-layer {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.6;
+        }
+
+        .bottom-left {
+            width: 400px;
+            height: 400px;
+            background: #EF9364;
+            bottom: -100px;
+            left: -100px;
+            animation: moveIn 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes moveIn {
+            from { transform: translateX(-30px); }
+            to { transform: translateX(0); }
+        }
+
+        .top-right {
+            width: 300px;
+            height: 300px;
+            background: #8B7BCF;
+            top: -100px;
+            right: -100px;
+            animation: moveInReverse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes moveInReverse {
+            from { transform: translateX(30px); }
+            to { transform: translateX(0); }
+        }
+
+        /* Gradiente específico para a seção frame */
+        .frame {
+            width: 100%;
+            max-width: 1200px;
+            padding: 4rem 1.5rem;
+            margin: 0 auto;
+            margin-bottom: 3rem;
+            box-sizing: border-box;
+            text-align: center;
+            background: linear-gradient(
+                to bottom,
+                #1a1a1a 0%, /* Cor da seção anterior */
+                #0f0f0f 50%, /* Transição para o meio */
+                #110f0f 100% /* Cor da seção services */
+            );
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .frame h2 {
+            font-size: 2.75rem;
+            margin-bottom: 2rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .frame p {
+            font-size: 1.25rem;
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+            max-width: 60rem;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Gradiente específico para a seção services */
+        .services {
+            border-radius: 15px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 5rem 1.5rem;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(
+                to bottom,
+                #0f0f0f 0%, /* Cor da seção anterior */
+                #110f0f 50%, /* Cor da seção services */
+                #1a1a1a 100% /* Gradiente para cor de fundo próxima */
+            );
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Ajuste do elemento visual (bola) */
+        .services:before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0,0,0,0) 30%, #fa7c0b 90%);
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .services h2 {
+            font-size: 2.75rem;
+            margin-bottom: 2.5rem;
+            color: #fff;
+            grid-column: 1 / -1;
+            text-align: center;
+            letter-spacing: 2px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .services .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Alinhamento em 3 colunas */
+            gap: 2.5rem;
+            justify-content: center; /* Centraliza os itens da grade */
+            align-items: center; /* Alinhamento vertical ao centro */
+            animation: fadeInUp 1.5s ease-in-out;
+            text-align: center; /* Centraliza o conteúdo dos itens */
+        }
+
+        .service-item {
+            background: #1a1a1a;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-item img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-item .branding {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            margin-bottom: 1rem;
+            color: #ffa800;
+        }
+
+        .service-item .egestas-tellus-nunc {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+            color: rgba(255, 255, 255, 0.85);
+            position: relative;
+        }
+
+        .service-item .egestas-tellus-nunc:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #9de8ee, #fa7c0b, #9f8ced);
+            animation: loadingBar 2s ease-in-out infinite;
+        }
+
+        @keyframes loadingBar {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            padding: 5rem 1.5rem;
+            box-sizing: border-box;
+            gap: 2rem;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .text-content {
+            max-width: 50%;
+            text-align: left;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .image-content {
+            max-width: 50%;
+            text-align: center;
+            animation: zoomIn 1.5s ease-in-out;
+            margin-left: auto;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .image-content img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3));
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .image-content img:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 15px 15px rgba(0,0,0,0.5));
+        }
+
+        .subtitle {
+            font-size: 1.75rem;
+            color: #fa7c0b;
+            margin-bottom: 1rem;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .description {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .highlight-gradient {
+            background: linear-gradient(217.81deg, #9DE8EE 0%, #FA7C0B 49%, #9F8CED 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            font-weight: bold;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 1000px;
+            border: 1px solid #ffa800;
+            color: #ffa800;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .button:hover {
+            background-color: #ffa800;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1 class="title">
+                <span>Skander </span><span class="newleads">Capital </span><span>como nunca antes</span>
+            </h1>
+            <p class="description">
+                A Skander é uma empresa de investimentos que oferece serviços globais de planejamento patrimonial e gestão de ativos.
+            </p>
+        </div>
+        <div class="blur-layer bottom-left"></div>
+        <div class="blur-layer top-right"></div>
+    </div>
+
+    <div class="frame">
+        <h2 class="title">Quem somos nós?</h2>
+        <p>Somos uma empresa global de gestão de patrimônio criada para oferecer soluções personalizadas de investimento e planejamento patrimonial para indivíduos de altíssimo patrimônio, por meio de uma profunda expertise, ação rápida e uma cultura aberta e meritocrática.</p>
+        <h2 class="title">Time</h2>
+        <p>Há mais de 10 anos, buscamos um desempenho consistente combinando um planejamento legal e tributário bem fundamentado com um processo de investimento e gestão de riscos de classe mundial. Com escritórios no Brasil e em Portugal, nossos clientes contam com nossa expertise para investir em portfólios multiestratégia, imóveis e capital de risco.</p>
+    </div>
+
+    <section class="services">
+        <div class="container">
+            <h2>O que nós oferecemos</h2>
+            <div class="service-item">
+                <img src="/images/ico1.svg" alt="Wealth Management">
+                <div class="branding">Wealth Management</div>
+                <div class="egestas-tellus-nunc">Oferecemos soluções personalizadas de gestão de patrimônio para indivíduos e famílias de alto patrimônio, combinando expertise financeira com um planejamento estratégico a longo prazo.</div>
+            </div>
+            <div class="service-item">
+                <img src="/images/ico2.svg" alt="Real Estate">
+                <div class="branding">Real Estate</div>
+                <div class="egestas-tellus-nunc">Investimos estrategicamente em imóveis de alta qualidade, proporcionando aos nossos clientes acesso a oportunidades únicas de valorização e renda passiva.</div>
+            </div>
+            <div class="service-item">
+                <img src="/images/ico3.svg" alt="Venture Capital">
+                <div class="branding">Venture Capital</div>
+                <div class="egestas-tellus-nunc">Apoiamos startups inovadoras com capital de risco, fornecendo não apenas financiamento, mas também orientação estratégica para impulsionar o crescimento e o sucesso no mercado.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="copy">
+        <div class="image-content">
+            <img src="/images/ico4.svg" alt="Ilustração">
+        </div>
+        <div class="text-content">
+            <h2 class="title">Por que nos escolher</h2>
+            <p class="description highlight-gradient">SUCESSO CONSTRUÍDO ATRAVÉS DE DÉCADAS DE RELACIONAMENTOS SÓLIDOS E COMPETÊNCIA TÉCNICA.</p>
+            <p>Nossa cultura é baseada em confiança e total transparência. Nós cultivamos talentos que prosperam em curiosidade intelectual com diversas origens e procedências. <br><br>Uma abordagem de "portas abertas" para cada desafio, valorizando sempre a verdade em cada negócio ou relação.</p>
+            <a href="#" class="button">Entre em contato</a>
+        </div>
+    </section>
+
+    <section class="frame">
+        <div class="container">
+            <h2 class="title">Wealth Management</h2>
+            <h3 class="subtitle">Wealth Planning</h3>
+            <p class="description">
+                Estudamos o perfil, os objetivos, os ativos e a realidade pessoal de nossos clientes para ajudá-los a encontrar a estrutura correta para esse patrimônio. A eficiência é maximizada por meio de uma base legal sólida, custos otimizados e uma tomada de decisões coerente.
+            </p>
+            <p class="description">
+                Adotamos uma visão abrangente de cada parte do patrimônio de nossos clientes, desde mercados privados até ativos líquidos, para moldar portfólios que se ajustem perfeitamente a cada realidade. Integramos nossa gestão de riscos para considerar todas as partes do patrimônio, a fim de construir retornos ajustados ao risco a longo prazo.
+            </p>
+        </div>
+    </section>
+    
+    <section class="frame">
+        <div class="container">
+            <h2 class="title">Asset Management</h2>
+            <h3 class="subtitle">Investimentos Management</h3>
+            <p class="description">
+                Nossa extensa rede nos permite combinar pesquisa interna e geração de negócios com os melhores gestores e empresas externas a nível global. Nossos clientes têm uma mesa de negociação privada e uma equipe de analistas que buscam e executam seus investimentos com excelência técnica e discrição.
+            </p>
+            <p class="description">
+                Nossas práticas em imóveis e capital de risco são aplicadas tanto para gerenciar investimentos quanto para projetos de consultoria adaptados à situação de cada cliente.
+            </p>
+        </div>
+    </section>
+    
+</body>
+</html>
