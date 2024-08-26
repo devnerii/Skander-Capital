@@ -61,7 +61,9 @@
                 contactEmailPlaceholder: "Email",
                 contactMessagePlaceholder: "Your message",
                 complaintSubjectPlaceholder: "Subject",
-                complaintMessagePlaceholder: "Describe your complaint"
+                complaintMessagePlaceholder: "Describe your complaint",
+                optionalNamePlaceholder: "Name (optional)",
+                optionalEmailPlaceholder: "Email (optional)"
             },
             es: {
                 pageTitle: "Skander Capital - Gestión Patrimonial y Activos",
@@ -106,7 +108,9 @@
                 contactEmailPlaceholder: "Correo electrónico",
                 contactMessagePlaceholder: "Tu mensaje",
                 complaintSubjectPlaceholder: "Asunto",
-                complaintMessagePlaceholder: "Describe tu denuncia"
+                complaintMessagePlaceholder: "Describe tu denuncia",
+                optionalNamePlaceholder: "Nombre (opcional)",
+                optionalEmailPlaceholder: "Correo electrónico (opcional)"
             },
             fr: {
                 pageTitle: "Skander Capital - Gestion de Patrimoine et Actifs",
@@ -151,7 +155,9 @@
                 contactEmailPlaceholder: "E-mail",
                 contactMessagePlaceholder: "Votre message",
                 complaintSubjectPlaceholder: "Sujet",
-                complaintMessagePlaceholder: "Décrivez votre plainte"
+                complaintMessagePlaceholder: "Décrivez votre plainte",
+                optionalNamePlaceholder: "Nom (optionnel)",
+                optionalEmailPlaceholder: "E-mail (optionnel)"
             },
             pt: {
                 pageTitle: "Skander Capital - Gestão Patrimonial e Ativos",
@@ -196,7 +202,9 @@
                 contactEmailPlaceholder: "E-mail",
                 contactMessagePlaceholder: "Sua mensagem",
                 complaintSubjectPlaceholder: "Assunto",
-                complaintMessagePlaceholder: "Descreva sua denúncia"
+                complaintMessagePlaceholder: "Descreva sua denúncia",
+                optionalNamePlaceholder: "Nome (opcional)",
+                optionalEmailPlaceholder: "E-mail (opcional)"
             }
         };
 
@@ -219,6 +227,8 @@
             document.getElementById('contact-message').placeholder = translations[lang]['contactMessagePlaceholder'];
             document.getElementById('subject').placeholder = translations[lang]['complaintSubjectPlaceholder'];
             document.getElementById('complaint-message').placeholder = translations[lang]['complaintMessagePlaceholder'];
+            document.getElementById('optional-name').placeholder = translations[lang]['optionalNamePlaceholder'];
+            document.getElementById('optional-email').placeholder = translations[lang]['optionalEmailPlaceholder'];
         }
 
         function initializeLanguage() {
@@ -398,8 +408,8 @@
         <button class="button bold" onclick="toggleComplaintsForm(this)" data-section="complaintsButton">Clique Aqui</button>
         <div class="complaints-form">
             <form id="complaints-form" onsubmit="return validateComplaintsForm()">
-                <input type="text" placeholder="Nome (opcional)" />
-                <input type="email" placeholder="E-mail (opcional)" />
+                <input type="text" id="optional-name" placeholder="Nome (opcional)" />
+                <input type="email" id="optional-email" placeholder="E-mail (opcional)" />
                 <input type="text" id="subject" placeholder="Assunto" />
                 <textarea placeholder="Descreva sua denúncia" id="complaint-message" rows="4"></textarea>
                 <button type="submit" class="button submit-button" data-section="complaintsSubmitButton">Enviar</button>
