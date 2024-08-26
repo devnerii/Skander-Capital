@@ -421,6 +421,40 @@
         margin: 0;
         font-size: 1rem;
       }
+
+       /* Estilização da scrollbar */
+       ::-webkit-scrollbar {
+            width: 12px; /* Largura da scrollbar */
+            background: transparent; /* Remove qualquer background da scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent; /* Remove o fundo da pista da scrollbar */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #9de8ee, #fa7c0b 49%, #9f8ced);
+            border-radius: 10px;
+            background-size: 200% 200%;
+            animation: pulse 1.5s infinite; /* Animação pulsante */
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: transparent; /* Remove a parte branca no canto da scrollbar */
+        }
+
+        /* Animação de pulsação */
+        @keyframes pulse {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
     </style>
   </head>
   <body>
