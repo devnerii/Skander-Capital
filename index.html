@@ -1,361 +1,431 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skander Capital - Área de Investidores</title>
     <meta
-        name="description"
-        content="Skader Capital - Investimentos inteligentes para o futuro."
+      name="description"
+      content="Acesso exclusivo para investidores da Skander Capital. Gestão de ativos e planejamento patrimonial global."
     />
     <meta
-        name="keywords"
-        content="Skader Capital, Investimentos, Empreendedores, Visitantes, Investidores"
+      name="keywords"
+      content="Gestão Patrimonial, Investimentos, Planejamento Patrimonial, Ativos, Skander Capital, Investidores"
     />
+    <meta name="author" content="Skander Capital" />
     <meta name="robots" content="index, follow" />
-    <title>Skader Capital</title>
-
-    <!-- Fonts and Icons -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600&display=swap"
-        rel="stylesheet"
+    <meta
+      property="og:title"
+      content="Skander Capital - Área de Investidores"
     />
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    <meta
+      property="og:description"
+      content="Acesso exclusivo para investidores da Skander Capital. Gestão de ativos e planejamento patrimonial global."
     />
-    <link rel="icon" href="/images/ico.png" type="image/x-icon" />
-
-    <!-- Styles -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.skander.com/investidores" />
+    <meta property="og:image" content="https://www.skander.com/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Agrandir:wght@400&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --primary-color: #e57f33;
-            --secondary-color: #333;
-            --background-color: #000;
-            --text-color: #fff;
-            --hover-color: #ff8c42;
-            --overlay-color: rgba(0, 0, 0, 0.6);
-            --button-hover-color: #fff;
-            --button-background-hover: #444;
-            --spacing-unit: 20px;
-            --transition-speed: 0.3s;
-        }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: "Agrandir", sans-serif;
+        color: #fff;
+        overflow: hidden;
+        scroll-behavior: smooth;
+        background: linear-gradient(
+          to bottom,
+          #0f0f0f 0%,
+          #1a1a1a 100%
+        );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      /* Header */
+      header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+        align-items: center;
+        background-color: rgba(15, 15, 15, 0.8);
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
 
-        body, html {
-            height: 100%;
-            font-family: "Open Sans", sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-            font-size: 1rem;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-        }
+      .logo {
+        grid-column: 1 / 2;
+        width: 200px;
+        height: auto;
+        animation: pulse 2s infinite alternate;
+      }
 
-        .container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-unit);
-            width: 100%;
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
         }
+        100% {
+          transform: scale(1.05);
+        }
+      }
 
-        /* Header */
+      nav {
+        grid-column: 2 / 3;
+        justify-self: center;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav ul li {
+        margin: 0;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        font-size: 1rem;
+        color: #ffffff;
+        letter-spacing: 0.05em;
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(
+          217.81deg,
+          #9de8ee,
+          #fa7c0b 49%,
+          #9f8ced
+        );
+        transition: width 0.4s;
+        bottom: -5px;
+        left: 0;
+      }
+
+      .nav-link:hover::before {
+        width: 100%;
+      }
+
+      .nav-link:hover {
+        color: #fa7c0b;
+      }
+
+      .language-flags {
+        margin: auto;
+        grid-column: 3 / 4;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .language-flags img {
+        width: 25px;
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .language-flags img:hover {
+        transform: scale(1.3);
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
+      }
+
+      .toggle-bar {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #ffffff;
+      }
+
+      @media screen and (max-width: 768px) {
         header {
-            background-color: var(--background-color);
-            padding: var(--spacing-unit) 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .logo {
-            width: 200px;
-            height: 40px;
-            background-image: url("/images/logobranca.svg");
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-
-        .language-flags {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-unit);
-        }
-
-        .language-flags img {
-            width: 30px;
-            height: auto;
-            cursor: pointer;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-        }
-
-        .language-flags img:hover {
-            transform: scale(1.2);
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.5);
+          grid-template-columns: 1fr 2fr 1fr;
         }
 
         nav ul {
-            list-style: none;
-            display: flex;
-            gap: calc(var(--spacing-unit) * 1.5);
-            align-items: center;
+          display: none;
+          flex-direction: column;
+          background-color: rgba(15, 15, 15, 0.9);
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          padding: 1rem;
+          gap: 1rem;
         }
 
         nav ul li {
-            margin-left: var(--spacing-unit);
+          margin: 0;
         }
 
-        .nav-link {
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--text-color);
-            position: relative;
-            transition: color var(--transition-speed) ease;
-            padding-bottom: calc(var(--spacing-unit) / 2);
-        }
-
-        .nav-link::after {
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width var(--transition-speed);
-            bottom: 0;
-            left: 0;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color);
+        nav ul.show {
+          display: flex;
         }
 
         .toggle-bar {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-color);
+          display: block;
+          grid-column: 3 / 4;
+          justify-self: end;
         }
+      }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: url("../images/business-concept-with-graphic-holography.jpg") center/cover no-repeat;
-            position: relative;
-            padding: calc(var(--spacing-unit) * 2);
+      /* Hero Section */
+      .hero {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: url("images/business-concept-with-graphic-holography.jpg")
+          center/cover no-repeat;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 0;
+      }
+
+      .hero-content {
+        position: relative;
+        max-width: 800px;
+        z-index: 1;
+        padding: 2rem;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
+        transform: translateY(0);
+        animation: float 4s infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
         }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--overlay-color);
-            z-index: 0;
+        50% {
+          transform: translateY(-15px);
         }
+        100% {
+          transform: translateY(0);
+        }
+      }
 
+      .hero-content h1 {
+        font-family: "Agrandir", sans-serif;
+        font-size: 3.8rem;
+        line-height: 1.2;
+        background: linear-gradient(
+          217.81deg,
+          #9de8ee,
+          #fa7c0b 49%,
+          #9f8ced
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-fill-color: transparent;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease, color 0.3s ease;
+        animation: fadeIn 2s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .hero-content h1:hover {
+        transform: scale(1.1);
+      }
+
+      .hero-content p {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.75;
+        margin-bottom: 2.5rem;
+        animation: fadeInUp 2s ease-in-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .hero-content .cta-button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        background: linear-gradient(
+          217.81deg,
+          #fa7c0b,
+          #9f8ced 49%,
+          #9de8ee
+        );
+        color: #000;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-decoration: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .hero-content .cta-button:hover {
+        transform: scale(1.15);
+        box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
+      }
+
+      /* Interatividade adicional */
+      .interactive-visual {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(
+          217.81deg,
+          #9de8ee,
+          #fa7c0b 49%,
+          #9f8ced
+        );
+        border-radius: 50%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        animation: bounce 2s infinite alternate;
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: translate(-50%, 0);
+        }
+        100% {
+          transform: translate(-50%, -10px);
+        }
+      }
+
+      /* Responsividade */
+      @media screen and (max-width: 768px) {
         .hero-content {
-            position: relative;
-            max-width: 800px;
-            z-index: 1;
-            padding: calc(var(--spacing-unit) * 3);
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            text-align: center;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
-            transition: box-shadow var(--transition-speed);
-        }
-
-        .hero-content:hover {
-            box-shadow: 0 6px 30px rgba(255, 255, 255, 0.2);
+          padding: 1.5rem;
         }
 
         .hero-content h1 {
-            font-family: "Montserrat", sans-serif;
-            font-size: 3.8rem;
-            font-weight: 700;
-            margin-bottom: calc(var(--spacing-unit) * 1.5);
-            letter-spacing: 1.5px;
-            transition: transform var(--transition-speed), color var(--transition-speed);
-        }
-
-        .hero-content h1:hover {
-            transform: scale(1.05);
-            color: var(--hover-color);
+          font-size: 2.5rem;
         }
 
         .hero-content p {
-            font-size: 1.6rem;
-            font-weight: bold;
-            letter-spacing: 0.5px;
+          font-size: 1.2rem;
+        }
+      }
+
+      @media screen and (max-width: 576px) {
+        .hero-content h1 {
+          font-size: 2rem;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 1200px) {
-            .container {
-                max-width: 960px;
-            }
+        .hero-content p {
+          font-size: 1rem;
         }
-
-        @media (max-width: 992px) {
-            .container {
-                max-width: 720px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                max-width: 540px;
-            }
-
-            .toggle-bar {
-                display: block;
-            }
-
-            nav ul {
-                flex-direction: column;
-                display: none;
-                background-color: var(--background-color);
-                padding: var(--spacing-unit);
-                border-radius: 10px;
-                position: absolute;
-                top: 60px;
-                right: var(--spacing-unit);
-                width: 200px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-
-            nav ul.show {
-                display: flex;
-            }
-
-            .nav-link {
-                font-size: 1.2rem;
-                padding: var(--spacing-unit) 0;
-            }
-
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-
-            .hero-content p {
-                font-size: 1.3rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .container {
-                max-width: 100%;
-                padding: 0 var(--spacing-unit);
-            }
-
-            .logo {
-                width: 150px;
-            }
-
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            .language-button {
-                padding: calc(var(--spacing-unit) / 3) var(--spacing-unit);
-            }
-        }
-
-        @media (max-width: 400px) {
-            .hero-content {
-                padding: calc(var(--spacing-unit) * 1.5);
-            }
-
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
-<!-- Header -->
-<header>
-    <div class="container">
-        <div class="header-content">
-            <div class="logo"></div>
-            <nav>
-                <ul>
-                    <li><a href="#" class="nav-link">Visitantes</a></li>
-                    <li><a href="#" class="nav-link">Investidores</a></li>
-                    <li><a href="#" class="nav-link">Empreendedores</a></li>
-                </ul>
-            </nav>
-            <div class="language-flags">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Português" onclick="changeLanguage('pt')" />
-                <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="English" onclick="changeLanguage('en')" />
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Español" onclick="changeLanguage('es')" />
-                <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" alt="Français" onclick="changeLanguage('fr')" />
-            </div>
-            <div class="toggle-bar" onclick="toggleMenu()">☰</div>
-        </div>
-    </div>
-</header>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <img
+        src="/images/logobranca.svg"
+        alt="Logo Skander Capital"
+        class="logo"
+      />
+      <nav>
+        <ul>
+          <li><a href="#" class="nav-link">Visitantes</a></li>
+          <li><a href="#" class="nav-link">Investidores</a></li>
+          <li><a href="#" class="nav-link">Empreendedores</a></li>
+        </ul>
+      </nav>
+      <div class="language-flags">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"
+          alt="Português"
+          onclick="changeLanguage('pt')" />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
+          alt="English"
+          onclick="changeLanguage('en')" />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg"
+          alt="Español"
+          onclick="changeLanguage('es')" />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"
+          alt="Français"
+          onclick="changeLanguage('fr')" />
+      </div>
+      <div class="toggle-bar" onclick="toggleMenu()">☰</div>
+    </header>
 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1>Skander Capital</h1>
-            <p>A Skander é uma empresa de investimentos que presta serviços de planejamento de patrimônio e de gestão de ativos em todo mundo.</p>
-        </div>
-    </div>
-</section>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Skander Capital</h1>
+        <p>
+          Acesso exclusivo para investidores. Gestão de ativos e planejamento
+          patrimonial global.
+        </p>
+      </div>
+    </section>
 
-<!-- Scripts -->
-<script>
-    function toggleMenu() {
+    <script>
+      function toggleMenu() {
         const nav = document.querySelector("nav ul");
         nav.classList.toggle("show");
-    }
+      }
 
-    function changeLanguage(lang) {
+      function changeLanguage(lang) {
         alert('Idioma selecionado: ' + lang);
-    }
-</script>
-</body>
+      }
+    </script>
+  </body>
 </html>
