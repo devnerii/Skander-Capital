@@ -1,0 +1,437 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: "Agrandir", sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Header */
+header {
+  background-color: rgba(15, 15, 15, 0.9);
+  padding: 1.5rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  align-items: center;
+  width: 100%;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+.logo {
+  grid-column: 1 / 2;
+  width: 200px;
+  height: auto;
+  animation: logoBounce 2s infinite;
+}
+
+@keyframes logoBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+nav {
+  grid-column: 2 / 3;
+  justify-self: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  line-height: 1.25rem;
+  position: relative;
+  transition: color 0.3s ease;
+  padding-bottom: 0.5rem;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(217.81deg, #9de8ee, #fa7c0b 49%, #9f8ced);
+  transition: width 0.3s;
+  bottom: 0;
+  left: 0;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #fa7c0b;
+}
+
+.language-flags {
+  margin: auto;
+  grid-column: 3 / 4;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.language-flags img {
+  width: 25px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.language-flags img:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.5);
+}
+
+.toggle-bar {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+
+  .logo {
+    flex: 1;
+    justify-self: start;
+    max-width: 200px; /* Reduz o tamanho máximo da logo para dispositivos móveis */
+    height: auto; /* Mantém a proporção da imagem */
+  }
+
+  .toggle-bar {
+    display: block; /* Garante que o toggle-bar seja visível */
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ffffff;
+  }
+
+  .language-flags {
+    width: 100%; /* Faz as bandeiras ocuparem toda a largura */
+    display: flex;
+    justify-content: center; /* Centraliza as bandeiras */
+    margin-top: 1rem; /* Adiciona um pequeno espaçamento acima das bandeiras */
+    order: 2; /* Garante que as bandeiras fiquem na linha abaixo da logo e do toggle */
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(15, 15, 15, 0.9);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+}
+
+/* Background geral */
+body {
+  background: linear-gradient(
+    to bottom,
+    #0f0f0f 0%,
+    #1a1a1a 33%,
+    #0f0f0f 66%,
+    #110f0f 100%
+  );
+}
+
+/* Construção Section */
+.construction {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: url('/images/designer.jpg') center/cover no-repeat;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.construction::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 0;
+}
+
+.construction h1 {
+  font-size: 4rem;
+  color: #fa7c0b;
+  background: linear-gradient(
+    217.81deg,
+    #9de8ee,
+    #fa7c0b 49%,
+    #9f8ced
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  animation: slideIn 1.5s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.construction p {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.75;
+  margin-top: 1.5rem;
+  animation: fadeInUp 1.5s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+/* Login Section */
+.login-section {
+  padding: 4rem 1.5rem;
+  background: linear-gradient(
+    to bottom,
+    #110f0f 0%,
+    #1a1a1a 100%
+  );
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  margin: 3rem auto;
+  width: 80%;
+  max-width: 500px;
+  animation: fadeInUp 1.5s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-section:before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0) 30%,
+    #fa7c0b 90%
+  );
+  opacity: 0.6;
+  border-radius: 50%;
+  animation: rotateAndMove 8s linear infinite;
+}
+
+@keyframes rotateAndMove {
+  0% {
+    transform: rotate(0deg) translateX(0);
+  }
+  50% {
+    transform: rotate(180deg) translateX(50px);
+  }
+  100% {
+    transform: rotate(360deg) translateX(0);
+  }
+}
+
+.login-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(
+    217.81deg,
+    #9de8ee,
+    #fa7c0b 49%,
+    #9f8ced
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeInDown 1.5s ease-out;
+}
+
+.login-section input[type="text"],
+.login-section input[type="password"] {
+  width: 90%;
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  background: #1a1a1a;
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-section input[type="text"]::placeholder,
+.login-section input[type="password"]::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.login-section input:focus {
+  outline: none;
+  border: 2px solid #fa7c0b;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-section .remember-me {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.login-section .remember-me input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.login-section .remember-me label {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.login-section .forgot-password {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.login-section .forgot-password a {
+  font-size: 1rem;
+  color: #9de8ee;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-section .forgot-password a:hover {
+  color: #fa7c0b;
+}
+
+.login-section button {
+  display: inline-block;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1000px;
+  border: none;
+  background-color: #fa7c0b;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.login-section button:hover {
+  background-color: #ffa800;
+  transform: translateY(-3px);
+}
+
+/* Footer */
+footer {
+  padding: 2rem 1.5rem;
+  background: #0f0f0f;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  border-top: 1px solid #1a1a1a;
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+ /* Estilização da scrollbar */
+ ::-webkit-scrollbar {
+      width: 12px; /* Largura da scrollbar */
+      background: transparent; /* Remove qualquer background da scrollbar */
+  }
+
+  ::-webkit-scrollbar-track {
+      background: transparent; /* Remove o fundo da pista da scrollbar */
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: linear-gradient(45deg, #9de8ee, #fa7c0b 49%, #9f8ced);
+      border-radius: 10px;
+      background-size: 200% 200%;
+      animation: pulse 1.5s infinite; /* Animação pulsante */
+  }
+
+  ::-webkit-scrollbar-corner {
+      background: transparent; /* Remove a parte branca no canto da scrollbar */
+  }
+
+  /* Animação de pulsação */
+  @keyframes pulse {
+      0% {
+          background-position: 0% 0%;
+      }
+      50% {
+          background-position: 100% 100%;
+      }
+      100% {
+          background-position: 0% 0%;
+      }
+  }
