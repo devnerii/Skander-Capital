@@ -1,132 +1,186 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skander Capital - Investidores</title>
-    <meta
-      name="description"
-      content="Área exclusiva para investidores da Skander Capital. Acesse suas informações de investimento de forma segura e confidencial."
-    />
-    <meta
-      name="keywords"
-      content="Investidores, Gestão Patrimonial, Investimentos, Skander Capital"
-    />
+    <meta name="description" content="Área exclusiva para investidores da Skander Capital. Acesse suas informações de investimento de forma segura e confidencial." />
+    <meta name="keywords" content="Investidores, Gestão Patrimonial, Investimentos, Skander Capital" />
     <meta name="author" content="Skander Capital" />
     <meta name="robots" content="index, follow" />
-    <meta
-      property="og:title"
-      content="Skander Capital - Investidores"
-    />
-    <meta
-      property="og:description"
-      content="Área exclusiva para investidores da Skander Capital. Acesse suas informações de investimento de forma segura e confidencial."
-    />
+    <meta property="og:title" content="Skander Capital - Investidores" />
+    <meta property="og:description" content="Área exclusiva para investidores da Skander Capital. Acesse suas informações de investimento de forma segura e confidencial." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.skander.com/investidores" />
     <meta property="og:image" content="https://www.skander.com/logo.png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Agrandir:wght@400&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Agrandir:wght@400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/investidores.css">
-  </head>
-  <body>
+
+    <script>
+        const translations = {
+            en: {
+                visitantes: "Visitors",
+                investidores: "Investors",
+                empreendedores: "Entrepreneurs",
+                emConstrucao: "Under Construction",
+                mensagemConstrucao: "We are working to bring an even better experience for our investors. Check back soon!",
+                acessoInvestidores: "Investor Access",
+                nomeUsuarioPlaceholder: "Username",
+                senhaPlaceholder: "Password",
+                lembrarDeMim: "Remember me",
+                esqueceuSenha: "Forgot username/password?",
+                entrar: "Login",
+                footer: "© 2024 Skander Capital. All rights reserved."
+            },
+            es: {
+                visitantes: "Visitantes",
+                investidores: "Inversores",
+                empreendedores: "Emprendedores",
+                emConstrucao: "En Construcción",
+                mensagemConstrucao: "Estamos trabajando para brindar una mejor experiencia a nuestros inversores. ¡Vuelve pronto!",
+                acessoInvestidores: "Acceso de Inversores",
+                nomeUsuarioPlaceholder: "Nombre de Usuario",
+                senhaPlaceholder: "Contraseña",
+                lembrarDeMim: "Recordarme",
+                esqueceuSenha: "¿Olvidó su nombre de usuario/contraseña?",
+                entrar: "Iniciar Sesión",
+                footer: "© 2024 Skander Capital. Todos los derechos reservados."
+            },
+            fr: {
+                visitantes: "Visiteurs",
+                investidores: "Investisseurs",
+                empreendedores: "Entrepreneurs",
+                emConstrucao: "En Construction",
+                mensagemConstrucao: "Nous travaillons à offrir une meilleure expérience pour nos investisseurs. Revenez bientôt!",
+                acessoInvestidores: "Accès des Investisseurs",
+                nomeUsuarioPlaceholder: "Nom d'utilisateur",
+                senhaPlaceholder: "Mot de passe",
+                lembrarDeMim: "Se souvenir de moi",
+                esqueceuSenha: "Nom d'utilisateur/mot de passe oublié?",
+                entrer: "Connexion",
+                footer: "© 2024 Skander Capital. Tous droits réservés."
+            },
+            pt: {
+                visitantes: "Visitantes",
+                investidores: "Investidores",
+                empreendedores: "Empreendedores",
+                emConstrucao: "Em Construção",
+                mensagemConstrucao: "Estamos trabalhando para trazer uma experiência ainda melhor para nossos investidores. Volte em breve!",
+                acessoInvestidores: "Acesso de Investidores",
+                nomeUsuarioPlaceholder: "Nome de Usuário",
+                senhaPlaceholder: "Senha",
+                lembrarDeMim: "Lembrar de mim",
+                esqueceuSenha: "Esqueceu o nome de usuário/senha?",
+                entrar: "Entrar",
+                footer: "© 2024 Skander Capital. Todos os direitos reservados."
+            }
+        };
+
+        function applyTranslations(lang) {
+            const elements = document.querySelectorAll('[data-section]');
+            elements.forEach(element => {
+                const section = element.getAttribute('data-section');
+                element.textContent = translations[lang][section];
+            });
+
+            // Tradução de placeholders
+            document.getElementById('username').placeholder = translations[lang].nomeUsuarioPlaceholder;
+            document.getElementById('password').placeholder = translations[lang].senhaPlaceholder;
+        }
+
+        function initializeLanguage() {
+            const preferredLanguage = localStorage.getItem('preferredLanguage') || 'pt';
+            document.documentElement.lang = preferredLanguage;
+            document.addEventListener('DOMContentLoaded', function() {
+                applyTranslations(preferredLanguage);
+                document.body.hidden = false;
+            });
+        }
+
+        initializeLanguage();
+    </script>
+</head>
+<body hidden>
     <!-- Header -->
     <header>
-      <a href="index.html"
-        ><img
-          src="/images/logobranca.svg"
-          alt="Logo Skander Capital"
-          class="logo"
-      /></a>
-      <nav>
-        <ul>
-          <li><a href="visitantes.html" class="nav-link">Visitantes</a></li>
-          <li><a href="investidores.html" class="nav-link">Investidores</a></li>
-          <li>
-            <a href="empreendedores.html" class="nav-link">Empreendedores</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="language-flags">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"
-          alt="Português"
-          onclick="changeLanguage('pt')"
-        />
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
-          alt="English"
-          onclick="changeLanguage('en')"
-        />
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg"
-          alt="Español"
-          onclick="changeLanguage('es')"
-        />
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"
-          alt="Français"
-          onclick="changeLanguage('fr')"
-        />
-      </div>
-      <div class="toggle-bar" onclick="toggleMenu()">☰</div>
+        <a href="index.html">
+            <img src="/images/logobranca.svg" alt="Logo Skander Capital" class="logo" />
+        </a>
+        <nav>
+            <ul>
+                <li><a href="visitantes.html" class="nav-link" data-section="visitantes">Visitantes</a></li>
+                <li><a href="investidores.html" class="nav-link" data-section="investidores">Investidores</a></li>
+                <li><a href="empreendedores.html" class="nav-link" data-section="empreendedores">Empreendedores</a></li>
+            </ul>
+        </nav>
+        <div class="language-flags">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Português" onclick="changeLanguage('pt')" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="English" onclick="changeLanguage('en')" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Español" onclick="changeLanguage('es')" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" alt="Français" onclick="changeLanguage('fr')" />
+        </div>
+        <div class="toggle-bar" onclick="toggleMenu()">☰</div>
     </header>
 
     <!-- Construção Section -->
     <div class="construction">
-      <div class="container">
-        <h1>Em Construção</h1>
-        <p>Estamos trabalhando para trazer uma experiência ainda melhor para nossos investidores. Volte em breve!</p>
-      </div>
+        <div class="container">
+            <h1 data-section="emConstrucao">Em Construção</h1>
+            <p data-section="mensagemConstrucao">Estamos trabalhando para trazer uma experiência ainda melhor para nossos investidores. Volte em breve!</p>
+        </div>
     </div>
 
     <!-- Login Section -->
     <section class="login-section">
-      <h2>Acesso de Investidores</h2>
-      <form id="login-form">
-        <input type="text" id="username" placeholder="Nome de Usuário" />
-        <input type="password" id="password" placeholder="Senha" />
-        <div class="remember-me">
-          <input type="checkbox" id="remember" />
-          <label for="remember">Lembrar de mim</label>
-        </div>
-        <div class="forgot-password">
-          <a href="#">Esqueceu o nome de usuário/senha?</a>
-        </div>
-        <button type="submit">Entrar</button>
-      </form>
+        <h2 data-section="acessoInvestidores">Acesso de Investidores</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Nome de Usuário" />
+            <input type="password" id="password" placeholder="Senha" />
+            <div class="remember-me">
+                <input type="checkbox" id="remember" />
+                <label for="remember" data-section="lembrarDeMim">Lembrar de mim</label>
+            </div>
+            <div class="forgot-password">
+                <a href="#" data-section="esqueceuSenha">Esqueceu o nome de usuário/senha?</a>
+            </div>
+            <button type="submit" data-section="entrar">Entrar</button>
+        </form>
     </section>
 
     <!-- Footer -->
     <footer>
-      <p style="color: #fa7c0b">
-        © 2024 Skander Capital. Todos os direitos reservados.
-      </p>
+        <p style="color: #fa7c0b" data-section="footer">© 2024 Skander Capital. Todos os direitos reservados.</p>
     </footer>
 
     <script>
-      function toggleMenu() {
-        const nav = document.querySelector("nav ul");
-        nav.classList.toggle("show");
-      }
+        function changeLanguage(lang) {
+            // Salva a preferência de idioma no localStorage
+            localStorage.setItem('preferredLanguage', lang);
 
-      function validateLoginForm() {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-
-        if (!username || !password) {
-          alert("Por favor, preencha todos os campos.");
-          return false;
+            // Aplica as traduções
+            applyTranslations(lang);
         }
 
-        return true;
-      }
+        function toggleMenu() {
+            const nav = document.querySelector("nav ul");
+            nav.classList.toggle("show");
+        }
 
-      document.getElementById("login-form").onsubmit = function () {
-        return validateLoginForm();
-      };
+        function validateLoginForm() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (!username || !password) {
+                alert("Por favor, preencha todos os campos.");
+                return false;
+            }
+
+            return true;
+        }
+
+        document.getElementById("login-form").onsubmit = function () {
+            return validateLoginForm();
+        };
     </script>
-  </body>
+</body>
 </html>

@@ -167,6 +167,51 @@ body,
         nav ul.show {
           display: flex;
         }
+
+        .hero, .frame, .services, .newsletter, .contact, .complaints {
+          width: 92%; /* Ajusta a largura para 92% no celular */
+          margin: 0 auto; /* Centraliza a seção */
+      }
+  
+      .hero .container, .services .container {
+          width: 100%; /* Ajusta a largura da container interna para 100% */
+      }
+  
+      .frame p, .services p, .newsletter p, .contact p, .complaints p {
+          font-size: 1rem; /* Ajusta o tamanho da fonte */
+          line-height: 1.5rem; /* Ajusta a altura da linha */
+      }
+  
+      .frame h2, .services h2, .newsletter h2, .contact h2, .complaints h2 {
+          font-size: 2rem; /* Reduz o tamanho da fonte dos títulos */
+      }
+  
+      .service-item {
+          padding: 1.5rem; /* Ajusta o padding dos itens de serviço */
+      }
+  
+      .image-content, .text-content {
+          max-width: 100%; /* Ajusta o conteúdo de imagem e texto para 100% */
+          text-align: center; /* Centraliza o texto e imagem */
+      }
+  
+      .image-content img {
+          max-width: 100%; /* Garante que as imagens não excedam a largura da tela */
+          margin: 0 auto; /* Centraliza as imagens */
+      }
+  
+      .contact-info, .contact-info a, .contact-info .icon-linkedin {
+          font-size: 1rem; /* Ajusta o tamanho da fonte das informações de contato */
+      }
+  
+      /* Ajustes específicos para o formulário de reclamações */
+      .complaints-form {
+          margin-top: 1.5rem;
+      }
+  
+      .complaints input[type="text"], .complaints input[type="email"], .complaints textarea {
+          width: 100%; /* Ajusta os campos de entrada para 100% de largura */
+      }
       }
 
       /* Background geral */

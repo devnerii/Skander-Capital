@@ -1,287 +1,415 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skander Capital - Gestão Patrimonial e Ativos</title>
-    <meta
-      name="description"
-      content="A Skander é uma empresa de investimentos que oferece serviços globais de planejamento patrimonial e gestão de ativos."
-    />
-    <meta
-      name="keywords"
-      content="Gestão Patrimonial, Investimentos, Planejamento Patrimonial, Ativos, Skander Capital"
-    />
+    <title data-section="pageTitle">Skander Capital - Gestão Patrimonial e Ativos</title>
+    <meta name="description" content="A Skander é uma empresa de investimentos que oferece serviços globais de planejamento patrimonial e gestão de ativos." />
+    <meta name="keywords" content="Gestão Patrimonial, Investimentos, Planejamento Patrimonial, Ativos, Skander Capital" />
     <meta name="author" content="Skander Capital" />
     <meta name="robots" content="index, follow" />
-    <meta
-      property="og:title"
-      content="Skander Capital - Gestão Patrimonial e Ativos"
-    />
-    <meta
-      property="og:description"
-      content="A Skander é uma empresa de investimentos que oferece serviços globais de planejamento patrimonial e gestão de ativos."
-    />
+    <meta property="og:title" content="Skander Capital - Gestão Patrimonial e Ativos" />
+    <meta property="og:description" content="A Skander é uma empresa de investimentos que oferece serviços globais de planejamento patrimonial e gestão de ativos." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.skander.com" />
     <meta property="og:image" content="https://www.skander.com/logo.png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Agrandir:wght@400&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Agrandir:wght@400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/visitantes.css">
-  </head>
-  <body>
+
+    <script>
+        const translations = {
+            en: {
+                pageTitle: "Skander Capital - Wealth Management and Assets",
+                visitantes: "Visitors",
+                investidores: "Investors",
+                empreendedores: "Entrepreneurs",
+                heroTitle: "Skander Capital like never before",
+                heroDescription: "Skander is an investment firm offering global wealth planning and asset management services.",
+                whoWeAre: "Who are we?",
+                whoWeAreText: "We are a global wealth management firm created to offer customized investment and wealth planning solutions for ultra-high-net-worth individuals, through deep expertise, rapid action, and an open, meritocratic culture.",
+                team: "Team",
+                teamText: "For over 10 years, we have been pursuing consistent performance by combining solid legal and tax planning with a world-class investment and risk management process. With offices in Brazil and Portugal, our clients rely on our expertise to invest in multi-strategy portfolios, real estate, and venture capital.",
+                servicesTitle: "What we offer",
+                service1Title: "Wealth Management",
+                service1Description: "We offer personalized wealth management solutions for high-net-worth individuals and families, combining financial expertise with long-term strategic planning.",
+                service2Title: "Real Estate",
+                service2Description: "We strategically invest in high-quality real estate, providing our clients with access to unique opportunities for appreciation and passive income.",
+                service3Title: "Venture Capital",
+                service3Description: "We support innovative startups with venture capital, providing not only financing but also strategic guidance to drive growth and success in the market.",
+                newsletterTitle: "Subscribe to our Newsletter",
+                newsletterText: "Sign up to receive updates on Skander, articles, and exclusive content in your email. Stay up to date with the latest news and updates on wealth management and investments.",
+                newsletterButton: "Subscribe",
+                contactTitle: "Contact Us",
+                contactText: "Use one of the channels below to get in touch with us.",
+                contactButton: "Send Message",
+                contactInfo: `
+                    <p>Skander Capital</p>
+                    <p>Email: <a href="mailto:contato@skandercapital.com">contato@skandercapital.com</a></p>
+                    <p>Phone: <a href="tel:+552120183394">+55 21 2018 3394</a></p>
+                    <p>LinkedIn: <a href="https://www.linkedin.com/company/skander-capital/">Skander Capital</a></p>
+                    <p>Address: <span style="color: #fa7c0b;">Av. Brig. Faria Lima, 2066/2092, Bl. B, 13th floor, 01451-000 – Jd. Paulistano – São Paulo/SP – Brazil</span></p>
+                `,
+                complaintsTitle: "Complaints Channel",
+                complaintsText: "In accordance with legal norms and best practices, we provide an exclusive channel for complaints.",
+                complaintsButton: "Click Here",
+                complaintsSubmitButton: "Submit",
+                footerText: "© 2024 Skander Capital. All rights reserved.",
+                namePlaceholder: "Name",
+                emailPlaceholder: "Email",
+                phonePlaceholder: "Phone",
+                contactNamePlaceholder: "Name",
+                contactEmailPlaceholder: "Email",
+                contactMessagePlaceholder: "Your message",
+                complaintSubjectPlaceholder: "Subject",
+                complaintMessagePlaceholder: "Describe your complaint"
+            },
+            es: {
+                pageTitle: "Skander Capital - Gestión Patrimonial y Activos",
+                visitantes: "Visitantes",
+                investidores: "Inversores",
+                empreendedores: "Emprendedores",
+                heroTitle: "Skander Capital como nunca antes",
+                heroDescription: "Skander es una empresa de inversiones que ofrece servicios globales de planificación patrimonial y gestión de activos.",
+                whoWeAre: "¿Quiénes somos?",
+                whoWeAreText: "Somos una empresa global de gestión patrimonial creada para ofrecer soluciones de inversión y planificación patrimonial personalizadas para individuos de altísimo patrimonio, a través de una profunda experiencia, acción rápida y una cultura abierta y meritocrática.",
+                team: "Equipo",
+                teamText: "Durante más de 10 años, hemos buscado un rendimiento constante combinando una planificación legal y fiscal bien fundamentada con un proceso de inversión y gestión de riesgos de clase mundial. Con oficinas en Brasil y Portugal, nuestros clientes confían en nuestra experiencia para invertir en carteras multiestrategia, bienes raíces y capital de riesgo.",
+                servicesTitle: "¿Qué ofrecemos?",
+                service1Title: "Gestión Patrimonial",
+                service1Description: "Ofrecemos soluciones personalizadas de gestión patrimonial para individuos y familias de alto patrimonio, combinando experiencia financiera con planificación estratégica a largo plazo.",
+                service2Title: "Bienes Raíces",
+                service2Description: "Invertimos estratégicamente en bienes raíces de alta calidad, proporcionando a nuestros clientes acceso a oportunidades únicas de valorización e ingresos pasivos.",
+                service3Title: "Capital de Riesgo",
+                service3Description: "Apoyamos startups innovadoras con capital de riesgo, proporcionando no solo financiamiento, sino también orientación estratégica para impulsar el crecimiento y el éxito en el mercado.",
+                newsletterTitle: "Suscríbete a nuestro boletín",
+                newsletterText: "Regístrate para recibir actualizaciones sobre Skander, artículos y contenido exclusivo en tu correo electrónico. Mantente al día con las últimas noticias y actualizaciones sobre gestión patrimonial e inversiones.",
+                newsletterButton: "Suscribirse",
+                contactTitle: "Contáctenos",
+                contactText: "Utiliza uno de los canales a continuación para ponerte en contacto con nosotros.",
+                contactButton: "Enviar mensaje",
+                contactInfo: `
+                    <p>Skander Capital</p>
+                    <p>Email: <a href="mailto:contato@skandercapital.com">contato@skandercapital.com</a></p>
+                    <p>Teléfono: <a href="tel:+552120183394">+55 21 2018 3394</a></p>
+                    <p>LinkedIn: <a href="https://www.linkedin.com/company/skander-capital/">Skander Capital</a></p>
+                    <p>Dirección: <span style="color: #fa7c0b;">Av. Brig. Faria Lima, 2066/2092, Bl. B, 13º piso, 01451-000 – Jd. Paulistano – São Paulo/SP – Brasil</span></p>
+                `,
+                complaintsTitle: "Canal de Denuncias",
+                complaintsText: "De acuerdo con las normas legales y las mejores prácticas, proporcionamos un canal exclusivo para denuncias.",
+                complaintsButton: "Haz clic aquí",
+                complaintsSubmitButton: "Enviar",
+                footerText: "© 2024 Skander Capital. Todos los derechos reservados.",
+                namePlaceholder: "Nombre",
+                emailPlaceholder: "Correo electrónico",
+                phonePlaceholder: "Teléfono",
+                contactNamePlaceholder: "Nombre",
+                contactEmailPlaceholder: "Correo electrónico",
+                contactMessagePlaceholder: "Tu mensaje",
+                complaintSubjectPlaceholder: "Asunto",
+                complaintMessagePlaceholder: "Describe tu denuncia"
+            },
+            fr: {
+                pageTitle: "Skander Capital - Gestion de Patrimoine et Actifs",
+                visitantes: "Visiteurs",
+                investidores: "Investisseurs",
+                empreendedores: "Entrepreneurs",
+                heroTitle: "Skander Capital comme jamais auparavant",
+                heroDescription: "Skander est une société d'investissement offrant des services de planification patrimoniale et de gestion d'actifs à l'échelle mondiale.",
+                whoWeAre: "Qui sommes-nous?",
+                whoWeAreText: "Nous sommes une entreprise mondiale de gestion de patrimoine créée pour offrir des solutions personnalisées d'investissement et de planification patrimoniale pour les individus très fortunés, grâce à une expertise approfondie, une action rapide et une culture ouverte et méritocratique.",
+                team: "Équipe",
+                teamText: "Depuis plus de 10 ans, nous poursuivons une performance cohérente en combinant une planification juridique et fiscale solide avec un processus d'investissement et de gestion des risques de classe mondiale. Avec des bureaux au Brésil et au Portugal, nos clients comptent sur notre expertise pour investir dans des portefeuilles multi-stratégies, l'immobilier et le capital-risque.",
+                servicesTitle: "Ce que nous offrons",
+                service1Title: "Gestion de patrimoine",
+                service1Description: "Nous offrons des solutions personnalisées de gestion de patrimoine pour les particuliers et les familles fortunés, combinant expertise financière et planification stratégique à long terme.",
+                service2Title: "Immobilier",
+                service2Description: "Nous investissons stratégiquement dans des biens immobiliers de haute qualité, offrant à nos clients un accès à des opportunités uniques d'appréciation et de revenus passifs.",
+                service3Title: "Capital Risque",
+                service3Description: "Nous soutenons les startups innovantes avec du capital-risque, offrant non seulement un financement, mais aussi des conseils stratégiques pour stimuler la croissance et le succès sur le marché.",
+                newsletterTitle: "Abonnez-vous à notre Newsletter",
+                newsletterText: "Inscrivez-vous pour recevoir des mises à jour sur Skander, des articles et des contenus exclusifs par e-mail. Restez au courant des dernières nouvelles et mises à jour sur la gestion de patrimoine et les investissements.",
+                newsletterButton: "S'abonner",
+                contactTitle: "Contactez-nous",
+                contactText: "Utilisez l'un des canaux ci-dessous pour entrer en contact avec nous.",
+                contactButton: "Envoyer un message",
+                contactInfo: `
+                    <p>Skander Capital</p>
+                    <p>Email: <a href="mailto:contato@skandercapital.com">contato@skandercapital.com</a></p>
+                    <p>Téléphone: <a href="tel:+552120183394">+55 21 2018 3394</a></p>
+                    <p>LinkedIn: <a href="https://www.linkedin.com/company/skander-capital/">Skander Capital</a></p>
+                    <p>Adresse: <span style="color: #fa7c0b;">Av. Brig. Faria Lima, 2066/2092, Bl. B, 13ème étage, 01451-000 – Jd. Paulistano – São Paulo/SP – Brésil</span></p>
+                `,
+                complaintsTitle: "Canal de Réclamations",
+                complaintsText: "Conformément aux normes légales et aux meilleures pratiques, nous fournissons un canal exclusif pour les plaintes.",
+                complaintsButton: "Cliquez ici",
+                complaintsSubmitButton: "Envoyer",
+                footerText: "© 2024 Skander Capital. Tous droits réservés.",
+                namePlaceholder: "Nom",
+                emailPlaceholder: "E-mail",
+                phonePlaceholder: "Téléphone",
+                contactNamePlaceholder: "Nom",
+                contactEmailPlaceholder: "E-mail",
+                contactMessagePlaceholder: "Votre message",
+                complaintSubjectPlaceholder: "Sujet",
+                complaintMessagePlaceholder: "Décrivez votre plainte"
+            },
+            pt: {
+                pageTitle: "Skander Capital - Gestão Patrimonial e Ativos",
+                visitantes: "Visitantes",
+                investidores: "Investidores",
+                empreendedores: "Empreendedores",
+                heroTitle: "Skander Capital como nunca antes",
+                heroDescription: "A Skander é uma empresa de investimentos que oferece serviços globais de planejamento patrimonial e gestão de ativos.",
+                whoWeAre: "Quem somos nós?",
+                whoWeAreText: "Somos uma empresa global de gestão de patrimônio criada para oferecer soluções personalizadas de investimento e planejamento patrimonial para indivíduos de altíssimo patrimônio, por meio de uma profunda expertise, ação rápida e uma cultura aberta e meritocrática.",
+                team: "Time",
+                teamText: "Há mais de 10 anos, buscamos um desempenho consistente combinando um planejamento legal e tributário bem fundamentado com um processo de investimento e gestão de riscos de classe mundial. Com escritórios no Brasil e em Portugal, nossos clientes contam com nossa expertise para investir em portfólios multiestratégia, imóveis e capital de risco.",
+                servicesTitle: "O que nós oferecemos",
+                service1Title: "Wealth Management",
+                service1Description: "Oferecemos soluções personalizadas de gestão de patrimônio para indivíduos e famílias de alto patrimônio, combinando expertise financeira com um planejamento estratégico a longo prazo.",
+                service2Title: "Real Estate",
+                service2Description: "Investimos estrategicamente em imóveis de alta qualidade, proporcionando aos nossos clientes acesso a oportunidades únicas de valorização e renda passiva.",
+                service3Title: "Venture Capital",
+                service3Description: "Apoiamos startups inovadoras com capital de risco, fornecendo não apenas financiamento, mas também orientação estratégica para impulsionar o crescimento e o sucesso no mercado.",
+                newsletterTitle: "Assine nossa Newsletter",
+                newsletterText: "Cadastre-se e receba atualizações sobre a Skander, artigos e conteúdos exclusivos em seu e-mail. Fique por dentro das últimas notícias e atualizações sobre gestão patrimonial e investimentos.",
+                newsletterButton: "Cadastrar",
+                contactTitle: "Entre em Contato",
+                contactText: "Utilize um dos canais abaixo para entrar em contato conosco.",
+                contactButton: "Enviar Mensagem",
+                contactInfo: `
+                    <p>Skander Capital</p>
+                    <p>Email: <a href="mailto:contato@skandercapital.com">contato@skandercapital.com</a></p>
+                    <p>Telefone: <a href="tel:+552120183394">+55 21 2018 3394</a></p>
+                    <p>Linkedin: <a href="https://www.linkedin.com/company/skander-capital/">Skander Capital</a></p>
+                    <p>Endereço: <span style="color: #fa7c0b;">Av. Brig. Faria Lima, 2066/2092, Bl. B, 13º andar, 01451-000 – Jd. Paulistano – São Paulo/SP – Brasil</span></p>
+                `,
+                complaintsTitle: "Canal de Denúncias",
+                complaintsText: "De acordo com as normas legais e melhores práticas. disponibilizamos um canal exclusivo para denúncias.",
+                complaintsButton: "Clique Aqui",
+                complaintsSubmitButton: "Enviar",
+                footerText: "© 2024 Skander Capital. Todos os direitos reservados.",
+                namePlaceholder: "Nome",
+                emailPlaceholder: "E-mail",
+                phonePlaceholder: "Telefone",
+                contactNamePlaceholder: "Nome",
+                contactEmailPlaceholder: "E-mail",
+                contactMessagePlaceholder: "Sua mensagem",
+                complaintSubjectPlaceholder: "Assunto",
+                complaintMessagePlaceholder: "Descreva sua denúncia"
+            }
+        };
+
+        function applyTranslations(lang) {
+            const elements = document.querySelectorAll('[data-section]');
+            elements.forEach(element => {
+                const section = element.getAttribute('data-section');
+                element.innerHTML = translations[lang][section];
+            });
+
+            // Atualiza o título da página
+            document.title = translations[lang]['pageTitle'];
+
+            // Atualiza os placeholders
+            document.getElementById('name').placeholder = translations[lang]['namePlaceholder'];
+            document.getElementById('email').placeholder = translations[lang]['emailPlaceholder'];
+            document.getElementById('phone').placeholder = translations[lang]['phonePlaceholder'];
+            document.getElementById('contact-name').placeholder = translations[lang]['contactNamePlaceholder'];
+            document.getElementById('contact-email').placeholder = translations[lang]['contactEmailPlaceholder'];
+            document.getElementById('contact-message').placeholder = translations[lang]['contactMessagePlaceholder'];
+            document.getElementById('subject').placeholder = translations[lang]['complaintSubjectPlaceholder'];
+            document.getElementById('complaint-message').placeholder = translations[lang]['complaintMessagePlaceholder'];
+        }
+
+        function initializeLanguage() {
+            const preferredLanguage = localStorage.getItem('preferredLanguage') || 'pt';
+            document.documentElement.lang = preferredLanguage;
+            applyTranslations(preferredLanguage);
+            document.body.hidden = false;
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeLanguage);
+
+        function changeLanguage(lang) {
+            localStorage.setItem('preferredLanguage', lang);
+            applyTranslations(lang);
+        }
+
+        function toggleMenu() {
+            const nav = document.querySelector("nav ul");
+            nav.classList.toggle("show");
+        }
+
+        function toggleComplaintsForm(button) {
+            const form = document.querySelector(".complaints-form");
+            form.classList.toggle("active");
+            button.style.display = "none"; // Esconde o botão após o clique
+        }
+
+        function validateNewsletterForm() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+
+            if (!name || !email || !phone) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateContactForm() {
+            const name = document.getElementById("contact-name").value;
+            const email = document.getElementById("contact-email").value;
+            const message = document.getElementById("contact-message").value;
+
+            if (!name || !email || !message) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateComplaintsForm() {
+            const subject = document.getElementById("subject").value;
+            const message = document.getElementById("complaint-message").value;
+
+            if (!subject || !message) {
+                alert("Por favor, preencha os campos obrigatórios.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body hidden>
     <header>
-      <a href="index.html"
-        ><img
-          src="/images/logobranca.svg"
-          alt="Logo Skander Capital"
-          class="logo"
-      /></a>
-      <nav>
-        <ul>
-          <li><a href="visitantes.html" class="nav-link">Visitantes</a></li>
-          <li><a href="investidores.html" class="nav-link">Investidores</a></li>
-          <li>
-            <a href="empreendedores.html" class="nav-link">Empreendedores</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="language-flags">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"
-          alt="Português"
-          onclick="changeLanguage('pt')"
-        />
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
-          alt="English"
-          onclick="changeLanguage('en')"
-        />
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg"
-          alt="Español"
-          onclick="changeLanguage('es')"
-        />
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"
-          alt="Français"
-          onclick="changeLanguage('fr')"
-        />
-      </div>
-      <div class="toggle-bar" onclick="toggleMenu()">☰</div>
+        <a href="index.html">
+            <img src="/images/logobranca.svg" alt="Logo Skander Capital" class="logo" />
+        </a>
+        <nav>
+            <ul>
+                <li><a href="visitantes.html" class="nav-link" data-section="visitantes">Visitantes</a></li>
+                <li><a href="investidores.html" class="nav-link" data-section="investidores">Investidores</a></li>
+                <li><a href="empreendedores.html" class="nav-link" data-section="empreendedores">Empreendedores</a></li>
+            </ul>
+        </nav>
+        <div class="language-flags">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Português" onclick="changeLanguage('pt')" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="English" onclick="changeLanguage('en')" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Español" onclick="changeLanguage('es')" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" alt="Français" onclick="changeLanguage('fr')" />
+        </div>
+        <div class="toggle-bar" onclick="toggleMenu()">☰</div>
     </header>
 
     <div class="hero">
-      <div class="container">
-        <h1 class="title">
-          <span>Skander </span><span class="newleads">Capital </span
-          ><span>como nunca antes</span>
-        </h1>
-        <p class="description">
-          A Skander é uma empresa de investimentos que oferece serviços globais
-          de planejamento patrimonial e gestão de ativos.
-        </p>
-      </div>
-      <div class="blur-layer bottom-left"></div>
-      <div class="blur-layer top-right"></div>
+        <div class="container">
+            <h1 class="title" data-section="heroTitle">
+                <span>Skander </span><span class="newleads">Capital </span><span>como nunca antes</span>
+            </h1>
+            <p class="description" data-section="heroDescription">
+                A Skander é uma empresa de investimentos que oferece serviços globais de planejamento patrimonial e gestão de ativos.
+            </p>
+        </div>
+        <div class="blur-layer bottom-left"></div>
+        <div class="blur-layer top-right"></div>
     </div>
 
     <div class="frame">
-      <h2 class="title">Quem somos nós?</h2>
-      <p>
-        Somos uma empresa global de gestão de patrimônio criada para oferecer
-        soluções personalizadas de investimento e planejamento patrimonial para
-        indivíduos de altíssimo patrimônio, por meio de uma profunda expertise,
-        ação rápida e uma cultura aberta e meritocrática.
-      </p>
-      <h2 class="title">Time</h2>
-      <p>
-        Há mais de 10 anos, buscamos um desempenho consistente combinando um
-        planejamento legal e tributário bem fundamentado com um processo de
-        investimento e gestão de riscos de classe mundial. Com escritórios no
-        Brasil e em Portugal, nossos clientes contam com nossa expertise para
-        investir em portfólios multiestratégia, imóveis e capital de risco.
-      </p>
+        <h2 class="title" data-section="whoWeAre">Quem somos nós?</h2>
+        <p data-section="whoWeAreText">
+            Somos uma empresa global de gestão de patrimônio criada para oferecer soluções personalizadas de investimento e planejamento patrimonial para indivíduos de altíssimo patrimônio, por meio de uma profunda expertise, ação rápida e uma cultura aberta e meritocrática.
+        </p>
+        <h2 class="title" data-section="team">Time</h2>
+        <p data-section="teamText">
+            Há mais de 10 anos, buscamos um desempenho consistente combinando um planejamento legal e tributário bem fundamentado com um processo de investimento e gestão de riscos de classe mundial. Com escritórios no Brasil e em Portugal, nossos clientes contam com nossa expertise para investir em portfólios multiestratégia, imóveis e capital de risco.
+        </p>
     </div>
 
     <section class="services">
-      <div class="container">
-        <h2>O que nós oferecemos</h2>
-        <div class="service-item">
-          <img src="/images/ico1.svg" alt="Wealth Management" />
-          <div class="branding">Wealth Management</div>
-          <div class="egestas-tellus-nunc">
-            Oferecemos soluções personalizadas de gestão de patrimônio para
-            indivíduos e famílias de alto patrimônio, combinando expertise
-            financeira com um planejamento estratégico a longo prazo.
-          </div>
+        <div class="container">
+            <h2 data-section="servicesTitle">O que nós oferecemos</h2>
+            <div class="service-item">
+                <img src="/images/ico1.svg" alt="Wealth Management" />
+                <div class="branding" data-section="service1Title">Wealth Management</div>
+                <div class="egestas-tellus-nunc" data-section="service1Description">
+                    Oferecemos soluções personalizadas de gestão de patrimônio para indivíduos e famílias de alto patrimônio, combinando expertise financeira com um planejamento estratégico a longo prazo.
+                </div>
+            </div>
+            <div class="service-item">
+                <img src="/images/ico2.svg" alt="Real Estate" />
+                <div class="branding" data-section="service2Title">Real Estate</div>
+                <div class="egestas-tellus-nunc" data-section="service2Description">
+                    Investimos estrategicamente em imóveis de alta qualidade, proporcionando aos nossos clientes acesso a oportunidades únicas de valorização e renda passiva.
+                </div>
+            </div>
+            <div class="service-item">
+                <img src="/images/ico3.svg" alt="Venture Capital" />
+                <div class="branding" data-section="service3Title">Venture Capital</div>
+                <div class="egestas-tellus-nunc" data-section="service3Description">
+                    Apoiamos startups inovadoras com capital de risco, fornecendo não apenas financiamento, mas também orientação estratégica para impulsionar o crescimento e o sucesso no mercado.
+                </div>
+            </div>
         </div>
-        <div class="service-item">
-          <img src="/images/ico2.svg" alt="Real Estate" />
-          <div class="branding">Real Estate</div>
-          <div class="egestas-tellus-nunc">
-            Investimos estrategicamente em imóveis de alta qualidade,
-            proporcionando aos nossos clientes acesso a oportunidades únicas de
-            valorização e renda passiva.
-          </div>
-        </div>
-        <div class="service-item">
-          <img src="/images/ico3.svg" alt="Venture Capital" />
-          <div class="branding">Venture Capital</div>
-          <div class="egestas-tellus-nunc">
-            Apoiamos startups inovadoras com capital de risco, fornecendo não
-            apenas financiamento, mas também orientação estratégica para
-            impulsionar o crescimento e o sucesso no mercado.
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Newsletter Section -->
     <section class="newsletter">
-      <h2>Assine nossa Newsletter</h2>
-      <p>
-        Cadastre-se e receba atualizações sobre a Skander, artigos e conteúdos
-        exclusivos em seu e-mail. Fique por dentro das últimas notícias e
-        atualizações sobre gestão patrimonial e investimentos.
-      </p>
-      <form id="newsletter-form" onsubmit="return validateNewsletterForm()">
-        <input type="text" id="name" placeholder="Nome" />
-        <input type="email" id="email" placeholder="Email" />
-        <input type="tel" id="phone" placeholder="Telefone" />
-        <button type="submit" class="button bold">Cadastrar</button>
-      </form>
+        <h2 data-section="newsletterTitle">Assine nossa Newsletter</h2>
+        <p data-section="newsletterText">
+            Cadastre-se e receba atualizações sobre a Skander, artigos e conteúdos exclusivos em seu e-mail. Fique por dentro das últimas notícias e atualizações sobre gestão patrimonial e investimentos.
+        </p>
+        <form id="newsletter-form" onsubmit="return validateNewsletterForm()">
+            <input type="text" id="name" placeholder="Nome" />
+            <input type="email" id="email" placeholder="Email" />
+            <input type="tel" id="phone" placeholder="Telefone" />
+            <button type="submit" class="button bold" data-section="newsletterButton">Cadastrar</button>
+        </form>
     </section>
 
     <!-- Contact Section -->
     <section class="contact">
-      <h2>Entre em Contato</h2>
-      <p>Utilize um dos canais abaixo para entrar em contato conosco.</p>
-      <form id="contact-form" onsubmit="return validateContactForm()">
-        <input type="text" id="contact-name" placeholder="Nome" />
-        <input type="email" id="contact-email" placeholder="Email" />
-        <textarea
-          placeholder="Sua mensagem"
-          id="contact-message"
-          rows="4"
-        ></textarea>
-        <button type="submit" class="button bold">Enviar Mensagem</button>
-      </form>
-      <div class="contact-info">
-        <p>Skander Capital</p>
-        <p>
-          Email:
-          <a href="mailto:contato@skandercapital.com"
-            >contato@skandercapital.com</a
-          >
-        </p>
-        <p>Telefone: <a href="tel:+552120183394">+55 21 2018 3394</a></p>
-        <p>
-          Linkedin:
-          <a href="https://www.linkedin.com/company/skander-capital/"
-            >Skander Capital</a
-          >
-        </p>
-        <p>
-          Endereço: <span style="color: #fa7c0b;">Av. Brig. Faria Lima, 2066/2092, Bl. B, 13º andar, 01451-000
-          – Jd. Paulistano – São Paulo/SP – Brasil</span>
-        </p>
-        <a
-          href="https://www.linkedin.com/company/skander-capital/"
-          class="icon-linkedin"
-          ><i class="fa fa-linkedin"></i
-        ></a>
-      </div>
+        <h2 data-section="contactTitle">Entre em Contato</h2>
+        <p data-section="contactText">Utilize um dos canais abaixo para entrar em contato conosco.</p>
+        <form id="contact-form" onsubmit="return validateContactForm()">
+            <input type="text" id="contact-name" placeholder="Nome" />
+            <input type="email" id="contact-email" placeholder="Email" />
+            <textarea placeholder="Sua mensagem" id="contact-message" rows="4"></textarea>
+            <button type="submit" class="button bold" data-section="contactButton">Enviar Mensagem</button>
+        </form>
+        <div class="contact-info" data-section="contactInfo">
+            <p>Skander Capital</p>
+            <p>Email: <a href="mailto:contato@skandercapital.com">contato@skandercapital.com</a></p>
+            <p>Telefone: <a href="tel:+552120183394">+55 21 2018 3394</a></p>
+            <p>Linkedin: <a href="https://www.linkedin.com/company/skander-capital/">Skander Capital</a></p>
+            <p>Endereço: <span style="color: #fa7c0b;">Av. Brig. Faria Lima, 2066/2092, Bl. B, 13º andar, 01451-000 – Jd. Paulistano – São Paulo/SP – Brasil</span></p>
+            <a href="https://www.linkedin.com/company/skander-capital/" class="icon-linkedin"><i class="fa fa-linkedin"></i></a>
+        </div>
     </section>
 
     <!-- Complaints Section -->
     <section class="complaints">
-      <h2>Canal de Denúncias</h2>
-      <p>
-        De acordo com as normas legais e melhores práticas. disponibilizamos um
-        canal exclusivo para denúncias.
-      </p>
-      <button class="button bold" onclick="toggleComplaintsForm(this)">
-        Clique Aqui
-      </button>
-      <div class="complaints-form">
-        <form id="complaints-form" onsubmit="return validateComplaintsForm()">
-          <input type="text" placeholder="Nome (opcional)" />
-          <input type="email" placeholder="E-mail (opcional)" />
-          <input type="text" id="subject" placeholder="Assunto" />
-          <textarea
-            placeholder="Descreva sua denúncia"
-            id="complaint-message"
-            rows="4"
-          ></textarea>
-          <button type="submit" class="button submit-button">Enviar</button>
-        </form>
-      </div>
+        <h2 data-section="complaintsTitle">Canal de Denúncias</h2>
+        <p data-section="complaintsText">De acordo com as normas legais e melhores práticas. disponibilizamos um canal exclusivo para denúncias.</p>
+        <button class="button bold" onclick="toggleComplaintsForm(this)" data-section="complaintsButton">Clique Aqui</button>
+        <div class="complaints-form">
+            <form id="complaints-form" onsubmit="return validateComplaintsForm()">
+                <input type="text" placeholder="Nome (opcional)" />
+                <input type="email" placeholder="E-mail (opcional)" />
+                <input type="text" id="subject" placeholder="Assunto" />
+                <textarea placeholder="Descreva sua denúncia" id="complaint-message" rows="4"></textarea>
+                <button type="submit" class="button submit-button" data-section="complaintsSubmitButton">Enviar</button>
+            </form>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-      <p style="color: #fa7c0b">
-        © 2024 Skander Capital. Todos os direitos reservados.
-      </p>
+        <p style="color: #fa7c0b" data-section="footerText">© 2024 Skander Capital. Todos os direitos reservados.</p>
     </footer>
-
-    <script>
-      function toggleMenu() {
-        const nav = document.querySelector("nav ul");
-        nav.classList.toggle("show");
-      }
-
-      function toggleForm(button, formClass) {
-        const form = button.parentElement;
-        form.style.display = "none"; // Hide the button's form
-      }
-
-      function toggleComplaintsForm(button) {
-        const form = document.querySelector(".complaints-form");
-        form.classList.toggle("active");
-        button.style.display = "none"; // Hide the button after clicking
-      }
-
-      function validateNewsletterForm() {
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const phone = document.getElementById("phone").value;
-
-        if (!name || !email || !phone) {
-          alert("Por favor, preencha todos os campos obrigatórios.");
-          return false;
-        }
-
-        return true;
-      }
-
-      function validateContactForm() {
-        const name = document.getElementById("contact-name").value;
-        const email = document.getElementById("contact-email").value;
-        const message = document.getElementById("contact-message").value;
-
-        if (!name || !email || !message) {
-          alert("Por favor, preencha todos os campos obrigatórios.");
-          return false;
-        }
-
-        return true;
-      }
-
-      function validateComplaintsForm() {
-        const subject = document.getElementById("subject").value;
-        const message = document.getElementById("complaint-message").value;
-
-        if (!subject || !message) {
-          alert("Por favor, preencha os campos obrigatórios.");
-          return false;
-        }
-
-        return true;
-      }
-    </script>
-  </body>
+</body>
 </html>

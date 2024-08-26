@@ -1,98 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skander Capital - Área de Investidores</title>
-    <meta
-      name="description"
-      content="Acesso exclusivo para investidores da Skander Capital. Gestão de ativos e planejamento patrimonial global."
-    />
-    <meta
-      name="keywords"
-      content="Gestão Patrimonial, Investimentos, Planejamento Patrimonial, Ativos, Skander Capital, Investidores"
-    />
-    <meta name="author" content="Skander Capital" />
-    <meta name="robots" content="index, follow" />
-    <meta
-      property="og:title"
-      content="Skander Capital - Área de Investidores"
-    />
-    <meta
-      property="og:description"
-      content="Acesso exclusivo para investidores da Skander Capital. Gestão de ativos e planejamento patrimonial global."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.skander.com/investidores" />
-    <meta property="og:image" content="https://www.skander.com/logo.png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Agrandir:wght@400&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="description" content="Acesso exclusivo para investidores da Skander Capital. Gestão de ativos e planejamento patrimonial global." />
+    <link href="https://fonts.googleapis.com/css2?family=Agrandir:wght@400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/css/index.css">
-  <body>
+
+    <script>
+        const translations = {
+            en: {
+                titulo: "Skander Capital",
+                descricao: "Exclusive access for investors. Asset management and global wealth planning.",
+                visitantes: "Visitors",
+                investidores: "Investors",
+                empreendedores: "Entrepreneurs"
+            },
+            es: {
+                titulo: "Skander Capital",
+                descricao: "Acceso exclusivo para inversores. Gestión de activos y planificación patrimonial global.",
+                visitantes: "Visitantes",
+                investidores: "Inversores",
+                empreendedores: "Emprendedores"
+            },
+            fr: {
+                titulo: "Skander Capital",
+                descricao: "Accès exclusif pour les investisseurs. Gestion d'actifs et planification patrimoniale globale.",
+                visitantes: "Visiteurs",
+                investidores: "Investisseurs",
+                empreendedores: "Entrepreneurs"
+            },
+            pt: {
+                titulo: "Skander Capital",
+                descricao: "Acesso exclusivo para investidores. Gestão de ativos e planejamento patrimonial global.",
+                visitantes: "Visitantes",
+                investidores: "Investidores",
+                empreendedores: "Empreendedores"
+            }
+        };
+
+        function applyTranslations(lang) {
+            const elements = document.querySelectorAll('[data-section]');
+            elements.forEach(element => {
+                const section = element.getAttribute('data-section');
+                element.textContent = translations[lang][section];
+            });
+        }
+
+        function initializeLanguage() {
+            const preferredLanguage = localStorage.getItem('preferredLanguage') || 'pt';
+            document.documentElement.lang = preferredLanguage;
+            document.addEventListener('DOMContentLoaded', function() {
+                applyTranslations(preferredLanguage);
+                document.body.hidden = false;
+            });
+        }
+
+        initializeLanguage();
+    </script>
+</head>
+<body hidden>
     <!-- Header -->
     <header>
-      <a href="index.html"
-        ><img
-          src="/images/logobranca.svg"
-          alt="Logo Skander Capital"
-          class="logo"
-      /></a>
-      <nav>
-        <ul>
-          <li><a href="visitantes.html" class="nav-link">Visitantes</a></li>
-          <li><a href="investidores.html" class="nav-link">Investidores</a></li>
-          <li>
-            <a href="empreendedores.html" class="nav-link">Empreendedores</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="language-flags">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"
-          alt="Português"
-          onclick="changeLanguage('pt')"
-        />
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"
-          alt="English"
-          onclick="changeLanguage('en')"
-        />
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg"
-          alt="Español"
-          onclick="changeLanguage('es')"
-        />
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"
-          alt="Français"
-          onclick="changeLanguage('fr')"
-        />
-      </div>
-      <div class="toggle-bar" onclick="toggleMenu()">☰</div>
+        <img src="/images/logobranca.svg" alt="Logo Skander Capital" class="logo" />
+        <nav>
+            <ul>
+                <li><a href="visitantes.html" class="nav-link" data-section="visitantes">Visitantes</a></li>
+                <li><a href="investidores.html" class="nav-link" data-section="investidores">Investidores</a></li>
+                <li><a href="empreendedores.html" class="nav-link" data-section="empreendedores">Empreendedores</a></li>
+            </ul>
+        </nav>
+        <div class="language-flags">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg" alt="Português" onclick="changeLanguage('pt')" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="English" onclick="changeLanguage('en')" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Español" onclick="changeLanguage('es')" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" alt="Français" onclick="changeLanguage('fr')" />
+        </div>
+        <div class="toggle-bar" onclick="toggleMenu()">☰</div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-content">
-        <h1>Skander Capital</h1>
-        <p>
-          Acesso exclusivo para investidores. Gestão de ativos e planejamento
-          patrimonial global.
-        </p>
-      </div>
+        <div class="hero-content">
+            <h1 data-section="titulo">Skander Capital</h1>
+            <p data-section="descricao">Acesso exclusivo para investidores. Gestão de ativos e planejamento patrimonial global.</p>
+        </div>
     </section>
 
     <script>
-      function toggleMenu() {
-        const nav = document.querySelector("nav ul");
-        nav.classList.toggle("show");
-      }
+        function changeLanguage(lang) {
+            // Salva a preferência de idioma no localStorage
+            localStorage.setItem('preferredLanguage', lang);
 
-      function changeLanguage(lang) {
-        alert('Idioma selecionado: ' + lang);
-      }
+            // Aplica as traduções
+            applyTranslations(lang);
+        }
+
+        function toggleMenu() {
+            const nav = document.querySelector("nav ul");
+            nav.classList.toggle("show");
+        }
     </script>
-  </body>
+</body>
 </html>
